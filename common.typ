@@ -1,4 +1,7 @@
-#let data = json("data.json")
+// ============================================================================
+// COMMON UTILITIES
+// Shared functions used across multiple cipher types
+// ============================================================================
 
 // Convert HTML directly to Typst content, processing recursively
 #let html-to-typst(html-str) = {
@@ -74,58 +77,54 @@
   process-tags(text)
 }
 
-// Main document
-#set page(
-  paper: "us-letter",
-  margin: (top: 1.5cm, bottom: 1cm, left: 1cm, right: 1cm),
-)
-#set text(size: 11pt)
-#show raw: set text(font: "Courier New", weight: "bold")  // Use Courier New for non-slashed zeros
-
-// Iterate through all cipher entries
-#{
-  let keys = data.keys().filter(k => k.starts-with("CIPHER."))
-  
-  // Sort numerically by extracting the number after "CIPHER."
-  keys = keys.sorted(key: k => {
-    let num-str = k.split(".").at(1)
-    int(num-str)
-  })
-  
-  for (idx, key) in keys.enumerate() {
-    let cipher = data.at(key)
-    let num = key.split(".").at(1)
-    
-    // Add spacing between questions (but not before the first one)
-    if idx > 0 and num != "1" {
-      v(1em)
-    }
-    
-    // Create heading with question number/TIMED, points, then question text
-    if num == "0" {
-      heading(level: 2)[
-        #text(size: 11pt)[
-          #strong[TIMED] #text(weight: "regular")[Question] \[#raw(str(cipher.points)) #text(weight: "regular")[points]\] 
-          #text(weight: "regular")[
-            #if "question" in cipher {
-              html-to-typst(cipher.question)
-            }
-          ]
+// Create a question heading with proper formatting
+#let question-heading(num, cipher) = {
+  if num == "0" {
+    heading(level: 2)[
+      #text(size: 11pt)[
+        #strong[TIMED] #text(weight: "regular")[Question] \[#raw(str(cipher.points)) #text(weight: "regular")[points]\] 
+        #text(weight: "regular")[
+          #if "question" in cipher {
+            html-to-typst(cipher.question)
+          }
         ]
       ]
-      // TIMED question gets its own page
-      pagebreak()
-    } else {
-      heading(level: 2)[
-        #text(size: 11pt)[
-          #num. \[#raw(str(cipher.points)) #text(weight: "regular")[points]\] 
-          #text(weight: "regular")[
-            #if "question" in cipher {
-              html-to-typst(cipher.question)
-            }
-          ]
+    ]
+  } else {
+    heading(level: 2)[
+      #text(size: 11pt)[
+        #num. \[#raw(str(cipher.points)) #text(weight: "regular")[points]\] 
+        #text(weight: "regular")[
+          #if "question" in cipher {
+            html-to-typst(cipher.question)
+          }
         ]
       ]
-    }
+    ]
   }
+}
+
+// Display cipher text in a grid format (common for many ciphers)
+#let display-cipher-grid(cipherString, columns: 5) = {
+  // TODO: Implement grid display logic
+  // This would show the cipher text in a formatted grid
+  text()[Cipher: #raw(cipherString)]
+}
+
+// Display a polybius square
+#let display-polybius-square(key) = {
+  // TODO: Implement polybius square display
+  // This would show the polybius square based on the key
+  text()[Polybius Key: #raw(key)]
+}
+
+// Display a substitution alphabet
+#let display-alphabet(source, dest) = {
+  // TODO: Implement alphabet display
+  // This would show source and destination alphabets aligned
+  block[
+    #raw(source)
+    \
+    #raw(dest)
+  ]
 }

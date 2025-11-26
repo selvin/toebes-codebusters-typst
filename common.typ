@@ -128,3 +128,79 @@
     #raw(dest)
   ]
 }
+
+// Smart text renderer that breaks lines intelligently
+// - Breaks lines at periods (.)
+// - Maximum N characters per line
+// - Doesn't break words (moves whole word to next line)
+// Returns an array of strings, one per line
+#let smart-line-break(text, max-chars: 80) = {
+  let lines = ()
+  let current-line = ""
+  let current-word = ""
+  let skip-next-space = false
+
+  // Process each character
+  for i in range(text.len()) {
+    let char = text.at(i)
+
+    // Check if we hit a period
+    if char == "." {
+      // Add the period to current word
+      current-word += char
+      // Flush current word to line
+      current-line += current-word
+      // End the line here
+      if current-line.len() > 0 {
+        lines.push(current-line)
+      }
+      current-line = ""
+      current-word = ""
+      skip-next-space = true  // Skip the space after period
+      continue
+    }
+
+    // Check if we hit a space
+    if char == " " {
+      // Skip space right after a period
+      if skip-next-space {
+        skip-next-space = false
+        continue
+      }
+
+      // Check if adding this word would exceed max
+      if current-line.len() + current-word.len() + 1 > max-chars and current-line.len() > 0 {
+        // Current line is full, start new line with the word
+        lines.push(current-line)
+        current-line = current-word + " "
+        current-word = ""
+      } else {
+        // Add word and space to current line
+        current-line += current-word + " "
+        current-word = ""
+      }
+    } else {
+      // Regular character, add to current word
+      current-word += char
+      skip-next-space = false
+    }
+  }
+
+  // Handle remaining word and line
+  if current-word.len() > 0 {
+    if current-line.len() + current-word.len() > max-chars and current-line.len() > 0 {
+      // Start new line for the last word
+      lines.push(current-line.trim())
+      lines.push(current-word)
+    } else {
+      current-line += current-word
+      if current-line.len() > 0 {
+        lines.push(current-line)
+      }
+    }
+  } else if current-line.len() > 0 {
+    lines.push(current-line.trim())
+  }
+
+  return lines
+}

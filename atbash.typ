@@ -62,7 +62,7 @@
     // For non-alphabetic characters: render in the middle
     // The height should match the total height of the two boxes (2 * 1.8em = 3.6em)
     box(
-      width: if char == " " { 0.3em } else { 1em },
+      width: if char == " " { 0.2em } else { 1em },
       height: 3.6em,
       align(center + horizon)[#text(char)]
     )

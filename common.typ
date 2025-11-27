@@ -204,3 +204,94 @@
 
   return lines
 }
+
+// ============================================================================
+// DUAL-BOX CIPHER RENDERING
+// Functions for rendering ciphers with a dual-box format (e.g., Atbash, Caesar, Affine)
+// ============================================================================
+
+// Helper function to check if a character is alphabetic
+#let is-alpha(char) = {
+  let code = str.to-unicode(char)
+  (code >= 65 and code <= 90) or (code >= 97 and code <= 122)
+}
+
+// Helper function to render a single character in dual-box format
+// Top box: ciphertext, Bottom box: empty for student to fill in
+#let render-char-dual-box(char) = {
+  if is-alpha(char) {
+    // For alphabetic characters: render two stacked boxes
+    box(
+      stack(
+        dir: ttb,
+        spacing: 0pt,
+        // Top box: ciphertext
+        box(
+          inset: 0.5em,
+          stroke: 0.25pt + black,
+          width: 1.2em,
+          height: 1.8em,
+          align(center + horizon)[#text(char)]
+        ),
+        // Bottom box: empty for student to fill in
+        box(
+          inset: 0.5em,
+          stroke: 0.25pt + black,
+          width: 1.2em,
+          height: 1.8em,
+          []
+        )
+      )
+    )
+  } else {
+    // For non-alphabetic characters: render in the middle
+    // The height should match the total height of the two boxes (2 * 1.8em = 3.6em)
+    box(
+      width: if char == " " { 0.1em } else { 1em },
+      height: 3.6em,
+      align(center + horizon)[#text(char)]
+    )
+  }
+}
+
+// Generic function to render a cipher with dual-box format
+// This can be reused for Atbash, Caesar, Affine, etc.
+// Parameters:
+//   cipher: The cipher object containing cipherString and other properties
+//   num: The question number
+//   encode-fn: Function to encode the plaintext (e.g., atbash-encode, caesar-encode)
+//   max-chars: Maximum characters per line (default: 32)
+#let render-dual-box-cipher(cipher, num, encode-fn, max-chars: 32) = {
+  question-heading(num, cipher)
+
+  let cipherString = upper(cipher.cipherString)
+
+  // Encode the string with the provided encoding function
+  let encodedString = encode-fn(cipherString)
+
+  // Use smart-line-break for the cipher text
+  let lines = smart-line-break(encodedString, max-chars: max-chars)
+
+  v(1em)
+  // Render the lines
+  block(inset: 4pt)[
+    #set text(font: "Courier New", weight: "bold", size: 12pt)
+    #for line in lines [
+      // Render each character in the line
+      #box[
+        #{
+          let chars = line.clusters()
+          for (i, char) in chars.enumerate() [
+            #render-char-dual-box(char)
+            // Add negative spacing between consecutive alphabetic characters
+            #if i < chars.len() - 1 and is-alpha(char) and is-alpha(chars.at(i + 1)) [
+              #h(-0.4em)
+            ]
+          ]
+        }
+      ]
+      // Add vertical space after each line
+      #v(1em)
+    ]
+  ]
+}

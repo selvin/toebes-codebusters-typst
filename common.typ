@@ -229,7 +229,7 @@
         box(
           inset: 0.5em,
           stroke: 0.25pt + black,
-          width: 1.15em,
+          width: 1.2em,
           height: 1.8em,
           align(center + horizon)[#text(char)]
         ),
@@ -237,7 +237,7 @@
         box(
           inset: 0.5em,
           stroke: 0.25pt + black,
-          width: 1.15em,
+          width: 1.2em,
           height: 1.8em,
           []
         )
@@ -260,13 +260,13 @@
           spacing: 0pt,
           // Top position: punctuation (no box border)
           box(
-            width: 0.8em,
+            width: 0.5em,
             height: 1.8em,
             align(center + horizon)[#text(char)]
           ),
           // Bottom position: punctuation (no box border)
           box(
-            width: 0.8em,
+            width: 0.5em,
             height: 1.8em,
             align(center + horizon)[#text(char)]
           )
@@ -307,7 +307,7 @@
             #render-char-dual-box(char)
             // Add negative spacing between consecutive alphabetic characters
             #if i < chars.len() - 1 and is-alpha(char) and is-alpha(chars.at(i + 1)) [
-              #h(-0.4em)
+              #h(-0.45em)
             ]
           ]
         }

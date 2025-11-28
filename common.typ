@@ -229,7 +229,7 @@
         box(
           inset: 0.5em,
           stroke: 0.25pt + black,
-          width: 1.2em,
+          width: 1.15em,
           height: 1.8em,
           align(center + horizon)[#text(char)]
         ),
@@ -237,7 +237,7 @@
         box(
           inset: 0.5em,
           stroke: 0.25pt + black,
-          width: 1.2em,
+          width: 1.15em,
           height: 1.8em,
           []
         )
@@ -248,7 +248,7 @@
     if char == " " {
       // Spaces: render as a small gap
       box(
-        width: 0.1em,
+        width: 0.05em,
         height: 3.6em,
         align(center + horizon)[#text(char)]
       )
@@ -260,13 +260,13 @@
           spacing: 0pt,
           // Top position: punctuation (no box border)
           box(
-            width: 1em,
+            width: 0.8em,
             height: 1.8em,
             align(center + horizon)[#text(char)]
           ),
           // Bottom position: punctuation (no box border)
           box(
-            width: 1em,
+            width: 0.8em,
             height: 1.8em,
             align(center + horizon)[#text(char)]
           )

@@ -4,15 +4,16 @@
 // ============================================================================
 
 #import "common.typ": *
+#import "affine.typ": *
 #import "aristocrats.typ": *
 #import "atbash.typ": *
 #import "baconian.typ": *
-#import "nihilist.typ": *
+#import "caesar.typ": *
 #import "columnar.typ": *
-#import "affine.typ": *
-#import "porta.typ": *
-#import "fractionated-morse.typ": *
 #import "cryptarithm.typ": *
+#import "fractionated-morse.typ": *
+#import "nihilist.typ": *
+#import "porta.typ": *
 
 // Load the input data
 #let data = json("input.json")
@@ -47,26 +48,28 @@
     // Delegate to appropriate cipher renderer based on cipherType
     let cipher-type = cipher.cipherType
     
-    if cipher-type == "aristocrat" {
+    if cipher-type == "affine" {
+      render-affine(cipher, num)
+    } else if cipher-type == "aristocrat" {
       render-aristocrat(cipher, num)
     } else if cipher-type == "atbash" {
       render-atbash(cipher, num)
-    } else if cipher-type == "patristocrat" {
-      render-patristocrat(cipher, num)
     } else if cipher-type == "baconian" {
       render-baconian(cipher, num)
-    } else if cipher-type == "nihilistsub" {
-      render-nihilist(cipher, num)
+    } else if cipher-type == "caesar" {
+      render-caesar(cipher, num)
     } else if cipher-type == "compcolumnar" {
       render-columnar(cipher, num)
-    } else if cipher-type == "affine" {
-      render-affine(cipher, num)
-    } else if cipher-type == "porta" {
-      render-porta(cipher, num)
-    } else if cipher-type == "fractionatedmorse" {
-      render-fractionated-morse(cipher, num)
     } else if cipher-type == "cryptarithm" {
       render-cryptarithm(cipher, num)
+    } else if cipher-type == "fractionatedmorse" {
+      render-fractionated-morse(cipher, num)
+    } else if cipher-type == "nihilistsub" {
+      render-nihilist(cipher, num)
+    } else if cipher-type == "patristocrat" {
+      render-patristocrat(cipher, num)
+    } else if cipher-type == "porta" {
+      render-porta(cipher, num)
     } else {
       // Fallback for unknown cipher types
       question-heading(num, cipher)

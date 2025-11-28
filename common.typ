@@ -244,13 +244,35 @@
       )
     )
   } else {
-    // For non-alphabetic characters: render in the middle
-    // The height should match the total height of the two boxes (2 * 1.8em = 3.6em)
-    box(
-      width: if char == " " { 0.1em } else { 1em },
-      height: 3.6em,
-      align(center + horizon)[#text(char)]
-    )
+    // For non-alphabetic characters
+    if char == " " {
+      // Spaces: render as a small gap
+      box(
+        width: 0.1em,
+        height: 3.6em,
+        align(center + horizon)[#text(char)]
+      )
+    } else {
+      // Punctuation: render twice (once in each 1.8em space, centered)
+      box(
+        stack(
+          dir: ttb,
+          spacing: 0pt,
+          // Top position: punctuation (no box border)
+          box(
+            width: 1em,
+            height: 1.8em,
+            align(center + horizon)[#text(char)]
+          ),
+          // Bottom position: punctuation (no box border)
+          box(
+            width: 1em,
+            height: 1.8em,
+            align(center + horizon)[#text(char)]
+          )
+        )
+      )
+    }
   }
 }
 
@@ -260,8 +282,8 @@
 //   cipher: The cipher object containing cipherString and other properties
 //   num: The question number
 //   encode-fn: Function to encode the plaintext (e.g., atbash-encode, caesar-encode)
-//   max-chars: Maximum characters per line (default: 32)
-#let render-dual-box-cipher(cipher, num, encode-fn, max-chars: 32) = {
+//   max-chars: Maximum characters per line (default: 35)
+#let render-dual-box-cipher(cipher, num, encode-fn, max-chars: 35) = {
   question-heading(num, cipher)
 
   let cipherString = upper(cipher.cipherString)

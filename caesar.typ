@@ -26,5 +26,5 @@
 
 // Render an caesar cipher (uses the generic dual-box cipher renderer from common.typ)
 #let render-caesar(cipher, num) = {
-  render-dual-box-cipher(cipher, num, text => caesar-encode(text, cipher.offset), max-chars: 32)
+  render-dual-box-cipher(cipher, num, text => caesar-encode(text, cipher.offset))
 }

@@ -18,13 +18,13 @@
     .replace("<p>", "")
     .replace("</p>", "")
     .replace("&nbsp;", "\u{00A0}")  // Unicode non-breaking space
-  
+
   // Recursive function to process tags
   let process-tags(text) = {
     // Try to find the first opening tag
     let min-pos = text.len()
     let min-tag = none
-    
+
     for tag-info in (
       ("<b>", "</b>", strong),
       ("<strong>", "</strong>", strong),
@@ -44,21 +44,21 @@
         }
       }
     }
-    
+
     if min-tag == none {
       // No tags found, return as-is
       return text
     }
-    
+
     let open-tag = min-tag.at(0)
     let close-tag = min-tag.at(1)
     let formatter = min-tag.at(2)
-    
+
     // Split by opening tag
     let parts = text.split(open-tag)
     let result = ()
     result.push(process-tags(parts.at(0)))  // Process before tag
-    
+
     for part in parts.slice(1) {
       let subparts = part.split(close-tag)
       if subparts.len() >= 2 {
@@ -70,19 +70,26 @@
         result.push(open-tag + process-tags(part))
       }
     }
-    
+
     return result.join()
   }
-  
+
   process-tags(text)
 }
 
 // Create a question heading with proper formatting
 #let question-heading(num, cipher) = {
+  // Add a thin line above each question for visual separation
+  line(length: 100%, stroke: 0.25pt)
+  v(0.05em)
+
+  // Remove default heading spacing to make the line hug the heading
+  show heading: it => block(above: 0.1em, below: 0.5em, it)
+
   if num == "0" {
-    heading(level: 2)[
+    heading(level: 3)[
       #text(size: 11pt)[
-        #strong[TIMED] #text(weight: "regular")[Question] \[#raw(str(cipher.points)) #text(weight: "regular")[points]\] 
+        #strong[TIMED] #text(weight: "regular")[Question] \[#raw(str(cipher.points)) #text(weight: "regular")[points]\]
         #text(weight: "regular")[
           #if "question" in cipher {
             html-to-typst(cipher.question)
@@ -91,9 +98,9 @@
       ]
     ]
   } else {
-    heading(level: 2)[
+    heading(level: 3)[
       #text(size: 11pt)[
-        #num. \[#raw(str(cipher.points)) #text(weight: "regular")[points]\] 
+        #num. \[#raw(str(cipher.points)) #text(weight: "regular")[points]\]
         #text(weight: "regular")[
           #if "question" in cipher {
             html-to-typst(cipher.question)

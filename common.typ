@@ -86,10 +86,17 @@
   // Remove default heading spacing to make the line hug the heading
   show heading: it => block(above: 0.1em, below: 0.5em, it)
 
+  // Prepare special bonus prefix if needed
+  let bonus-prefix = if "specialbonus" in cipher and cipher.specialbonus {
+    [★ (Special Bonus Question) ]
+  } else {
+    []
+  }
+
   if num == "0" {
     heading(level: 3)[
       #text(size: 11pt)[
-        #strong[TIMED] #text(weight: "regular")[Question] \[#raw(str(cipher.points)) #text(weight: "regular")[points]\]
+        #text(weight: "regular")[#bonus-prefix]#strong[TIMED] #text(weight: "regular")[Question] \[#raw(str(cipher.points)) #text(weight: "regular")[points]\]
         #text(weight: "regular")[
           #if "question" in cipher {
             html-to-typst(cipher.question)
@@ -100,7 +107,7 @@
   } else {
     heading(level: 3)[
       #text(size: 11pt)[
-        #num. \[#raw(str(cipher.points)) #text(weight: "regular")[points]\]
+        #text(weight: "regular")[#bonus-prefix]#num. \[#raw(str(cipher.points)) #text(weight: "regular")[points]\]
         #text(weight: "regular")[
           #if "question" in cipher {
             html-to-typst(cipher.question)

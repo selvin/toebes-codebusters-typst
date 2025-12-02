@@ -32,17 +32,11 @@
   // Create table with appropriate number of columns (key column + 26 alphabet columns)
   let columns = (auto,) + (1fr,) * 26
 
-  // Helper function to create empty boxes for replacement row
+  // Helper function to create empty cells for replacement row
   let empty-boxes = {
     let row = ()
     for letter in alphabet.clusters() {
-      row.push([#box(
-        stroke: 0.5pt + black,
-        width: 100%,
-        height: 1.5em,
-        inset: 2pt,
-        []
-      )])
+      row.push([#v(1.5em)])
     }
     row
   }

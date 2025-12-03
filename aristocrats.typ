@@ -54,7 +54,12 @@
   let frequency-row = {
     let row = ()
     for letter in alphabet.clusters() {
-      row.push([#text(font: "Courier New")[#str(frequencies.at(letter))]])
+      let freq = frequencies.at(letter)
+      if freq == 0 {
+        row.push([])
+      } else {
+        row.push([#text(font: "Courier New")[#str(freq)]])
+      }
     }
     row
   }

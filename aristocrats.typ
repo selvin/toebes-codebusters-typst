@@ -74,13 +74,13 @@
       align: center + horizon,
 
       // Row 1: K1 + alphabets
-      [#text(weight: "bold")[K1]], ..alphabet-row,
+      [#text(font: "Courier New", weight: "bold")[K1]], ..alphabet-row,
 
       // Row 2: Freq + frequencies
-      [#text(weight: "bold")[Freq]], ..frequency-row,
+      [#text(font: "Courier New", weight: "bold")[Freq]], ..frequency-row,
 
       // Row 3: Replacement + empty boxes
-      [#text(weight: "bold")[Replacement]], ..empty-boxes
+      [#text(font: "Courier New", weight: "bold")[Replacement]], ..empty-boxes
     )
   } else if keyType == "K2" {
     table(
@@ -89,13 +89,13 @@
       align: center + horizon,
 
       // Row 1: Replacement + empty boxes
-      [#text(weight: "bold")[Replacement]], ..empty-boxes,
+      [#text(font: "Courier New", weight: "bold")[Replacement]], ..empty-boxes,
 
       // Row 2: K2 + alphabets
-      [#text(weight: "bold")[K2]], ..alphabet-row,
+      [#text(font: "Courier New", weight: "bold")[K2]], ..alphabet-row,
 
       // Row 3: Freq + frequencies
-      [#text(weight: "bold")[Freq]], ..frequency-row
+      [#text(font: "Courier New", weight: "bold")[Freq]], ..frequency-row
     )
   } else { // Random
     table(
@@ -107,10 +107,10 @@
       [], ..alphabet-row,
 
       // Row 2: Freq + frequencies
-      [#text(weight: "bold")[Freq]], ..frequency-row,
+      [#text(font: "Courier New", weight: "bold")[Freq]], ..frequency-row,
 
       // Row 3: Replacement + empty boxes
-      [#text(weight: "bold")[Replacement]], ..empty-boxes
+      [#text(font: "Courier New", weight: "bold")[Replacement]], ..empty-boxes
     )
   }
 }

@@ -45,7 +45,7 @@
   let alphabet-row = {
     let row = ()
     for letter in alphabet.clusters() {
-      row.push([#text(font: "Courier New", weight: "bold")[#letter]])
+      row.push([#text(font: "Courier New", weight: "bold", size: 0.9em)[#letter]])
     }
     row
   }
@@ -58,7 +58,7 @@
       if freq == 0 {
         row.push([])
       } else {
-        row.push([#text(font: "Courier New")[#str(freq)]])
+        row.push([#text(font: "Courier New", size: 0.9em)[#str(freq)]])
       }
     }
     row
@@ -74,13 +74,13 @@
       align: center + horizon,
 
       // Row 1: K1 + alphabets
-      [#text(font: "Courier New", weight: "bold")[K1]], ..alphabet-row,
+      [#text(font: "Courier New", weight: "bold", size: 1.1em)[K1]], ..alphabet-row,
 
       // Row 2: Freq + frequencies
-      [#text(font: "Courier New", weight: "bold")[Freq]], ..frequency-row,
+      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Freq]], ..frequency-row,
 
       // Row 3: Replacement + empty boxes
-      [#text(font: "Courier New", weight: "bold")[Replacement]], ..empty-boxes
+      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Replacement]], ..empty-boxes
     )
   } else if keyType == "K2" {
     table(
@@ -89,13 +89,13 @@
       align: center + horizon,
 
       // Row 1: Replacement + empty boxes
-      [#text(font: "Courier New", weight: "bold")[Replacement]], ..empty-boxes,
+      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Replacement]], ..empty-boxes,
 
       // Row 2: K2 + alphabets
-      [#text(font: "Courier New", weight: "bold")[K2]], ..alphabet-row,
+      [#text(font: "Courier New", weight: "bold", size: 1.1em)[K2]], ..alphabet-row,
 
       // Row 3: Freq + frequencies
-      [#text(font: "Courier New", weight: "bold")[Freq]], ..frequency-row
+      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Freq]], ..frequency-row
     )
   } else { // Random
     table(
@@ -107,10 +107,10 @@
       [], ..alphabet-row,
 
       // Row 2: Freq + frequencies
-      [#text(font: "Courier New", weight: "bold")[Freq]], ..frequency-row,
+      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Freq]], ..frequency-row,
 
       // Row 3: Replacement + empty boxes
-      [#text(font: "Courier New", weight: "bold")[Replacement]], ..empty-boxes
+      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Replacement]], ..empty-boxes
     )
   }
 }

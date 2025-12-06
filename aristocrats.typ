@@ -76,8 +76,8 @@
       // Row 1: K1 + alphabets
       [#text(font: "Courier New", weight: "bold", size: 1.1em)[K1]], ..alphabet-row,
 
-      // Row 2: Freq + frequencies
-      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Freq]], ..frequency-row,
+      // Row 2: Frequency + frequencies
+      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Frequency]], ..frequency-row,
 
       // Row 3: Replacement + empty boxes
       [#text(font: "Courier New", weight: "bold", size: 0.9em)[Replacement]], ..empty-boxes
@@ -94,8 +94,8 @@
       // Row 2: K2 + alphabets
       [#text(font: "Courier New", weight: "bold", size: 1.1em)[K2]], ..alphabet-row,
 
-      // Row 3: Freq + frequencies
-      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Freq]], ..frequency-row
+      // Row 3: Frequency + frequencies
+      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Frequency]], ..frequency-row
     )
   } else { // Random
     table(
@@ -106,8 +106,8 @@
       // Row 1: Empty key + alphabets (Random is understood)
       [], ..alphabet-row,
 
-      // Row 2: Freq + frequencies
-      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Freq]], ..frequency-row,
+      // Row 2: Frequency + frequencies
+      [#text(font: "Courier New", weight: "bold", size: 0.9em)[Frequency]], ..frequency-row,
 
       // Row 3: Replacement + empty boxes
       [#text(font: "Courier New", weight: "bold", size: 0.9em)[Replacement]], ..empty-boxes

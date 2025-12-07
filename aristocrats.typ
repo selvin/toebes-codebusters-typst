@@ -128,7 +128,7 @@
     width: 100%
   )[
     #set text(font: "Courier New", weight: "bold", size: 10pt)
-    #cipher.cipherString
+    #upper(cipher.cipherString)
   ]
 
   // Determine key type from cipher object

@@ -43,32 +43,40 @@
     // Delegate to appropriate cipher renderer based on cipherType
     let cipher-type = cipher.cipherType
 
-    if cipher-type == "affine" {
-      render-affine(cipher, num)
-    } else if cipher-type == "aristocrat" {
-      render-aristocrat(cipher, num)
-    } else if cipher-type == "atbash" {
-      render-atbash(cipher, num)
-    } else if cipher-type == "baconian" {
-      render-baconian(cipher, num)
-    } else if cipher-type == "caesar" {
-      render-caesar(cipher, num)
-    } else if cipher-type == "compcolumnar" {
-      render-columnar(cipher, num)
-    } else if cipher-type == "cryptarithm" {
-      render-cryptarithm(cipher, num)
-    } else if cipher-type == "fractionatedmorse" {
-      render-fractionated-morse(cipher, num)
-    } else if cipher-type == "nihilistsub" {
-      render-nihilist(cipher, num)
-    } else if cipher-type == "patristocrat" {
-      render-patristocrat(cipher, num)
-    } else if cipher-type == "porta" {
-      render-porta(cipher, num)
-    } else {
-      // Fallback for unknown cipher types
-      question-heading(num, cipher)
-      text()[Unknown cipher type: #cipher-type]
+    // Wrap question rendering in position-question for proper vertical positioning
+    position-question(num, {
+      if cipher-type == "affine" {
+        render-affine(cipher, num)
+      } else if cipher-type == "aristocrat" {
+        render-aristocrat(cipher, num)
+      } else if cipher-type == "atbash" {
+        render-atbash(cipher, num)
+      } else if cipher-type == "baconian" {
+        render-baconian(cipher, num)
+      } else if cipher-type == "caesar" {
+        render-caesar(cipher, num)
+      } else if cipher-type == "compcolumnar" {
+        render-columnar(cipher, num)
+      } else if cipher-type == "cryptarithm" {
+        render-cryptarithm(cipher, num)
+      } else if cipher-type == "fractionatedmorse" {
+        render-fractionated-morse(cipher, num)
+      } else if cipher-type == "nihilistsub" {
+        render-nihilist(cipher, num)
+      } else if cipher-type == "patristocrat" {
+        render-patristocrat(cipher, num)
+      } else if cipher-type == "porta" {
+        render-porta(cipher, num)
+      } else {
+        // Fallback for unknown cipher types
+        question-heading(num, cipher)
+        text()[Unknown cipher type: #cipher-type]
+      }
+    })
+
+    // Apply half-page layout control (except for TIMED question)
+    if num != "0" {
+      question-page-control(num)
     }
 
     // TIMED question gets its own page

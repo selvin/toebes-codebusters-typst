@@ -77,6 +77,42 @@
   process-tags(text)
 }
 
+// Control page layout: half-page per question
+// Call this after rendering each question to handle spacing and page breaks
+#let question-page-control(num) = {
+  if num != "0" {
+    let question-num = int(num)
+    // After any question (odd or even), force a page break
+    // Odd questions will have the next (even) question positioned at 50% on same page
+    // Even questions will start a new page for the next (odd) question
+    if calc.rem(question-num, 2) == 0 {
+      // After even question: start new page
+      pagebreak()
+    }
+  }
+}
+
+// Wrapper for positioning questions at the correct vertical position
+// Even questions are positioned at exactly 50% of usable page height
+#let position-question(num, content) = {
+  if num != "0" {
+    let question-num = int(num)
+    if calc.rem(question-num, 2) == 0 {
+      // Even question: position at exactly 50% of page height using absolute positioning
+      // US Letter: 11in = 27.94cm, margins: top 1.5cm + bottom 1cm
+      // Usable height: 27.94 - 1.5 - 1 = 25.44cm
+      // 50% of usable height = 12.72cm from top margin
+      place(top, dy: 12.72cm, content)
+    } else {
+      // Odd question: render normally at top of page
+      content
+    }
+  } else {
+    // Question 0 (TIMED): render normally
+    content
+  }
+}
+
 // Create a question heading with proper formatting
 #let question-heading(num, cipher) = {
   // Add a thin line above each question for visual separation

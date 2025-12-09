@@ -12,7 +12,6 @@
   // Display the cryptarithm puzzle
   v(0.5em)
   block(
-    fill: rgb("#f5f5f5"),
     inset: 10pt,
     radius: 4pt
   )[

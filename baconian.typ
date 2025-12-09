@@ -12,7 +12,6 @@
   // Display the words
   v(0.5em)
   block(
-    fill: rgb("#f5f5f5"),
     inset: 10pt,
     radius: 4pt,
     width: 100%
@@ -40,7 +39,6 @@
   // Display the A/B sequence or custom symbols
   v(0.5em)
   block(
-    fill: rgb("#f5f5f5"),
     inset: 10pt,
     radius: 4pt,
     width: 100%
@@ -64,7 +62,6 @@
   
   v(0.5em)
   block(
-    fill: rgb("#f5f5f5"),
     inset: 10pt,
     radius: 4pt,
     width: 100%

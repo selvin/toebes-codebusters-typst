@@ -14,6 +14,7 @@
 #import "fractionated-morse.typ": *
 #import "nihilist.typ": *
 #import "porta.typ": *
+#import "unknown.typ": *
 
 // Load the input data
 #let data = json("input.json")
@@ -69,8 +70,7 @@
         render-porta(cipher, num)
       } else {
         // Fallback for unknown cipher types
-        question-heading(num, cipher)
-        text()[Unknown cipher type: #cipher-type]
+        render-unknown(cipher, num)
       }
     })
 

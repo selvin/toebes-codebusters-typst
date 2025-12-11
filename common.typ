@@ -190,10 +190,8 @@
   let current-word = ""
   let skip-next-space = false
 
-  // Process each character
-  for i in range(text.len()) {
-    let char = text.at(i)
-
+  // Process each character using clusters (handles Unicode properly)
+  for char in text.clusters() {
     // Check if we hit a period
     if char == "." {
       // Add the period to current word

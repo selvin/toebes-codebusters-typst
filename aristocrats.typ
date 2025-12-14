@@ -126,7 +126,7 @@
     radius: 4pt,
     width: 100%
   )[
-    #set text(font: "Courier New", weight: "bold", size: 10pt)
+    #set text(font: "Courier New", weight: "bold", size: 16pt)
     #let lines = smart-line-break(upper(cipher.cipherString), max-chars: 55)
     #for line in lines {
       line
@@ -172,7 +172,7 @@
     radius: 4pt,
     width: 100%
   )[
-    #set text(font: "Courier New", weight: "bold", size: 10pt)
+    #set text(font: "Courier New", weight: "bold", size: 16pt)
     #let lines = smart-line-break(upper(cipher.cipherString), max-chars: 55)
     #for line in lines {
       line

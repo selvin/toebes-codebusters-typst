@@ -131,6 +131,7 @@
     #for line in lines {
       line
       linebreak()
+      v(2.5em)  // Space for students to write answers
     }
   ]
 
@@ -177,6 +178,7 @@
     #for line in lines {
       line
       linebreak()
+      v(2.5em)  // Space for students to write answers
     }
   ]
 }

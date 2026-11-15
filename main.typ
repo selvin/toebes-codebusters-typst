@@ -10,6 +10,7 @@
 #import "atbash.typ": *
 #import "baconian.typ": *
 #import "caesar.typ": *
+#import "checkerboard.typ": *
 #import "columnar.typ": *
 #import "cryptarithm.typ": *
 #import "fractionated-morse.typ": *
@@ -74,6 +75,8 @@
         render-aristocrat-prepared(q)
       } else if q.kind == "baconian" {
         render-baconian-prepared(q)
+      } else if q.kind == "checkerboard" {
+        render-checkerboard-prepared(q)
       } else if q.kind == "compcolumnar" {
         render-columnar-prepared(q)
       } else if q.kind == "nihilist" {

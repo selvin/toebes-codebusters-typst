@@ -680,6 +680,9 @@ cryptarithm stays legacy (formula only, no leak; its work grid is in the render-
 For the render pass: a closing period can wrap onto a line of its own (with its answer row), from
 `smart-line-break`.
 
+**Owner check (2026-11-14):** the owner verified the ciphertext of all four atbash and caesar
+questions against Toebes's PDF: they match.
+
 ## Decisions — 2026-11-14 (render pass order)
 
 The owner verified the xenocrypt on paper: **every question in `competitiondata/001` is verified for

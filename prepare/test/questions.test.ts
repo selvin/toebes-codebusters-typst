@@ -38,7 +38,7 @@ describe("prepareQuestions", () => {
 
   it("carries points, bonus flag and kind", () => {
     expect(result.questions.map((q) => [q.points, q.specialBonus, q.kind])).toEqual([
-      [100, false, "legacy"],
+      [100, false, "aristocrat"],
       [50, true, "legacy"],
       [30, false, "legacy"],
     ]);

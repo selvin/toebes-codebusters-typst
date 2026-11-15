@@ -1,5 +1,6 @@
 // Builds questions.json: everything the question paper may show, and nothing it may not.
 
+import { prepareAristocrat, type AristocratData } from "./aristocrat.js";
 import { htmlToParagraphs, type Paragraph } from "./html.js";
 import type { ToebesCipher, ToebesExport } from "./toebes.js";
 
@@ -7,7 +8,7 @@ interface LegacyData {
   kind: "legacy";
 }
 
-type KindData = LegacyData;
+type KindData = AristocratData | LegacyData;
 
 export type Question = {
   number: number;
@@ -23,7 +24,11 @@ export interface QuestionsFile {
   questions: Question[];
 }
 
-function prepareKind(_cipher: ToebesCipher): KindData {
+function prepareKind(cipher: ToebesCipher): KindData {
+  if (cipher.cipherType === "aristocrat") {
+    const data = prepareAristocrat(cipher);
+    if (data) return data;
+  }
   return { kind: "legacy" };
 }
 

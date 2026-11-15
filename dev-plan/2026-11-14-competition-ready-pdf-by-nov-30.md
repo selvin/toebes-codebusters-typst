@@ -103,7 +103,8 @@ Each stage is a few commits; each cipher type its own commit.
 
 ```jsonc
 {
-  "test": { "title": "…", "count": 20 },      // count = untimed questions
+  "test": { "title": "…", "division": "C", "count": 20 },
+                                // count = untimed questions; division "A"/"B"/"C" or ""
   "questions": [
     {
       "number": 0,              // 0 = timed; then 1…n in TEST.0.questions order

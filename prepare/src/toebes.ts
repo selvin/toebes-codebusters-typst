@@ -3,6 +3,7 @@
 
 export interface ToebesTest {
   title: string;
+  testtype?: string; // division then level, e.g. "cregional"
   timed: number; // CIPHER id, or -1 when there is no timed question
   count: number;
   questions: number[]; // CIPHER ids in paper order

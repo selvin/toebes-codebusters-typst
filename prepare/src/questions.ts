@@ -38,7 +38,7 @@ export type Question = {
 } & KindData;
 
 export interface QuestionsFile {
-  test: { title: string; count: number };
+  test: { title: string; division: string; count: number };
   questions: Question[];
 }
 
@@ -82,6 +82,11 @@ function prepareKind(cipher: ToebesCipher): KindData {
   return { kind: "legacy" };
 }
 
+// "A", "B" or "C" from the test type's first letter; "" when it names no division
+function division(testtype: string | undefined): string {
+  return testtype && /^[abc]/i.test(testtype) ? testtype[0].toUpperCase() : "";
+}
+
 export function prepareQuestions(exp: ToebesExport): QuestionsFile {
   const test = exp["TEST.0"];
   const order: { id: number; timed: boolean }[] = [];
@@ -102,5 +107,8 @@ export function prepareQuestions(exp: ToebesExport): QuestionsFile {
     };
   });
 
-  return { test: { title: test.title, count: test.questions.length }, questions };
+  return {
+    test: { title: test.title, division: division(test.testtype), count: test.questions.length },
+    questions,
+  };
 }

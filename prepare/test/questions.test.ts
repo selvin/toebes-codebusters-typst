@@ -7,7 +7,7 @@ const shift1 = Object.fromEntries([...ALPHABET].map((c, i) => [c, ALPHABET[(i + 
 const PLAINTEXT = "A made up quote for testing only";
 
 const exp = {
-  "TEST.0": { title: "Practice Test", timed: 7, count: 2, questions: [9, 3] },
+  "TEST.0": { title: "Practice Test", testtype: "cregional", timed: 7, count: 2, questions: [9, 3] },
   "CIPHER.3": { cipherType: "atbash", cipherString: "Another made up line", points: 30, question: "<p>Third</p>" },
   "CIPHER.7": {
     cipherType: "aristocrat",
@@ -33,7 +33,7 @@ describe("prepareQuestions", () => {
       [1, 9, false],
       [2, 3, false],
     ]);
-    expect(result.test).toEqual({ title: "Practice Test", count: 2 });
+    expect(result.test).toEqual({ title: "Practice Test", division: "C", count: 2 });
   });
 
   it("carries points, bonus flag and kind", () => {
@@ -42,6 +42,11 @@ describe("prepareQuestions", () => {
       [50, true, "legacy"],
       [30, false, "legacy"],
     ]);
+  });
+
+  it("leaves the division blank when the test type names none", () => {
+    const noDivision = { ...exp, "TEST.0": { ...exp["TEST.0"], testtype: "none" } } as ToebesExport;
+    expect(prepareQuestions(noDivision).test.division).toBe("");
   });
 
   it("numbers from 1 when there is no timed question", () => {

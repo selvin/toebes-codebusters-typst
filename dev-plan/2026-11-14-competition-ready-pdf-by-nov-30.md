@@ -1,7 +1,8 @@
 # Competition-ready question paper by 2026-11-30
 
 **Date:** 2026-11-14
-**Status:** **Active.** Stage 0 (docs, decisions) done 2026-11-14. Stage 1 in progress.
+**Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
+2026-11-14. Next: Stage 2.
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -54,7 +55,7 @@ Types only; which question uses which stays out of the repo.
 
 | Type (`cipherType`, variants) | Encodes today? | Status |
 |---|---|---|
-| aristocrat: random, K1, with hint | no | todo |
+| aristocrat: random, K1, with hint | yes (TS) | done; matches reference |
 | aristocrat, Spanish (xenocrypt) | no | todo |
 | patristocrat, K1 | no | todo |
 | atbash | yes | layout ok; move to TS |
@@ -156,4 +157,22 @@ Output goes to `build/questions.json` (gitignored).
 
 runs `prepare` then `typst compile --input export=… --input questions=…`. Check against the
 reference with
-`npx tsx src/check-reference.ts ../build/questions.json <pdftotext output>` from `prepare/`.
+`prepare/node_modules/.bin/tsx prepare/src/check-reference.ts build/questions.json <pdftotext output>`
+from the repo root.
+
+## Stage 1 results — 2026-11-14
+
+Done. All English aristocrats in `competitiondata/001` match Toebes's PDF by text (ciphertext) and by
+eye (frequency row).
+
+Findings for later stages:
+
+- **Toebes's `replacement` is the decode table** (ciphertext letter → plaintext letter), not the
+  encode table. Encoding uses its inverse. The K1 keyword therefore shows up in `alphabetDest`.
+  Expect the same convention in patristocrats and xenocrypts.
+- Toebes appends "When you have solved it, raise your hand…" to the timed question's text; Typst
+  adds it from the `timed` flag.
+- `check-reference` can only test kinds with a `ciphertext` field. Kinds that print numbers or
+  symbols will need their own comparison.
+- Line breaking still uses `smart-line-break`, which breaks at every period; Toebes breaks by width
+  only. Layout, so not a Stage 2 blocker.

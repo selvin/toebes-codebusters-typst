@@ -13,6 +13,9 @@ Picked back up after a pause since 2025-12-15. Repo docs set up following the
 Cipher logic moves to TypeScript (`prepare/`); Typst only lays out, and the question-paper template
 never sees answers —
 [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md).
+Stage 1 done: `prepare/` writes `build/questions.json`, English aristocrats render from it and match
+Toebes's PDF; every other kind is still "legacy" (rendered from the raw export, and still leaking).
+Next: Stage 2, the easy encoders.
 
 ## Index
 

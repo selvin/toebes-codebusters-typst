@@ -80,6 +80,8 @@
         render-checkerboard-prepared(q)
       } else if q.kind == "compcolumnar" {
         render-columnar-prepared(q)
+      } else if q.kind == "fractionatedmorse" {
+        render-fractionated-morse-prepared(q)
       } else if q.kind == "homophonic" {
         render-homophonic-prepared(q)
       } else if q.kind == "nihilist" {

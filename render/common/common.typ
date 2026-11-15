@@ -131,14 +131,14 @@
     []
   }
 
-  // The question number in a square box that fits one or two digits, centered both ways
-  let number-box = box(
-    width: 1.7em,
-    height: 1.7em,
-    baseline: 0.5em,
+  // The question number in a circle that fits one or two digits, centered both ways
+  // (a circle, not a square, so it stands out from the cipher boxes)
+  let number-box = box(baseline: 0.55em, circle(
+    radius: 0.9em,
+    inset: 0pt,
     stroke: 0.5pt,
     align(center + horizon, text(top-edge: "bounds", bottom-edge: "bounds", strong(num))),
-  )
+  ))
   let label = if num == "0" [#strong[TIMED] #text(weight: "regular")[Question]] else { number-box }
 
   // [P points] in monospace: the brackets and "points" small, P bold at normal size

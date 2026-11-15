@@ -1126,3 +1126,35 @@ Done and verified by the owner.
 and `000`. The owner's note: students write the plaintext directly below each ciphertext line, so
 neither kind needs a separate answer area (no "Answer:" line); the room under each line is that
 writing space.
+
+## Render pass: baconian spacing and columnar layout — 2026-11-15
+
+Worklist items 7 and 8 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)):
+more writing space under baconian (words) lines; the complete columnar laid out for two attempts.
+
+### What the references do
+
+- **Baconian (words).** Ours: 14pt lines about 41pt apart (`leading: 2.2em`), about 31pt of space
+  under each. Toebes's: about 46pt apart. Its line breaks are Toebes's (before 53 characters).
+- **Complete columnar.** Both: eight blocks of five a line across the full width, then empty work
+  space down to `Answer:` at the bottom of the question's half page (about 250pt below the
+  ciphertext in ours). Two attempts at the transposition can run into the answer line.
+- **Page layout.** `position-question` places a question by its number's parity: odd ones at the
+  top of a page, even ones at the middle. A question that takes a whole page doesn't fit that.
+
+### What we'll do
+
+1. **Refactor (no output change):** `main.typ` tracks the next slot (top or bottom of a page) as it
+   goes, instead of reading it from the question number's parity.
+2. **Baconian (words):** every line at the nihilist and checkerboard ciphertext pitch (about 48pt).
+3. **Complete columnar:** five blocks a line, left-aligned, so the right side stays clear for one
+   attempt (fewer columns, more rows) and the space below for a second (more columns, fewer rows);
+   the question takes a whole page. It starts on a new page (a question above it keeps its half
+   page; the bottom half stays empty), and the next question starts at the top of the next page.
+
+### Decided (owner)
+
+- **Baconian pitch: the nihilist lines' (about 48pt)**, close to Toebes's 46pt. Chosen over 1.5×
+  today's pitch (about 62pt) and over 1.5× the font size (less than today).
+- **Complete columnar: a whole page**, chosen over staying on its half page. Each one adds up to a
+  page: expect `001` and `000` to grow.

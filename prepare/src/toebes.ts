@@ -27,6 +27,7 @@ export interface ToebesCipher {
   texta?: string; // baconian: A symbol set (HTML)
   textb?: string;
   linewidth?: number;
+  columns?: number; // compcolumnar
 }
 
 export interface ToebesExport {

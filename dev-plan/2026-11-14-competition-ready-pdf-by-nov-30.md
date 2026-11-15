@@ -3,8 +3,9 @@
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
 2026-11-14; porta, nihilistsub (decode), baconian, compcolumnar (decode), checkerboard and
-homophonic, nihilistsub crypt, fractionated morse and patristocrat done the same day. Next, in
-paper order: the xenocrypt aristocrat (see "Patristocrat detail", Result).
+homophonic, nihilistsub crypt, fractionated morse, patristocrat and the xenocrypt done the same
+day. **The packet no longer leaks** (see "Xenocrypt detail", Result). Next: the owner picks among
+the options listed there.
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -58,7 +59,7 @@ Types only; which question uses which stays out of the repo.
 | Type (`cipherType`, variants) | Encodes today? | Status |
 |---|---|---|
 | aristocrat: random, K1, with hint | yes (TS) | done; matches reference |
-| aristocrat, Spanish (xenocrypt) | no | todo |
+| aristocrat, Spanish (xenocrypt), K1 | yes (TS) | done; matches reference |
 | patristocrat, K1 | yes (TS) | done; matches reference |
 | atbash | yes | layout ok; move to TS |
 | caesar | yes | layout ok; move to TS |
@@ -617,3 +618,25 @@ Other languages stay legacy until a test has one. The Typst aristocrat renderer 
 columns from `alphabet`; only whether 27 columns fit the page needs checking.
 
 **Checking:** `check-reference` compares `ciphertext` as for aristocrats.
+
+**Result (2026-11-14):** done. The xenocrypt matches Toebes's PDF by text (and the check fails when
+one letter is changed); the 27-column table fits the page, and the frequency row and line breaks
+match the reference by eye. Spanish patristocrats stay legacy: `chunk` keeps A–Z only and would drop
+accented letters and `Ñ`.
+
+**The packet is leak-free.** A letters-only scan of our PDF (accents folded) finds no question's
+plaintext, whole or as any 20-letter window, and no cryptarithm `soltext`. Still rendered from the
+raw export (`kind: "legacy"`), without leaking: atbash and caesar (they encode in Typst) and
+cryptarithm (formula only).
+
+**Next, the owner's call** (none started):
+1. Owner verifies the xenocrypt on paper, closing the correctness pass.
+2. Move atbash and caesar to TS, so `main.typ` stops reading the export for them (the question
+   paper still sees the export, plaintext included, until every kind is migrated).
+3. The render pass, starting from "Decisions — 2026-11-14 (render-pass inputs)" and the layout
+   notes in each detail section (cryptarithm work grid included).
+4. Fonts for a browser build (Courier New won't exist there).
+5. Stage 4: page header (title, "Team Number").
+
+Open: the repeated letter at a line break in fractionated morse ("Fractionated morse detail"):
+keep matching Toebes, or print the correct ciphertext.

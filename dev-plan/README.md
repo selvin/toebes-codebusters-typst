@@ -18,8 +18,10 @@ Toebes's PDF; every other kind is still "legacy" (rendered from the raw export, 
 Porta and nihilistsub (decode) followed, verified by the owner on paper. Baconian (all three modes)
 and compcolumnar (decode) followed, also verified on paper. Checkerboard (decode, crypt) followed,
 also verified on paper. Homophonic (decode, crypt) followed; the owner verified the packet through its first question. Nihilistsub crypt
-followed; verified on paper up to the first fractionated morse question. Fractionated morse and
-patristocrat followed. Next, in paper order: the xenocrypt aristocrat, the last question that leaks.
+followed; verified on paper up to the first fractionated morse question. Fractionated morse,
+patristocrat and the xenocrypt followed: **the packet no longer leaks.** Next is the owner's pick
+from the list at the end of the plan's "Xenocrypt detail" (owner check of the xenocrypt, atbash and
+caesar to TS, render pass, fonts, page header).
 Work follows the paper's question order; layout fixes wait for one render pass at the end.
 
 ## Index

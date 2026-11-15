@@ -60,7 +60,7 @@ Types only; which question uses which stays out of the repo.
 | patristocrat, K1 | no | todo |
 | atbash | yes | layout ok; move to TS |
 | caesar | yes | layout ok; move to TS |
-| porta: decode, crypt | no | todo |
+| porta: decode, crypt | yes (TS) | done; matches reference |
 | baconian: words, sequence, let4let | no | todo |
 | nihilistsub: decode, crypt | no | todo |
 | compcolumnar | no | todo |
@@ -216,3 +216,8 @@ keyword repeats over letters only. Checked by hand against the reference before 
 
 **Checking:** pdftotext spaces porta letters apart, so `check-reference` falls back to a
 letters-only comparison when the exact one fails.
+
+**Result (2026-11-14):** done. Both porta questions in `competitiondata/001` match Toebes's PDF
+(letters only), and a letters-only search of our PDF finds no porta plaintext. Typst reuses the
+dual-box text rendering (`render-dual-box-text` in `common.typ`). For the render pass: ours wraps at
+35 characters, while Toebes fits more blocks per line.

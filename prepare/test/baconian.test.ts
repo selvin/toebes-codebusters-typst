@@ -67,4 +67,17 @@ describe("baconian", () => {
       lines: [["a", "a", "a", "a"], ["X", "a", "a", "a"], ["a", "X"]],
     });
   });
+
+  it("reads a line width stored as a string", () => {
+    const cipher: ToebesCipher = {
+      cipherType: "baconian",
+      cipherString: "Bb",
+      points: 100,
+      operation: "let4let",
+      texta: "<p>a</p>",
+      textb: "<p>X</p>",
+      linewidth: "4",
+    };
+    expect(prepareBaconian(cipher)).toMatchObject({ lines: [["a", "a", "a", "a"], ["X", "a", "a", "a"], ["a", "X"]] });
+  });
 });

@@ -93,7 +93,8 @@ export function prepareBaconian(cipher: ToebesCipher): BaconianData | null {
     return { kind: "baconian", mode: "words", lines: encodeBaconianWords(cipherString, cipher.words, cipher.abMapping) };
   }
   if (operation === "sequence" || operation === "let4let") {
-    if (cipher.texta === undefined || cipher.textb === undefined || !cipher.linewidth) return null;
+    const width = Number(cipher.linewidth);
+    if (cipher.texta === undefined || cipher.textb === undefined || !(width > 0)) return null;
     const symbols = encodeBaconianSymbols(
       cipherString,
       symbolSet(cipher.texta),
@@ -101,7 +102,7 @@ export function prepareBaconian(cipher: ToebesCipher): BaconianData | null {
       operation === "sequence",
     );
     const lines: string[][] = [];
-    for (let i = 0; i < symbols.length; i += cipher.linewidth) lines.push(symbols.slice(i, i + cipher.linewidth));
+    for (let i = 0; i < symbols.length; i += width) lines.push(symbols.slice(i, i + width));
     return { kind: "baconian", mode: "symbols", lines };
   }
   return null;

@@ -29,7 +29,7 @@ export interface ToebesCipher {
   abMapping?: string; // baconian: alphabet position → A or B
   texta?: string; // baconian: A symbol set (HTML)
   textb?: string;
-  linewidth?: number;
+  linewidth?: number | string; // some exports store it as a string ("55")
   columns?: number; // compcolumnar
   randomSlot?: number[]; // homophonic: range (0–3) for each plaintext letter
 }

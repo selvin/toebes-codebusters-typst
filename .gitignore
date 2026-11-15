@@ -6,3 +6,7 @@ competitiondata/
 
 # Local-only session handoff (see CLAUDE.md, "Session discipline")
 next-session-prompt.md
+
+# prepare output (holds a real test's ciphertext) and dependencies
+build/
+node_modules/

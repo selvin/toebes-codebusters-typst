@@ -65,7 +65,7 @@ Types only; which question uses which stays out of the repo.
 | baconian: words, sequence, let4let | yes (TS) | done; matches reference |
 | nihilistsub: decode, crypt | decode yes (TS) | decode done, matches reference; crypt todo |
 | compcolumnar: decode | yes (TS) | decode done; matches reference |
-| checkerboard: decode, crypt | missing | todo |
+| checkerboard: decode, crypt | missing | in progress |
 | cryptarithm | no | todo |
 | homophonic: decode, crypt | missing | todo |
 | fractionatedmorse | no | todo |
@@ -362,3 +362,37 @@ detail", render-pass bug).
 **Next, in paper order:** **checkerboard** (decode and crypt). It has no renderer, so it falls to
 the "unknown" box, whose debug line prints `cipherString`: a leak. Checkerboard is in Stage 3's
 hard list, so expect more reading of Toebes's source than for the kinds so far.
+
+## Checkerboard detail — 2026-11-14
+
+Source: Toebes's `app/codebusters/ciphercheckerboardencoder.ts` (`buildPolybiusMap`,
+`buildCheckerboardSequenceSets`, `genQuestion`) and `chunk` in `app/common/cipherhandler.ts`.
+
+**What a student gets** (decode and crypt look the same), from the question text and Toebes's PDF:
+the ciphertext as two-letter cipher units, in blocks of `blocksize` units, one line of units per
+table row with an empty answer row below it. Beside the first lines sits an empty 6×6 grid: no
+row or column headers, no letters. The Polybius key (decode) or the crib and its cipher-unit
+position (crypt) are in the question text only. Neither keyword is shown anywhere. So
+`questions.json` carries no key, keyword or crib.
+
+```jsonc
+{ "kind": "checkerboard", "lines": [[["NN", "EO", …], ["EO", …]], …] }
+                                    // lines → blocks (words when blocksize is 0) → tokens
+```
+
+A token is a cipher unit, or (with `blocksize` 0) a punctuation mark kept as in the plaintext.
+
+**Encoding** (export: `keyword` = row keyword, `keyword2` = column keyword, `polybiusKey`,
+`blocksize`, `cipherString` = plaintext): the square is the Polybius key's letters, then the
+alphabet, J merged into I, duplicates dropped, filled row by row. A letter at row r, column c
+becomes row keyword letter r followed by column keyword letter c. Both keywords must be exactly 5
+letters (Toebes refuses otherwise; prepare leaves the question legacy). With `blocksize` > 0 only
+letters survive, in blocks; with 0, spaces and punctuation stay.
+
+**Line breaks** follow Toebes's `buildCheckerboardSequenceSets` with width 24: the first three
+lines break at 13 tokens (spaces count), later lines at 24, each at the last space. With blocks of
+5 that gives two blocks a line beside the grid, then four. Kept in `prepare` because the break
+rule counts tokens, not printed width.
+
+**Checking:** `check-reference` compares the letters of all cipher units, in order, with the
+reference's letters (the grid is empty, so it adds none).

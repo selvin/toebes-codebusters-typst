@@ -43,7 +43,7 @@
   footer: context align(center)[Page #counter(page).get().first() of #counter(page).final().first()],
 )
 #set document(title: prepared.test.title)
-#set text(font: body-font, size: 11pt)
+#set text(font: body-font, size: body-size)
 #show raw: set text(font: mono-font, weight: "bold")
 
 // Render a kind prepare/ doesn't handle yet, from the raw export (may print plaintext)

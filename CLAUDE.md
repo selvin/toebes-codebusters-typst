@@ -12,7 +12,9 @@ prepare/            — TypeScript: Toebes export → build/questions.json (ciph
 render/main.typ     — Typst entry point; reads build/questions.json, dispatches by kind
 render/common/      — shared Typst helpers (question heading, HTML→Typst, line breaking, dual boxes)
 render/ciphers/     — one Typst renderer per cipher type
-compile.sh          — runs prepare, then `typst compile --root . render/main.typ`
+render/common/fonts.typ — the one place that names the fonts (body, title, mono) and the body size
+fonts/              — the bundled fonts (Noto, OFL); compile.sh ignores system fonts
+compile.sh          — runs prepare, then `typst compile` on render/main.typ
 dev-plan/           — plans and decisions (source of truth across sessions)
 competitiondata/    — gitignored real competition exports and reference PDFs (hard rule below)
 ```

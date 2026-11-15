@@ -36,5 +36,5 @@ echo "Preparing $EXPORT..."
 prepare/node_modules/.bin/tsx prepare/src/cli.ts "$EXPORT" "$QUESTIONS"
 
 echo "Compiling render/main.typ..."
-typst compile --root . --input "questions=/$QUESTIONS" --input "export=/$EXPORT" render/main.typ "$OUTPUT"
+typst compile --root . --font-path fonts --ignore-system-fonts --input "questions=/$QUESTIONS" --input "export=/$EXPORT" render/main.typ "$OUTPUT"
 echo "Success! Output saved to $OUTPUT"

@@ -151,7 +151,7 @@
   let points-label = text(font: mono-font, weight: "regular")[#text(size: 0.85em)[\[]#strong(str(points)) #text(size: 0.85em)[points\]]]
 
   heading(level: 3)[
-    #text(size: 11pt)[
+    #text(size: body-size)[
       #text(weight: "regular")[#bonus-prefix]#label #points-label
       #text(weight: "regular")[#body]
     ]

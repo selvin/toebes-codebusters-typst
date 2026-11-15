@@ -41,8 +41,6 @@
     render-affine(cipher, num)
   } else if cipher-type == "aristocrat" {
     render-aristocrat(cipher, num)
-  } else if cipher-type == "atbash" {
-    render-atbash(cipher, num)
   } else if cipher-type == "baconian" {
     render-baconian(cipher, num)
   } else if cipher-type == "caesar" {
@@ -74,6 +72,8 @@
     position-question(num, {
       if q.kind == "aristocrat" {
         render-aristocrat-prepared(q)
+      } else if q.kind == "atbash" {
+        render-atbash-prepared(q)
       } else if q.kind == "baconian" {
         render-baconian-prepared(q)
       } else if q.kind == "checkerboard" {

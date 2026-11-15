@@ -9,6 +9,7 @@ import { prepareHomophonic, type HomophonicData } from "./homophonic.js";
 import { htmlToParagraphs, type Paragraph } from "./html.js";
 import { prepareNihilist, type NihilistData } from "./nihilist.js";
 import { preparePorta, type PortaData } from "./porta.js";
+import { prepareTable, type TableData } from "./table.js";
 import type { ToebesCipher, ToebesExport } from "./toebes.js";
 
 interface LegacyData {
@@ -24,6 +25,7 @@ type KindData =
   | HomophonicData
   | NihilistData
   | PortaData
+  | TableData
   | LegacyData;
 
 export type Question = {
@@ -71,6 +73,10 @@ function prepareKind(cipher: ToebesCipher): KindData {
   }
   if (cipher.cipherType === "porta") {
     const data = preparePorta(cipher);
+    if (data) return data;
+  }
+  if (cipher.cipherType === "atbash") {
+    const data = prepareTable(cipher);
     if (data) return data;
   }
   return { kind: "legacy" };

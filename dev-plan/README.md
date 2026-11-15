@@ -29,8 +29,9 @@ can't overlap) is done and verified by the owner; so is the follow-up (answer li
 its half page). Fonts are done and verified: all Noto (serif body at 10pt, sans titles, sans
 mono), bundled in `fonts/`, system fonts ignored. **Next:** the owner's UI notes, in sessions of 1–3
 items. Sessions A (points label, crib size), B (timed question in a double outline on its own page) and C
-(nihilist and checkerboard tables at Toebes's size) are done and verified; next is session D
-(baconian writing space, columnar layout):
+(nihilist and checkerboard tables at Toebes's size) are done and verified. Session D (baconian
+writing space; columnar on a page of its own) is done, pending the owner's check; next, a moved
+question taking its new page's top slot, then session E:
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index
@@ -52,9 +53,9 @@ items. Sessions A (points label, crib size), B (timed question in a double outli
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
   After the November deadline.
 - **Answer key and cover page** if they miss the deadline (Toebes's answer key is the fallback).
-- **A bottom question that doesn't fit is split across pages** instead of moving to the next
-  page, as the spacing slice decided. Only the top question is measured. None splits in `001` or
-  `000` today. See the plan's "Render pass: fonts — 2026-11-15".
+- **A question that moves to the next page should take its top slot**, so the next question can
+  follow below it. Today it sits alone (`001`: 19 pages). See the plan's "Render pass: baconian
+  spacing and columnar layout".
 - **2027-season cipher types not in `competitiondata/001`**, each on its own when a real test needs
   it. Only 2027-season types and later are supported (owner): affine and K2 alphabets are out.
 - **A committed test fixture**: a made-up export in `testdata/`, so the full pipeline can be tested

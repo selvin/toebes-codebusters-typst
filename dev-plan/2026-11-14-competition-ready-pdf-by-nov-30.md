@@ -1158,3 +1158,26 @@ more writing space under baconian (words) lines; the complete columnar laid out 
   today's pitch (about 62pt) and over 1.5× the font size (less than today).
 - **Complete columnar: a whole page**, chosen over staying on its half page. Each one adds up to a
   page: expect `001` and `000` to grow.
+
+### Result
+
+Done, pending the owner's check on paper.
+
+- **Slots:** `main.typ` tracks the next slot (`top`, `bottom`) as it goes; `position-question`
+  takes the slot, plus `timed` and `page`. Kinds in `full-page-kinds` (only `compcolumnar`) take
+  the whole text area; one that would start in a bottom slot starts on a new page instead.
+- **Baconian (words):** lines about 48pt apart (`leading: 2.7em` at 14pt); the last line gets the
+  same room above the Replacement table.
+- **Complete columnar:** five blocks a line, left-aligned, on a page of its own, `Answer:` 3em
+  above the bottom of the page.
+- **A bottom question too tall for the rest of its page now moves to the next page whole**
+  (unbreakable block), as "Render pass: spacing" decided; closes the Backlog item from "Render
+  pass: fonts". It sits alone there: `main.typ` still breaks the page after it.
+- **Page counts:** `000` 13 (was 11: its two columnar pages, each with the question before it
+  alone on its page). `001` 19 (was 16): +2 for the columnar pages, +1 because the pairing shifts
+  after them and two later questions, too tall for a bottom slot, each move to a page of their own.
+- `check-reference` passes for `000`; `001` reports only its known accent-symbol baconian, whose
+  P + tilde was checked by eye again (one tilde on each P).
+
+**Next (owner, 2026-11-15):** a question that moves to the next page counts as that page's top, so
+the next question can follow below it (likely `001` at 18 pages). Its own slice.

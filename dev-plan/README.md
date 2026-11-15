@@ -16,7 +16,7 @@ never sees answers —
 Stage 1 done: `prepare/` writes `build/questions.json`, English aristocrats render from it and match
 Toebes's PDF; every other kind is still "legacy" (rendered from the raw export, and still leaking).
 Porta and nihilistsub (decode) followed, verified by the owner on paper. Baconian (all three modes)
-and compcolumnar (decode) followed, waiting for the owner's paper check. Next, in paper order:
+and compcolumnar (decode) followed, also verified on paper. Next, in paper order:
 checkerboard.
 Work follows the paper's question order; layout fixes wait for one render pass at the end.
 

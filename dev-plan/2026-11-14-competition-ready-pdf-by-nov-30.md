@@ -190,7 +190,8 @@ question that showed an answer.
    the plaintext; the owner's pass missed it and a text comparison caught it.
 2. **Correctness first, looks last.** Layout problems the owner notices go to a single render pass
    at the end, not fixed as they come up. Known so far: baconian (words mode) is set too tight
-   compared with Toebes's PDF. Aristocrat line breaks (see Stage 1 results) belong there too.
+   compared with Toebes's PDF; baconian combining marks on the wrong symbol (see "Baconian
+   detail"). Aristocrat line breaks (see Stage 1 results) belong there too.
 
 ## Porta detail — 2026-11-14
 
@@ -316,6 +317,16 @@ symbol for symbol. Every export word matched its letter, so no dictionary fallba
 letters-only scan of our PDF finds no baconian plaintext. For the render pass: fonts for combining
 marks and music symbols (Typst falls back on its own today).
 
+**Render-pass bug (owner, 2026-11-14): combining marks land on the wrong symbol.** In a sequence
+question whose symbols carry accents, a P with a tilde followed by an I with an acute prints both
+marks over the I, leaving the P bare. Other pairs on the same line print correctly. Unverified
+guess: P-with-tilde has no precomposed character, so it stays P + U+0303 (combining tilde); Courier
+New lacks that mark, Typst takes it from a fallback font, and the mark is placed in the next cell.
+The other accented letters in the set are precomposed after NFC and don't hit this. Toebes did *not*
+use images for this question (`bitmap` was off): it printed text in a font with combining-mark
+support (JuliaMono, via its `combchar` class). Likely fix: a font with combining marks for baconian
+symbols, and NFC-normalizing symbols in `prepare`. Check by eye on the reference page afterwards.
+
 **Next, in paper order:** compcolumnar (decode).
 
 ## Complete columnar detail — 2026-11-14
@@ -343,6 +354,10 @@ column is read top to bottom. `crypt` stays legacy until a test needs it.
 **Result (2026-11-14):** decode done. Both questions match Toebes's PDF by text, and a letters-only
 scan of our PDF finds no compcolumnar plaintext. The page follows Toebes's: eight blocks a line,
 work space, answer line.
+
+**Owner check (2026-11-14):** the owner verified on paper every question up to and including the
+last compcolumnar one; nothing leaks. One layout bug noted for the render pass (see "Baconian
+detail", render-pass bug).
 
 **Next, in paper order:** **checkerboard** (decode and crypt). It has no renderer, so it falls to
 the "unknown" box, whose debug line prints `cipherString`: a leak. Checkerboard is in Stage 3's

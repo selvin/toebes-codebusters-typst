@@ -1,6 +1,7 @@
 // Checkerboard: each letter becomes its Polybius square position, written as a row keyword letter
 // and a column keyword letter. Follows Toebes's CipherCheckerboardEncoder.
 
+import { chunk, toBlocks } from "./chunk.js";
 import type { ToebesCipher } from "./toebes.js";
 
 export interface CheckerboardData {
@@ -17,15 +18,6 @@ export function checkerboardUnits(polybiusKey: string, rowKeyword: string, colKe
   const units = new Map(letters.map((ch, i) => [ch, rowKeyword[Math.floor(i / 5)] + colKeyword[i % 5]]));
   units.set("J", units.get("I")!);
   return units;
-}
-
-// Toebes's chunk: letters only, in blocks of `size` joined by one space; 0 keeps the text as is.
-function chunk(text: string, size: number): string {
-  if (size <= 0) return text;
-  const letters = [...text].filter((ch) => ALPHABET.includes(ch.toUpperCase()));
-  const blocks = [];
-  for (let i = 0; i < letters.length; i += size) blocks.push(letters.slice(i, i + size).join(""));
-  return blocks.join(" ");
 }
 
 // Toebes's buildCheckerboardSequenceSets (width 24, extra 11): the first three lines break at
@@ -56,16 +48,6 @@ function breakLines(text: string, units: Map<string, string>): string[][] {
   }
   if (line.length > 0) lines.push(line);
   return lines;
-}
-
-// Splits a line's tokens into blocks at whitespace tokens.
-function toBlocks(tokens: string[]): string[][] {
-  const blocks: string[][] = [[]];
-  for (const t of tokens) {
-    if (t.trim() === "") blocks.push([]);
-    else blocks[blocks.length - 1].push(t);
-  }
-  return blocks.filter((b) => b.length > 0);
 }
 
 export function encodeCheckerboard(

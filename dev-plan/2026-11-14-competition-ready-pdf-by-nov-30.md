@@ -830,4 +830,8 @@ a boxed number blends in. The number now sits in a circle 6% wider than the squa
 across, `circle` inside a `box` with `baseline: 0.55em`). Downscaled previews of it look flat on
 the right; measuring the pixels at 600 ppi shows it is round, so check it at full size.
 
+**Owner check (2026-11-15):** verified. The heading looks polished and every piece is easy to find
+at a glance. Formatting a hint or crib in the question text (bold, monospace) is the test setter's
+job in Toebes; we render the question's HTML as given and add no emphasis of our own.
+
 **Next in step 2:** spacing, then fonts (including a browser-safe monospace), then line breaking.

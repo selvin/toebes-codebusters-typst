@@ -1094,8 +1094,30 @@ Measured at 72 dpi (points):
 
 ### Decided (owner)
 
-- **Grid size: Toebes's,** not the worklist's 1.4×: our cells scaled by about 5/3, keeping their
-  proportions. Nihilist about 212 × 162 (header column and rows 2.7em, cells 3.7em); checkerboard
-  about 240 × 162 (cells 4em × 2.7em). Taller than Toebes's, so more room to write in the cells.
+- **Grid size: Toebes's,** not the worklist's 1.4×. First tried as our cells scaled by 5/3
+  (about 212 × 162): too tall, see Result. Now Toebes's own dimensions (see Result).
 - **Every line at the same, larger pitch** (grid height / 3, about 54pt), as Toebes does; not
   only the three beside the grid. The question gets taller below the grid.
+
+### Result
+
+Done, pending the owner's check on paper.
+
+- **Shared helper** `lines-beside-grid` in `render/common/common.typ`: the first three lines
+  beside the grid, the rest below, every line at the same pitch, (grid height + 1em) / 3, so the
+  three span the grid and the fourth starts 1em below it. A line's answer room is a bottom inset,
+  so a line that wraps grows instead of overlapping the next.
+- **Grids:** nihilist 222.5 × 135 (header column and rows 2.25em, cells 4em); checkerboard
+  225 × 135 (cells 3.75em × 2.25em). Line pitch about 48pt (was about 39).
+- **Why not 5/3 of ours:** a 162pt-tall grid sets the pitch to about 57pt, and then `000`'s two
+  nihilist questions no longer fit their half page and split across pages (13 pages instead of
+  11; `001` 17 instead of 16). At Toebes's 135pt the page counts stay 11 and 16.
+- **Nihilist decode with `blocksize` 0 now uses Toebes's line breaks** (`lines`; the `words`
+  shape is gone). Its line breaks now match Toebes's PDF exactly.
+- **Found in passing (fixed, own commit):** a 24-token nihilist line wrapped (in `000`, about 630pt
+  on a 555pt text width). Now, as in Toebes's lines, every token, the space between blocks
+  included, takes one equal cell (1.9em at 12pt), so 24 fit the text width. Values sit closer
+  than before (about 23pt apart, was about 30).
+- Page counts unchanged (16 for `001`, 11 for `000`). `check-reference` passes for `000`; `001`
+  reports only its known accent-symbol baconian. Against Toebes's PDF, every nihilist and
+  checkerboard question matches.

@@ -41,7 +41,7 @@ export interface QuestionsFile {
 }
 
 function prepareKind(cipher: ToebesCipher): KindData {
-  if (cipher.cipherType === "aristocrat") {
+  if (cipher.cipherType === "aristocrat" || cipher.cipherType === "patristocrat") {
     const data = prepareAristocrat(cipher);
     if (data) return data;
   }

@@ -1,5 +1,7 @@
 // Aristocrat: monoalphabetic substitution with spaces and punctuation kept.
+// Patristocrat: the same, on the letters only, in blocks of five.
 
+import { chunk } from "./chunk.js";
 import type { ToebesCipher } from "./toebes.js";
 
 export interface AristocratData {
@@ -34,7 +36,8 @@ export function prepareAristocrat(cipher: ToebesCipher): AristocratData | null {
   if ((cipher.curlang ?? "en") !== "en") return null;
   if (!cipher.replacement || !cipher.alphabetSource) return null;
 
-  const ciphertext = encodeSubstitution(cipher.cipherString, cipher.replacement);
+  const plaintext = cipher.cipherType === "patristocrat" ? chunk(cipher.cipherString, 5) : cipher.cipherString;
+  const ciphertext = encodeSubstitution(plaintext, cipher.replacement);
   return {
     kind: "aristocrat",
     keyType,

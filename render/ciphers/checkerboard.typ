@@ -23,14 +23,5 @@
 // lines: lines → blocks → tokens; the first three lines sit beside the grid
 #let render-checkerboard-prepared(q) = {
   prepared-heading(q)
-
-  grid(
-    columns: (1fr, auto),
-    gutter: 1em,
-    q.lines.slice(0, calc.min(3, q.lines.len())).map(render-checkerboard-line).join(),
-    render-checkerboard-grid(),
-  )
-  for line in q.lines.slice(calc.min(3, q.lines.len())) {
-    render-checkerboard-line(line)
-  }
+  lines-beside-grid(q.lines.map(render-checkerboard-line), render-checkerboard-grid())
 }

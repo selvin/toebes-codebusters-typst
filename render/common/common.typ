@@ -202,6 +202,20 @@
   question-heading-core(str(q.number), q.points, q.specialBonus, body)
 }
 
+// Ciphertext lines (content) with an empty work grid beside the first three; the rest below
+#let lines-beside-grid(lines, work-grid) = {
+  let beside = calc.min(3, lines.len())
+  grid(
+    columns: (1fr, auto),
+    gutter: 1em,
+    lines.slice(0, beside).join(),
+    work-grid,
+  )
+  for line in lines.slice(beside) {
+    line
+  }
+}
+
 // Display cipher text in a grid format (common for many ciphers)
 #let display-cipher-grid(cipherString, columns: 5) = {
   // TODO: Implement grid display logic

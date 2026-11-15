@@ -56,15 +56,7 @@
   prepared-heading(q)
 
   if "lines" in q {
-    grid(
-      columns: (1fr, auto),
-      gutter: 1em,
-      q.lines.slice(0, calc.min(3, q.lines.len())).map(render-nihilist-line).join(),
-      render-polybius-grid(),
-    )
-    for line in q.lines.slice(calc.min(3, q.lines.len())) {
-      render-nihilist-line(line)
-    }
+    lines-beside-grid(q.lines.map(render-nihilist-line), render-polybius-grid())
     return
   }
   grid(

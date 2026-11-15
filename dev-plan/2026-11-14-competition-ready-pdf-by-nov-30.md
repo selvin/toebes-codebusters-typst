@@ -3,8 +3,8 @@
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
 2026-11-14; porta, nihilistsub (decode), baconian, compcolumnar (decode), checkerboard and
-homophonic, nihilistsub crypt and fractionated morse done the same day. Next, in paper order:
-patristocrat (see "Fractionated morse detail", Result).
+homophonic, nihilistsub crypt, fractionated morse and patristocrat done the same day. Next, in
+paper order: the xenocrypt aristocrat (see "Patristocrat detail", Result).
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -59,7 +59,7 @@ Types only; which question uses which stays out of the repo.
 |---|---|---|
 | aristocrat: random, K1, with hint | yes (TS) | done; matches reference |
 | aristocrat, Spanish (xenocrypt) | no | todo |
-| patristocrat, K1 | no | todo |
+| patristocrat, K1 | yes (TS) | done; matches reference |
 | atbash | yes | layout ok; move to TS |
 | caesar | yes | layout ok; move to TS |
 | porta: decode, crypt | yes (TS) | done; matches reference |
@@ -568,3 +568,11 @@ ciphertext; no new field, no new renderer. Our line breaking (55 characters) fit
 where Toebes fits eight: render pass.
 
 **Checking:** `check-reference` compares `ciphertext` as for aristocrats.
+
+**Result (2026-11-14):** done. Both patristocrats match Toebes's PDF by text (and the check fails
+when one letter is changed); the frequency rows match by eye. A letters-only scan of our PDF finds
+no patristocrat plaintext.
+
+**Next, in paper order** (leak scan): the **Spanish (xenocrypt) aristocrat**, K1, the only question
+left that leaks. Its alphabet and accent handling need checking against Toebes (`langreplace`,
+Spanish `Ñ`), which is why Stage 1 left it legacy.

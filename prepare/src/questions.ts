@@ -1,6 +1,7 @@
 // Builds questions.json: everything the question paper may show, and nothing it may not.
 
 import { prepareAristocrat, type AristocratData } from "./aristocrat.js";
+import { prepareBaconian, type BaconianData } from "./baconian.js";
 import { htmlToParagraphs, type Paragraph } from "./html.js";
 import { prepareNihilist, type NihilistData } from "./nihilist.js";
 import { preparePorta, type PortaData } from "./porta.js";
@@ -10,7 +11,7 @@ interface LegacyData {
   kind: "legacy";
 }
 
-type KindData = AristocratData | NihilistData | PortaData | LegacyData;
+type KindData = AristocratData | BaconianData | NihilistData | PortaData | LegacyData;
 
 export type Question = {
   number: number;
@@ -29,6 +30,10 @@ export interface QuestionsFile {
 function prepareKind(cipher: ToebesCipher): KindData {
   if (cipher.cipherType === "aristocrat") {
     const data = prepareAristocrat(cipher);
+    if (data) return data;
+  }
+  if (cipher.cipherType === "baconian") {
+    const data = prepareBaconian(cipher);
     if (data) return data;
   }
   if (cipher.cipherType === "nihilistsub") {

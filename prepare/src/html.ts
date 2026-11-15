@@ -20,7 +20,7 @@ const ENTITIES: Record<string, string> = {
   apos: "'",
 };
 
-function decodeEntities(s: string): string {
+export function decodeEntities(s: string): string {
   return s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (whole, name: string) => {
     if (name[0] === "#") {
       const code = name[1].toLowerCase() === "x" ? parseInt(name.slice(2), 16) : parseInt(name.slice(1), 10);

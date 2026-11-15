@@ -22,6 +22,11 @@ export interface ToebesCipher {
   blocksize?: number;
   polybiusKey?: string;
   operation?: string;
+  words?: string[]; // baconian words mode: one cipher word per plaintext letter
+  abMapping?: string; // baconian: alphabet position → A or B
+  texta?: string; // baconian: A symbol set (HTML)
+  textb?: string;
+  linewidth?: number;
 }
 
 export interface ToebesExport {

@@ -985,3 +985,25 @@ prints right, and the music symbols read better than Toebes's. The owner's UI no
 review (crib size among them) are in
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md), which now sets the
 order of the rest of the render pass.
+
+## Render pass: points label and cribs — 2026-11-15
+
+Worklist items 1 and 2 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)):
+both in the question heading's fonts.
+
+### What we found
+
+- **`[P points]`:** `[` and `points]` are at 0.85em, `P` bold at 1em, so the brackets look small
+  beside it.
+- **Cribs:** the two fonts aren't the cause. Measured from the font files (OS/2): Noto Serif cap
+  height 0.714 em, x-height 0.536; Noto Sans Mono 0.714 and 0.536 (bold: 0.546). At the same size
+  they match. The cause is Typst's built-in rule that sets `raw` text at **0.8em**: question text
+  marks monospace runs with `raw` (`runs-to-content`, and `html-to-typst` for the legacy
+  cryptarithm), so cribs print at 8pt in 10pt text.
+
+### What we'll do
+
+1. **`[P points]`:** `[`, `P` and `]` at 1em; only `P` bold. `points` stays at 0.85em.
+2. **Cribs:** monospace runs in question text become `text(font: mono-font, weight: "bold")` at
+   the surrounding size (1em: the cap heights already match), not `raw`. Other `raw` uses (the
+   renderers' own labels) keep their sizes: the worklist limits this to question text.

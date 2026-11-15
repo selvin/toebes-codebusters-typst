@@ -37,6 +37,7 @@ function matches(q: QuestionsFile["questions"][number]): boolean | null {
       referenceLetters.includes(lettersOnly(q.ciphertext))
     );
   }
+  if (q.kind === "checkerboard") return referenceLetters.includes(lettersOnly(q.lines.flat(2).join("")));
   if ("words" in q) return referenceNumbers.includes(numbersOnly(q.words.flat().join(" ")));
   if (q.kind === "baconian" && q.mode === "words") return reference.includes(collapse(q.lines.join(" ")));
   if (q.kind === "baconian" && q.mode === "symbols") {

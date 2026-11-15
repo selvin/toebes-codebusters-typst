@@ -19,6 +19,8 @@ const collapse = (s: string) => s.replace(/\s+/g, " ").trim();
 const lettersOnly = (s: string) => s.replace(/[^A-Z]/g, "");
 // Nihilist numbers are all two digits or more; the grid headers (1–5) pdftotext interleaves are not.
 const numbersOnly = (s: string) => (s.match(/\d{2,}/g) ?? []).join(" ");
+// Homophonic values run 1–00, so single digits count; spaces at both ends keep whole numbers.
+const allNumbers = (s: string) => ` ${(s.match(/\d+/g) ?? []).join(" ")} `;
 // Baconian symbols: pdftotext may compose combining marks, and spaces between cells vary.
 const symbolsOnly = (s: string) => s.normalize("NFC").replace(/\s+/g, "");
 
@@ -28,6 +30,7 @@ const reference = collapse(referenceText);
 const referenceLetters = lettersOnly(referenceText);
 const referenceNumbers = numbersOnly(referenceText);
 const referenceSymbols = symbolsOnly(referenceText);
+const referenceAllNumbers = allNumbers(referenceText);
 
 // null: nothing to compare (kind without ciphertext, or symbols Toebes printed as images).
 function matches(q: QuestionsFile["questions"][number]): boolean | null {
@@ -38,6 +41,7 @@ function matches(q: QuestionsFile["questions"][number]): boolean | null {
     );
   }
   if (q.kind === "checkerboard") return referenceLetters.includes(lettersOnly(q.lines.flat(2).join("")));
+  if (q.kind === "homophonic") return referenceAllNumbers.includes(allNumbers(q.lines.flat(2).join(" ")));
   if ("words" in q) return referenceNumbers.includes(numbersOnly(q.words.flat().join(" ")));
   if (q.kind === "baconian" && q.mode === "words") return reference.includes(collapse(q.lines.join(" ")));
   if (q.kind === "baconian" && q.mode === "symbols") {

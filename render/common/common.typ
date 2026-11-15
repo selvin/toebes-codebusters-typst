@@ -85,7 +85,8 @@
 
 // Place a question in its slot on the page (main.typ tracks the slot and breaks the pages):
 // "top" starts a page; "bottom" follows it at the middle of the text area, or lower if the top one
-// runs past it (then a clear gap between them); "timed" is a page of its own
+// runs past it (then a clear gap between them); "timed" is a page of its own; "page" a page of its
+// own, the whole text area, so a v(1fr) in it fills down to the bottom
 #let position-question(slot, content) = {
   if slot == "top" {
     // At the top of the page, in a block down to the middle, so a v(1fr) in it fills to the middle
@@ -106,6 +107,8 @@
     let rule = 0.75pt + black
     block(width: 100%, height: 100%, stroke: rule, inset: 2pt,
       block(width: 100%, height: 100%, stroke: rule, inset: (x: 0.5cm, y: 0.4cm), content))
+  } else if slot == "page" {
+    block(height: 100%, width: 100%, content)
   } else {
     // Bottom: follows the padding
     content

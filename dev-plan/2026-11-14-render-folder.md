@@ -42,8 +42,8 @@ render/
 - `input.json` and `main.pdf` at the repo root are untracked and gitignored (`input.json`,
   `*.pdf`). They are left alone; `compile.sh`'s defaults still point at them.
 - `patristocrats.typ` is dead: `main.typ` doesn't import it, and the `render-patristocrat` it uses
-  lives in `aristocrats.typ`. It moves with the rest; removing it is the owner's call, as its own
-  commit.
+  lives in `aristocrats.typ`. It moves with the rest; see "Decisions — 2026-11-15" for what became
+  of it.
 
 ## Check
 
@@ -58,6 +58,8 @@ before.
 3. Doc updates (`CLAUDE.md`, `README.md`).
 
 ## Decisions — 2026-11-15 (patristocrat proxy)
+
+**Done** 2026-11-15, all three steps; the PDF of `competitiondata/001` is unchanged after each.
 
 The dead `patristocrats.typ` becomes a light proxy instead of being deleted (owner). Both old
 `render-patristocrat` copies (it and the one in `aristocrats.typ`) printed the export's

@@ -501,3 +501,42 @@ morse, then patristocrat, then a xenocrypt aristocrat.
 **Owner check (2026-11-14):** the owner verified on paper every question up to and including the
 first homophonic one. Only 100 prints as `00` (Toebes's `plainCt100`); 1–9 print without a leading
 zero, as in the reference.
+
+## Fractionated morse detail — 2026-11-14
+
+Source: Toebes's `app/codebusters/cipherfractionatedmorseencoder.ts` (`makeReplacement`,
+`genQuestion`, `generateReplacementTable`), `app/common/morse.ts` (`tomorse`) and `genKstring` in
+`app/codebusters/cipherencoder.ts`.
+
+**What a student gets** (both questions in `competitiondata/001` are `crypt`), from the question
+text and Toebes's PDF: the cipher letters, spaced apart, in centered lines with generous room
+between them (no separate answer row). Below, a 27-column table: a "Replacement" row of empty
+cells, and a "Morse fraction" row holding the 26 fixed triples (●, –, ×) stacked vertically, in
+Toebes's fixed order (`OOO`, `OO-`, `OOX`, … `XX-`). The triples are the same for every question;
+which cipher letter stands for which triple (the keyword alphabet) is not shown. The crib, its
+cipher letters and their triples are in the question text only. So `questions.json` carries no
+keyword, crib or letter order.
+
+Export fields read: `cipherString` (plaintext), `keyword` (a word; 5–6 letters here), `operation`.
+Also present, not read: `crib` (5), `replacement` (empty), `encoded` (empty), `curlang`, `offset`,
+`salt`, `author`.
+
+```jsonc
+{ "kind": "fractionatedmorse", "lines": [["G", "V", …], …] }   // lines → cipher letters
+```
+
+**Encoding:** the plaintext in morse (`O` dot, `-` dash), `X` between letters, `XX` at a word
+break (any character other than a letter or digit, once a letter has been seen), padded with `X`
+to a multiple of three. Each triple's position in the fixed list picks a letter from the keyword
+alphabet (keyword letters, duplicates dropped, then the rest of A–Z). Toebes encodes letter by
+letter, removing and redoing the padded last cipher letter each time; a triple of `XXX` would hang
+Toebes, so prepare stops with an error. Digits are left out until a test has them (whether Toebes's
+print path treats them as letters is unclear).
+
+**Line breaks:** Toebes's `makeReplacement` with `maxEncodeWidth` 53 on a line string of
+`" c "` per cipher letter (≈ 17 letters a line), split at the last word break, last-split marker
+never reset (as homophonic). The redo of the padded letter acts on the current line string, so we
+port the string handling as is rather than break the finished letter list afterwards.
+
+**Checking:** `check-reference` compares the cipher letters with the reference's letters (the
+table adds none, and its `●–×` aren't letters).

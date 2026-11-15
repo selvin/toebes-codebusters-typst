@@ -591,3 +591,29 @@ Spanish `Ñ`), which is why Stage 1 left it legacy.
 **Owner check (2026-11-14):** the owner verified on paper every question except the Spanish
 aristocrat: fractionated morse and patristocrat included. After the xenocrypt, the logic is done and
 work moves to rendering and fonts for a browser build.
+
+## Xenocrypt detail — 2026-11-14
+
+Source: Toebes's `langcharset`, `langreplace` and `makeReplacement` in
+`app/common/cipherhandler.ts`; `findUsage` in `app/codebusters/cipherencoder.ts`.
+
+**What a student gets**, from the question text and Toebes's PDF: the same as an English
+aristocrat, over the Spanish alphabet `ABCDEFGHIJKLMNÑOPQRSTUVWXYZ` (27 letters, `Ñ` between `N`
+and `O`). The table has 27 letter columns; the frequency row counts all 27. The ciphertext shows
+no accents.
+
+Export fields (the aristocrat's; lengths only): `cipherString` 98, `keyword` 9, `alphabetSource` 27,
+`alphabetDest` 27, `replacement` 27 keys (`Ñ` included), `curlang` `es`, `encodeType` `k1`. Also
+present, not read: `translation`, `keyword2`, `offset2`, `misspelled`, `salt`, `author`. As for
+English aristocrats, only `replacement` and `alphabetSource` are read.
+
+**Encoding** (`makeReplacement`): uppercase, then fold accented letters by `langreplace.es`
+(`Á É Í Ó Ú Ü Ý` → `A E I O U U Y`), then substitute through the inverse of `replacement`.
+`Ñ` is a letter of its own and is substituted, not folded. Characters outside the alphabet
+(including `¿ ¡`) are kept. The plaintext in `competitiondata/001` has accented vowels and no `Ñ`.
+
+So prepare drops the `curlang` ≠ `en` guard for `es` only, applying the fold before the substitution.
+Other languages stay legacy until a test has one. The Typst aristocrat renderer already takes its
+columns from `alphabet`; only whether 27 columns fit the page needs checking.
+
+**Checking:** `check-reference` compares `ciphertext` as for aristocrats.

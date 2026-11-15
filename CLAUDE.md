@@ -105,3 +105,7 @@ Work in short sessions of 1–3 tasks. Before ending one:
 5. Commit (and push when the owner says so).
 
 Prompt the owner to do this after 1–3 tasks, and say which steps applied.
+
+If "Please follow the instructions in the untracked next-session-prompt.md" arrives in a session
+that has already done work, it may have been pasted by mistake. Ask the owner to confirm they mean
+to continue in this session (rather than a new one) before starting.

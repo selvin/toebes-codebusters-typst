@@ -447,7 +447,11 @@ Collected for the render pass at the end; not to be fixed before then.
 1. **Cryptarithm** (owner): the formula prints on one line. Toebes sets it as grade-school
    addition, one operand per line with a rule under them. Also missing: the boxes under the values
    to decode, and the letter × digit (0–9) work grid.
-2. **Look at the sister attempt, `~/workspace/codebusters-test-papers`** (owner's earlier
+2. **Fractionated morse** (owner, after the fractionated morse pass): cipher lines left-aligned,
+   not centered. Use the spare width (about 30% blank around the ciphertext): larger letters
+   and/or more space per letter. The Replacement row needs room to pencil in a letter; the Morse
+   fraction row needs more vertical spacing; its header can be set as "Morse" over "fraction".
+3. **Look at the sister attempt, `~/workspace/codebusters-test-papers`** (owner's earlier
    LaTeX-from-Python version, local only). Ideas worth taking: how question numbers are set (boxed),
    point values stood out more, a page header with the test name, page number and a blank for the
    team number, and more. Its fonts are Arial for body text and MesloLGS NF (scaled 1.1) for
@@ -547,6 +551,13 @@ our PDF finds no fractionated morse plaintext. For the render pass: Toebes cente
 lines as a whole, with lines left-aligned inside it; ours centers each line. The table's header
 cells are smaller than Toebes's.
 
+**Repeated letter at a line break (2026-11-14):** because the last-split marker isn't reset, a
+long word (about 11 plaintext letters or more; a fuzz of made-up texts found none up to 10) can
+fill the next line before another word break. Toebes then splits at the stale position, at or past
+the line's end, pushes the padded last letter with the line, and encodes it again on the next
+line: one extra cipher letter, on Toebes's paper too. We copy it, so ours matches Toebes. Whether
+to keep matching Toebes or print the correct ciphertext is the owner's call; open.
+
 **Next, in paper order** (leak scan): **patristocrat** (K1), then the remaining aristocrat (a
 xenocrypt, per the earlier plan) and the second patristocrat.
 
@@ -576,3 +587,7 @@ no patristocrat plaintext.
 **Next, in paper order** (leak scan): the **Spanish (xenocrypt) aristocrat**, K1, the only question
 left that leaks. Its alphabet and accent handling need checking against Toebes (`langreplace`,
 Spanish `Ñ`), which is why Stage 1 left it legacy.
+
+**Owner check (2026-11-14):** the owner verified on paper every question except the Spanish
+aristocrat: fractionated morse and patristocrat included. After the xenocrypt, the logic is done and
+work moves to rendering and fonts for a browser build.

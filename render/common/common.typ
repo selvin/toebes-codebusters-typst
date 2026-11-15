@@ -93,19 +93,20 @@
 }
 
 // Wrapper for positioning questions at the correct vertical position
-// Even questions are positioned at exactly 50% of usable page height
+// Odd questions start a page; the even question after one starts at the middle of the text area,
+// or lower if the odd one runs past it (then a clear gap between them). An even question that no
+// longer fits moves to the next page.
 #let position-question(num, content) = {
-  if num != "0" {
-    let question-num = int(num)
-    if calc.rem(question-num, 2) == 0 {
-      // Even question: at the middle of the text area (dy is relative to it, so it follows the margins)
-      place(top, dy: 50%, content)
-    } else {
-      // Odd question: render normally at top of page
+  if num != "0" and calc.rem(int(num), 2) == 1 {
+    // Odd question: at the top of the page, padded down to the middle (measured, not placed, so
+    // a tall question pushes the next one down instead of running into it)
+    layout(size => {
       content
-    }
+      let height = measure(block(width: size.width, content)).height
+      v(calc.max(1.5em.to-absolute(), size.height / 2 - height))
+    })
   } else {
-    // Question 0 (TIMED): render normally
+    // Even question: follows the padding; question 0 (TIMED): render normally
     content
   }
 }

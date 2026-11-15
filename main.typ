@@ -25,9 +25,22 @@
 #let data = json(sys.inputs.at("export", default: "input.json"))
 
 // Page setup
+// Header: test title, and a team number blank with the division letter pre-filled (as Toebes)
+#let team-number-blank = box(
+  width: 2.5cm,
+  stroke: (bottom: 0.5pt),
+  outset: (bottom: 2pt),
+  align(left, h(2pt) + prepared.test.division),
+)
 #set page(
   paper: "us-letter",
-  margin: (top: 1.5cm, bottom: 1cm, left: 1cm, right: 1cm),
+  margin: (top: 1.5cm, bottom: 1.5cm, left: 1cm, right: 1cm),
+  header: grid(
+    columns: (1fr, auto),
+    align(center, prepared.test.title),
+    [Team Number: #team-number-blank],
+  ),
+  footer: context align(center)[Page #counter(page).get().first() of #counter(page).final().first()],
 )
 #set document(title: prepared.test.title)
 #set text(size: 11pt)

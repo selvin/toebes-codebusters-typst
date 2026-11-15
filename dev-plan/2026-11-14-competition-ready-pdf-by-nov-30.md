@@ -3,8 +3,8 @@
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
 2026-11-14; porta, nihilistsub (decode), baconian, compcolumnar (decode), checkerboard and
-homophonic done the same day. Next, in paper order: nihilistsub crypt (see "Homophonic detail",
-Result).
+homophonic and nihilistsub crypt done the same day. Next, in paper order: fractionated morse (see
+"Nihilist substitution detail", crypt Result).
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -64,7 +64,7 @@ Types only; which question uses which stays out of the repo.
 | caesar | yes | layout ok; move to TS |
 | porta: decode, crypt | yes (TS) | done; matches reference |
 | baconian: words, sequence, let4let | yes (TS) | done; matches reference |
-| nihilistsub: decode, crypt | decode yes (TS) | decode done, matches reference; crypt todo |
+| nihilistsub: decode, crypt | yes (TS) | done; matches reference |
 | compcolumnar: decode | yes (TS) | decode done; matches reference |
 | checkerboard: decode, crypt | yes (TS) | done; matches reference |
 | cryptarithm | no (shows formula only; no leak) | todo: Toebes's work grid |
@@ -275,6 +275,12 @@ Prepare uses `lines` for crypt, and for decode with `blocksize` > 0; decode with
 keeps `words` (verified on paper; moving it to Toebes's line breaks is render-pass work). Like
 homophonic, Toebes doesn't reset the last-split marker after a split; we copy that. Checked by
 `check-reference` as decode is (numbers of two digits or more).
+
+**Crypt result (2026-11-14):** done. The crypt question matches Toebes's PDF by number comparison
+(and the check fails when one value is changed); line shapes match (two blocks a line beside the
+grid, then four). A letters-only scan of our PDF finds no nihilist plaintext. Toebes spaces values
+wider, for the render pass. **Next, in paper order:** fractionated morse, then patristocrat, then
+a xenocrypt aristocrat.
 
 **Next, in paper order** (from a letters-only leak scan of the compiled packet): **baconian**.
 Sequence and let4let print the plaintext. Words mode doesn't leak, but nothing has checked it

@@ -17,8 +17,8 @@ Stage 1 done: `prepare/` writes `build/questions.json`, English aristocrats rend
 Toebes's PDF; every other kind is still "legacy" (rendered from the raw export, and still leaking).
 Porta and nihilistsub (decode) followed, verified by the owner on paper. Baconian (all three modes)
 and compcolumnar (decode) followed, also verified on paper. Checkerboard (decode, crypt) followed,
-also verified on paper. Homophonic (decode, crypt) followed; the owner verified the packet through its first question. Next, in
-paper order: nihilistsub crypt.
+also verified on paper. Homophonic (decode, crypt) followed; the owner verified the packet through its first question. Nihilistsub crypt
+followed. Next, in paper order: fractionated morse.
 Work follows the paper's question order; layout fixes wait for one render pass at the end.
 
 ## Index

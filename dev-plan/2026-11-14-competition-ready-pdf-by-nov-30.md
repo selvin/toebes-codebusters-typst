@@ -2,8 +2,8 @@
 
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
-2026-11-14; porta, nihilistsub (decode), baconian and compcolumnar (decode) done the same day.
-Next, in paper order: checkerboard (see "Complete columnar detail", Result).
+2026-11-14; porta, nihilistsub (decode), baconian, compcolumnar (decode) and checkerboard done the
+same day. Next, in paper order: homophonic (see "Checkerboard detail", Result).
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -65,8 +65,8 @@ Types only; which question uses which stays out of the repo.
 | baconian: words, sequence, let4let | yes (TS) | done; matches reference |
 | nihilistsub: decode, crypt | decode yes (TS) | decode done, matches reference; crypt todo |
 | compcolumnar: decode | yes (TS) | decode done; matches reference |
-| checkerboard: decode, crypt | missing | in progress |
-| cryptarithm | no | todo |
+| checkerboard: decode, crypt | yes (TS) | done; matches reference |
+| cryptarithm | no (shows formula only; no leak) | todo: Toebes's work grid |
 | homophonic: decode, crypt | missing | todo |
 | fractionatedmorse | no | todo |
 
@@ -396,3 +396,15 @@ rule counts tokens, not printed width.
 
 **Checking:** `check-reference` compares the letters of all cipher units, in order, with the
 reference's letters (the grid is empty, so it adds none).
+
+**Result (2026-11-14):** done, decode and crypt. Both questions match Toebes's PDF by letters (and
+the check fails when one unit is changed); line shapes match the reference (two blocks a line beside
+the grid, then four). A letters-only scan of our PDF finds no checkerboard plaintext.
+
+**Leak scan finding:** the scan flags cryptarithm, but falsely: a cryptarithm's `cipherString` is the
+formula, which Toebes prints too. The answer is `soltext`, which the legacy renderer doesn't print.
+So cryptarithm doesn't leak. It still lacks Toebes's "values to decode" boxes and letter/digit work
+grid, a gap for the render pass or its own pass. Future scans should test cryptarithm by `soltext`.
+
+**Next, in paper order:** **homophonic** (decode and crypt). It has no renderer and falls to the
+"unknown" box, which prints `cipherString`. In Stage 3's hard list.

@@ -110,8 +110,9 @@
   } else if slot == "page" {
     block(height: 100%, width: 100%, content)
   } else {
-    // Bottom: follows the padding
-    content
+    // Bottom: follows the padding; one too tall for the rest of the page moves to the next page
+    // whole (alone there: main.typ breaks the page after it) instead of splitting across pages
+    block(breakable: false, width: 100%, content)
   }
 }
 

@@ -15,14 +15,20 @@ if (!questionsPath || !referencePath) {
 // pdftotext splits ciphertext lines with blank lines and table rows in between; collapsing all
 // whitespace makes each question's ciphertext one contiguous run of words.
 const collapse = (s: string) => s.replace(/\s+/g, " ").trim();
+// Some kinds (porta) print one letter per box, which pdftotext spaces apart: compare letters only.
+const lettersOnly = (s: string) => s.replace(/[^A-Z]/g, "");
 
 const { questions }: QuestionsFile = JSON.parse(readFileSync(questionsPath, "utf8"));
-const reference = collapse(readFileSync(referencePath, "utf8"));
+const referenceText = readFileSync(referencePath, "utf8");
+const reference = collapse(referenceText);
+const referenceLetters = lettersOnly(referenceText);
 
 let failed = 0;
 for (const q of questions) {
   if (!("ciphertext" in q)) continue;
-  const ok = reference.includes(collapse(q.ciphertext));
+  const ok =
+    reference.includes(collapse(q.ciphertext)) ||
+    referenceLetters.includes(lettersOnly(q.ciphertext));
   if (!ok) failed++;
   console.log(`${q.timed ? "Timed" : q.number} (${q.kind}): ${ok ? "ok" : "NOT FOUND in reference"}`);
 }

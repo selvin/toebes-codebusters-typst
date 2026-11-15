@@ -3,8 +3,9 @@
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
 2026-11-14; every cipher type in `competitiondata/001` followed the same day, and the owner verified
-the whole packet's logic on paper. Only cryptarithm is still legacy (no leak). **Next: the render
-pass** (see "Decisions — 2026-11-14 (render pass order)").
+the whole packet's logic on paper. Only cryptarithm is still legacy (no leak). Render pass step 1
+(header and footer) done. **Next: step 2**, question-independent formatting (see "Decisions —
+2026-11-14 (render pass order)").
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -730,3 +731,17 @@ starts after it, as in Toebes).
 3. **Division letter pre-filled** in the team number blank, as in Toebes. `prepare` adds
    `test.division` (`"A"`, `"B"`, `"C"`, or `""` when `testtype` doesn't start with one of them);
    the blank is plain when it's empty.
+
+### Result
+
+Done. The header is a two-column grid: the title centered in the free width, then "Team Number:"
+and a 2.5 cm underlined blank holding the division letter. The footer is "Page N of M", centered.
+The bottom margin went from 1 cm to 1.5 cm to make room; the packet's page count still matches
+Toebes's question pages. `check-reference` passes and the leak scan is clean.
+
+Surprise: `counter(page).display("Page 1 of 1", both: true)` reads the "a" in "Page" as a counting
+symbol (prints "Pbge"). The footer builds the text from `counter(page).get()` and `.final()`
+instead.
+
+The question heading's rule (from `position-question`) now sits right under the header line; step
+2 (question heading) is where to space them apart.

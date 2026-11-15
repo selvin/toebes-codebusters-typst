@@ -21,8 +21,9 @@ also verified on paper. Homophonic (decode, crypt) followed; the owner verified 
 followed; verified on paper up to the first fractionated morse question. Fractionated morse,
 patristocrat, the xenocrypt, atbash and caesar followed: **the packet doesn't leak, and the owner
 verified every question's logic on paper.** Only cryptarithm is still legacy (no leak).
-**Next: the render pass**, global (header, footer) first, then question-independent, then
-question-dependent formatting; see the plan's "Decisions — 2026-11-14 (render pass order)".
+**The render pass** is under way: step 1, global (page header and footer), is done. **Next:**
+step 2, question-independent formatting, starting with the question heading; see the plan's
+"Decisions — 2026-11-14 (render pass order)".
 
 ## Index
 

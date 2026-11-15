@@ -24,13 +24,10 @@
 }
 
 // Render the mapping table for aristocrat ciphers
+// alphabet: the letters heading the columns; frequencies: one count per letter, same order
 // keyType: "K1", "K2", or "Random" (if not K1 or K2, treated as Random)
-#let render-mapping-table(cipherString, keyType: "Random") = {
-  let frequencies = calculate-frequencies(cipherString)
-  let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-  // Create table with appropriate number of columns (key column + 26 alphabet columns)
-  let columns = (auto,) + (1fr,) * 26
+#let render-frequency-table(alphabet, frequencies, keyType: "Random") = {
+  let columns = (auto,) + (1fr,) * alphabet.clusters().len()
 
   // Helper function to create empty cells for replacement row
   let empty-boxes = {
@@ -53,8 +50,7 @@
   // Helper function to create frequency row (not bold code font)
   let frequency-row = {
     let row = ()
-    for letter in alphabet.clusters() {
-      let freq = frequencies.at(letter)
+    for freq in frequencies {
       if freq == 0 {
         row.push([])
       } else {
@@ -113,6 +109,13 @@
       [#text(font: "Courier New", weight: "bold", size: 0.9em)[Replacement]], ..empty-boxes
     )
   }
+}
+
+// Mapping table computed from a plain string (legacy kinds)
+#let render-mapping-table(cipherString, keyType: "Random") = {
+  let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  let counts = calculate-frequencies(cipherString)
+  render-frequency-table(alphabet, alphabet.clusters().map(l => counts.at(l)), keyType: keyType)
 }
 
 // Render an aristocrat cipher

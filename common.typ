@@ -114,7 +114,8 @@
 }
 
 // Create a question heading with proper formatting
-#let question-heading(num, cipher) = {
+// num: "0" for the timed question; body: the question text as content
+#let question-heading-core(num, points, special-bonus, body) = {
   // Add a thin line above each question for visual separation
   line(length: 100%, stroke: 0.25pt)
   v(0.05em)
@@ -123,35 +124,27 @@
   show heading: it => block(above: 0.1em, below: 0.5em, it)
 
   // Prepare special bonus prefix if needed
-  let bonus-prefix = if "specialbonus" in cipher and cipher.specialbonus {
+  let bonus-prefix = if special-bonus {
     [★ (Special Bonus Question) ]
   } else {
     []
   }
 
-  if num == "0" {
-    heading(level: 3)[
-      #text(size: 11pt)[
-        #text(weight: "regular")[#bonus-prefix]#strong[TIMED] #text(weight: "regular")[Question] \[#raw(str(cipher.points)) #text(weight: "regular")[points]\]
-        #text(weight: "regular")[
-          #if "question" in cipher {
-            html-to-typst(cipher.question)
-          }
-        ]
-      ]
+  let label = if num == "0" [#strong[TIMED] #text(weight: "regular")[Question]] else [#num.]
+
+  heading(level: 3)[
+    #text(size: 11pt)[
+      #text(weight: "regular")[#bonus-prefix]#label \[#raw(str(points)) #text(weight: "regular")[points]\]
+      #text(weight: "regular")[#body]
     ]
-  } else {
-    heading(level: 3)[
-      #text(size: 11pt)[
-        #text(weight: "regular")[#bonus-prefix]#num. \[#raw(str(cipher.points)) #text(weight: "regular")[points]\]
-        #text(weight: "regular")[
-          #if "question" in cipher {
-            html-to-typst(cipher.question)
-          }
-        ]
-      ]
-    ]
-  }
+  ]
+}
+
+// Heading from a raw Toebes cipher (legacy kinds)
+#let question-heading(num, cipher) = {
+  let special-bonus = "specialbonus" in cipher and cipher.specialbonus
+  let body = if "question" in cipher { html-to-typst(cipher.question) } else { [] }
+  question-heading-core(num, cipher.points, special-bonus, body)
 }
 
 // Display cipher text in a grid format (common for many ciphers)

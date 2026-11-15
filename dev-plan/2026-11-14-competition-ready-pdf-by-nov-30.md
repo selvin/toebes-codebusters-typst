@@ -1021,3 +1021,23 @@ Done, pending the owner's check on paper.
 
 **Owner check (2026-11-15):** verified. `[P points]` no longer jars the eye, and cribs print at the
 size of the text around them.
+
+## Render pass: timed question — 2026-11-15
+
+Worklist item 3 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)):
+the timed question on a page of its own, in a double outline.
+
+### What the references do
+
+- **Toebes's PDF.** The timed question flows like any other: question 1 starts on its page.
+- **Ours.** Already a page of its own: `prepare` puts the timed question first, `position-question`
+  renders it as is, and `main.typ` puts a page break after it (none of the half-page logic). No
+  outline: only the thin rule above the heading, as every question has.
+
+### What we'll do
+
+Draw a double outline around the timed question. Its page already holds nothing else, so the
+page count stays as it is (16 for `001`, 11 for `000`).
+
+Open for the owner: whether the outline frames the whole text area or just the question's own
+height, and whether it takes in the heading.

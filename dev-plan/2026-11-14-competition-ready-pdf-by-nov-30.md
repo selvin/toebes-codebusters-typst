@@ -408,3 +408,22 @@ grid, a gap for the render pass or its own pass. Future scans should test crypta
 
 **Next, in paper order:** **homophonic** (decode and crypt). It has no renderer and falls to the
 "unknown" box, which prints `cipherString`. In Stage 3's hard list.
+
+**Owner check (2026-11-14):** the owner verified on paper questions up to and including the second
+checkerboard one. The let4let baconian (music symbols, printed as images by Toebes) was taken on
+trust from the image-order comparison in "Baconian detail", Result. The cryptarithm in between
+doesn't leak; see the render-pass list below.
+
+## Decisions — 2026-11-14 (render-pass inputs)
+
+Collected for the render pass at the end; not to be fixed before then.
+
+1. **Cryptarithm** (owner): the formula prints on one line. Toebes sets it as grade-school
+   addition, one operand per line with a rule under them. Also missing: the boxes under the values
+   to decode, and the letter × digit (0–9) work grid.
+2. **Look at the sister attempt, `~/workspace/codebusters-test-papers`** (owner's earlier
+   LaTeX-from-Python version, local only). Ideas worth taking: how question numbers are set (boxed),
+   point values stood out more, a page header with the test name, page number and a blank for the
+   team number, and more. Its fonts are Arial for body text and MesloLGS NF (scaled 1.1) for
+   monospace: compare MesloLGS with Courier New here, especially since Courier New won't exist in
+   a browser build (see Backlog, Fonts).

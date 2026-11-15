@@ -17,7 +17,7 @@ Stage 1 done: `prepare/` writes `build/questions.json`, English aristocrats rend
 Toebes's PDF; every other kind is still "legacy" (rendered from the raw export, and still leaking).
 Porta and nihilistsub (decode) followed, verified by the owner on paper. Baconian (all three modes)
 and compcolumnar (decode) followed, also verified on paper. Checkerboard (decode, crypt) followed,
-awaiting the owner's paper check. Next, in paper order: homophonic.
+also verified on paper. Next, in paper order: homophonic.
 Work follows the paper's question order; layout fixes wait for one render pass at the end.
 
 ## Index
@@ -36,7 +36,8 @@ Work follows the paper's question order; layout fixes wait for one render pass a
 - **Question-paper tool on codebusters.site**: upload a Toebes JSON, get the question paper.
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
   After the November deadline.
-- **Render pass** (after correctness, before the deadline): layout problems the owner noted on
+- **Render pass** (after correctness, before the deadline): start from the owner's sister attempt
+  `~/workspace/codebusters-test-papers` (headers, question numbers, fonts). Layout problems the owner noted on
   paper, listed in the competition-ready plan's Decisions.
 - **Answer key and cover page** if they miss the deadline (Toebes's answer key is the fallback).
 - **Fonts** for a browser build: Courier New won't be available.

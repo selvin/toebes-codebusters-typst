@@ -32,6 +32,7 @@ question-independent formatting, starting with the question heading; see the pla
 |------|-----|--------|
 | 2026-11-14 | [Competition-ready question paper by 2026-11-30](2026-11-14-competition-ready-pdf-by-nov-30.md) | Active |
 | 2026-11-14 | [Split: TypeScript prepares, Typst lays out](2026-11-14-ts-prepare-typst-layout-split.md) | Decided |
+| 2026-11-14 | [Move the Typst code under `render/`](2026-11-14-render-folder.md) | Planned |
 
 ## Backlog
 

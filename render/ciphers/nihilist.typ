@@ -34,8 +34,8 @@
 #let render-polybius-grid() = {
   let header(n) = text(font: mono-font, weight: "bold", size: 0.8em)[#n]
   table(
-    columns: (1.6em,) + (2.2em,) * 5,
-    rows: 1.6em,
+    columns: (2.25em,) + (4em,) * 5,
+    rows: 2.25em,
     stroke: 0.5pt + black,
     align: center + horizon,
     [], ..range(1, 6).map(header),
@@ -43,18 +43,18 @@
   )
 }
 
-// One line of blocks, with room below for the answer. As in Toebes's 24-token lines, every token
-// (a value, punctuation, or the space between blocks) takes one equal cell: 24 fit the text width
-#let render-nihilist-line(line) = block(below: 2.8em, {
+// One line of blocks. As in Toebes's 24-token lines, every token (a value, punctuation, or the
+// space between blocks) takes one equal cell: 24 fit the text width
+#let render-nihilist-line(line) = {
   set text(font: mono-font, weight: "bold", size: 12pt)
   let cell = 1.9em
   line.map(b => b.map(v => box(width: cell, align(center, v))).join()).join(h(cell))
-})
+}
 
 // Render a nihilist substitution prepared by prepare/ (questions.json); never sees plaintext
 // lines: Toebes's lines → blocks (words when blocksize is 0) → values or punctuation;
 // the first three sit beside the grid
 #let render-nihilist-prepared(q) = {
   prepared-heading(q)
-  lines-beside-grid(q.lines.map(render-nihilist-line), render-polybius-grid())
+  lines-beside-grid(q.lines.map(render-nihilist-line), render-polybius-grid(), even: true)
 }

@@ -203,14 +203,22 @@
 }
 
 // Ciphertext lines (content) with an empty work grid beside the first three; the rest below
-#let lines-beside-grid(lines, work-grid) = {
+// even: every line gets the same pitch (room below it for the answer), so three span the grid and
+// the fourth starts 1em below it; a line that wraps grows instead
+#let lines-beside-grid(lines, work-grid, even: false) = context {
+  let lines = if even {
+    let pitch = (measure(work-grid).height + 1em.to-absolute()) / 3
+    lines.map(l => block(above: 0pt, below: 0pt, inset: (bottom: pitch - measure(l).height), l))
+  } else {
+    lines
+  }
   let beside = calc.min(3, lines.len())
-  grid(
+  block(below: if even { 0pt } else { auto }, grid(
     columns: (1fr, auto),
     gutter: 1em,
     lines.slice(0, beside).join(),
     work-grid,
-  )
+  ))
   for line in lines.slice(beside) {
     line
   }

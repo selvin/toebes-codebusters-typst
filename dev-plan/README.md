@@ -46,5 +46,5 @@ step 2, question-independent formatting, starting with the question heading; see
   question-independent step.
 - **Cipher types not in `competitiondata/001`** (affine, Hill, Vigenère, etc.), each on its own when a
   real test needs it.
-- **Committing a test fixture**: `competitiondata/001` stays out of git until the owner confirms the test
-  has been held.
+- **A committed test fixture**: a made-up export in `testdata/`, so the full pipeline can be tested
+  in the repo. Real tests never go in git, even after they are held (`CLAUDE.md`, "Hard rule").

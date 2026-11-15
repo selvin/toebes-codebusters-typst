@@ -221,3 +221,34 @@ letters-only comparison when the exact one fails.
 (letters only), and a letters-only search of our PDF finds no porta plaintext. Typst reuses the
 dual-box text rendering (`render-dual-box-text` in `common.typ`). For the render pass: ours wraps at
 35 characters, while Toebes fits more blocks per line.
+
+## Nihilist substitution detail — 2026-11-14
+
+Decode only for now; `crypt` stays legacy until its own pass (its page may differ).
+
+**What a student gets** (decode), from the question text and Toebes's PDF: the ciphertext as
+numbers, and an empty 5×5 grid headed 1–5 for the student to build the Polybius square in. The
+keyword and Polybius key appear in the question text only; the paper shows no keyword row and no
+filled square. So `questions.json` carries neither key.
+
+With `blocksize` 0, Toebes keeps the plaintext's word breaks and punctuation: numbers in a word sit
+close together, words are spaced apart, and punctuation is its own token. With `blocksize` > 0
+(seen only with `crypt` so far) letters run together in blocks, and punctuation is presumably dropped
+as in porta.
+
+```jsonc
+{
+  "kind": "nihilist",
+  "words": [["57"], ["93", "27", "…", ","]]   // words → tokens: a number, or a punctuation mark
+}
+```
+
+**Encoding** (export: `polybiusKey`, `keyword`, `cipherString` = plaintext): the Polybius square is
+the key's letters (duplicates dropped), then the rest of the alphabet, with J merged into I. A
+letter's value is row × 10 + column (1-based). Each plaintext letter's value plus the value of the
+next keyword letter (repeating over letters only) gives the number. Checked by hand against the
+reference before coding.
+
+**Checking:** pdftotext interleaves the ciphertext lines with the grid's 1–5 headers. Every
+nihilist number is at least 22 (11 + 11), so `check-reference` compares our numbers against the
+reference's numbers with two or more digits.

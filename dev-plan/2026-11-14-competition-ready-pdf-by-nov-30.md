@@ -1007,3 +1007,14 @@ both in the question heading's fonts.
 2. **Cribs:** monospace runs in question text become `text(font: mono-font, weight: "bold")` at
    the surrounding size (1em: the cap heights already match), not `raw`. Other `raw` uses (the
    renderers' own labels) keep their sizes: the worklist limits this to question text.
+
+### Result
+
+Done, pending the owner's check on paper.
+
+- **`[P points]`:** brackets at 1em, regular; `P` bold; `points` at 0.85em.
+- **Cribs:** a `mono-run` helper in `render/common/common.typ` (bold Noto Sans Mono at the
+  surrounding size) replaces `raw` in `runs-to-content` and in `html-to-typst`'s tag table. A crib
+  now stands as tall as the serif capitals beside it. The renderers' own `raw` labels are unchanged.
+- Page counts unchanged for `001` and `000`. `check-reference` passes for `000`; `001` reports
+  only its known accent-symbol baconian (see "Render pass: fonts").

@@ -25,3 +25,15 @@ describe("atbash", () => {
     expect(prepareTable(cipher({ curlang: "es" }))).toBeNull();
   });
 });
+
+describe("caesar", () => {
+  // Decode table for offset 3: ciphertext D → plaintext A, so encoding shifts forward by 3
+  const offset3 = Object.fromEntries([...ALPHABET].map((c, i) => [ALPHABET[(i + 3) % 26], c]));
+
+  it("encodes with the rotated alphabet, wrapping past Z", () => {
+    expect(prepareTable(cipher({ cipherType: "caesar", offset: 3, replacement: offset3 }))).toEqual({
+      kind: "caesar",
+      ciphertext: "KHOOR, CHEUD.",
+    });
+  });
+});

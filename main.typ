@@ -43,8 +43,6 @@
     render-aristocrat(cipher, num)
   } else if cipher-type == "baconian" {
     render-baconian(cipher, num)
-  } else if cipher-type == "caesar" {
-    render-caesar(cipher, num)
   } else if cipher-type == "compcolumnar" {
     render-columnar(cipher, num)
   } else if cipher-type == "cryptarithm" {
@@ -76,6 +74,8 @@
         render-atbash-prepared(q)
       } else if q.kind == "baconian" {
         render-baconian-prepared(q)
+      } else if q.kind == "caesar" {
+        render-caesar-prepared(q)
       } else if q.kind == "checkerboard" {
         render-checkerboard-prepared(q)
       } else if q.kind == "compcolumnar" {

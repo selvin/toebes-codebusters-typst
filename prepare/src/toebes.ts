@@ -23,6 +23,7 @@ export interface ToebesCipher {
   blocksize?: number;
   polybiusKey?: string;
   operation?: string;
+  offset?: number; // caesar shift (not read: `replacement` already holds it)
   words?: string[]; // baconian words mode: one cipher word per plaintext letter
   abMapping?: string; // baconian: alphabet position → A or B
   texta?: string; // baconian: A symbol set (HTML)

@@ -75,7 +75,7 @@ function prepareKind(cipher: ToebesCipher): KindData {
     const data = preparePorta(cipher);
     if (data) return data;
   }
-  if (cipher.cipherType === "atbash") {
+  if (cipher.cipherType === "atbash" || cipher.cipherType === "caesar") {
     const data = prepareTable(cipher);
     if (data) return data;
   }

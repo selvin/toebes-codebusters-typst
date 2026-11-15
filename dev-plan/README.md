@@ -46,8 +46,7 @@ question-independent formatting, starting with the question heading; see the pla
 - **Answer key and cover page** if they miss the deadline (Toebes's answer key is the fallback).
 - **Fonts** for a browser build: Courier New won't be available. Part of the render pass's
   question-independent step.
-- **Cipher types not in `competitiondata/001`** (affine, Hill, Vigenère, etc.), each on its own when a
-  real test needs it. `competitiondata/000` has affine, still legacy (prints the plaintext). K2
-  alphabets are out: dropped for the 2027 season (owner).
+- **2027-season cipher types not in `competitiondata/001`**, each on its own when a real test needs
+  it. Only 2027-season types and later are supported (owner): affine and K2 alphabets are out.
 - **A committed test fixture**: a made-up export in `testdata/`, so the full pipeline can be tested
   in the repo. Real tests never go in git, even after they are held (`CLAUDE.md`, "Hard rule").

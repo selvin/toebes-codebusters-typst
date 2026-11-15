@@ -766,5 +766,15 @@ Checked with the pipeline as built for `001`:
   handles random and K1 only). Legacy affine and K2 aristocrat still print the plaintext; a K2
   patristocrat shows the "unsupported" box. Not a blocker: `001` is the deadline test.
 - **K2 won't be added** (owner): it was a Division B alphabet until last season and was dropped as
-  a cipher type for the 2027 season. Affine stays in the Backlog.
+  a cipher type for the 2027 season.
+
+**Decided (owner):** the tool supports the 2027 season's cipher types and later only. K2
+aristocrat, K2 patristocrat and affine are unsupported. The owner will re-export `000.json` from
+Toebes with those questions removed.
+
+**Cryptarithm, for when it moves to `prepare`:** its `cipherString` is the equation, which students
+see, not the answer. The answer is `mapping` (letter → digit) and `soltext` (the decoded words);
+the values to decode are written into the question text by Toebes. The question paper gets the
+equation only; `mapping` and `soltext` belong to the answer key. The legacy renderer reads neither,
+so it doesn't leak.
 

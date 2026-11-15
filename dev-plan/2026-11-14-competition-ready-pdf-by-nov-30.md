@@ -261,3 +261,7 @@ ciphertext more vertical room, for the render pass.
 **Next, in paper order** (from a letters-only leak scan of the compiled packet): **baconian**.
 Sequence and let4let print the plaintext. Words mode doesn't leak, but nothing has checked it
 against the reference yet, so move all three modes together. After baconian: compcolumnar.
+
+**Owner check (2026-11-14):** the owner verified on paper the porta questions and the nihilist decode
+question; the packet is now verified up to the last porta question. Priority for the next session:
+**baconian, then compcolumnar**. Both are firm, not "if there's room".

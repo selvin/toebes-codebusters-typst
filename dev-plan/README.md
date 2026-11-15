@@ -15,7 +15,8 @@ never sees answers —
 [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md).
 Stage 1 done: `prepare/` writes `build/questions.json`, English aristocrats render from it and match
 Toebes's PDF; every other kind is still "legacy" (rendered from the raw export, and still leaking).
-Porta and nihilistsub (decode) followed. Next: baconian (all three modes), then compcolumnar.
+Porta and nihilistsub (decode) followed, verified by the owner on paper. Next, both prioritized:
+baconian (all three modes), then compcolumnar.
 Work follows the paper's question order; layout fixes wait for one render pass at the end.
 
 ## Index

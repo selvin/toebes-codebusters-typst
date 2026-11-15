@@ -19,6 +19,7 @@ export interface ToebesCipher {
   alphabetSource?: string;
   replacement?: Record<string, string>;
   keyword?: string;
+  keyword2?: string; // checkerboard: column keyword (keyword is the row keyword)
   blocksize?: number;
   polybiusKey?: string;
   operation?: string;

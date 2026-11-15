@@ -2,6 +2,7 @@
 
 import { prepareAristocrat, type AristocratData } from "./aristocrat.js";
 import { prepareBaconian, type BaconianData } from "./baconian.js";
+import { prepareCheckerboard, type CheckerboardData } from "./checkerboard.js";
 import { prepareCompColumnar, type CompColumnarData } from "./compcolumnar.js";
 import { htmlToParagraphs, type Paragraph } from "./html.js";
 import { prepareNihilist, type NihilistData } from "./nihilist.js";
@@ -12,7 +13,14 @@ interface LegacyData {
   kind: "legacy";
 }
 
-type KindData = AristocratData | BaconianData | CompColumnarData | NihilistData | PortaData | LegacyData;
+type KindData =
+  | AristocratData
+  | BaconianData
+  | CheckerboardData
+  | CompColumnarData
+  | NihilistData
+  | PortaData
+  | LegacyData;
 
 export type Question = {
   number: number;
@@ -35,6 +43,10 @@ function prepareKind(cipher: ToebesCipher): KindData {
   }
   if (cipher.cipherType === "baconian") {
     const data = prepareBaconian(cipher);
+    if (data) return data;
+  }
+  if (cipher.cipherType === "checkerboard") {
+    const data = prepareCheckerboard(cipher);
     if (data) return data;
   }
   if (cipher.cipherType === "compcolumnar") {

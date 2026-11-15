@@ -2,10 +2,9 @@
 
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
-2026-11-14; porta, nihilistsub (decode), baconian, compcolumnar (decode), checkerboard and
-homophonic, nihilistsub crypt, fractionated morse, patristocrat and the xenocrypt done the same
-day. **The packet no longer leaks** (see "Xenocrypt detail", Result). Next: the owner picks among
-the options listed there.
+2026-11-14; every cipher type in `competitiondata/001` followed the same day, and the owner verified
+the whole packet's logic on paper. Only cryptarithm is still legacy (no leak). **Next: the render
+pass** (see "Decisions — 2026-11-14 (render pass order)").
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -61,8 +60,8 @@ Types only; which question uses which stays out of the repo.
 | aristocrat: random, K1, with hint | yes (TS) | done; matches reference |
 | aristocrat, Spanish (xenocrypt), K1 | yes (TS) | done; matches reference |
 | patristocrat, K1 | yes (TS) | done; matches reference |
-| atbash | yes | layout ok; move to TS |
-| caesar | yes | layout ok; move to TS |
+| atbash | yes (TS) | done; matches reference |
+| caesar | yes (TS) | done; matches reference |
 | porta: decode, crypt | yes (TS) | done; matches reference |
 | baconian: words, sequence, let4let | yes (TS) | done; matches reference |
 | nihilistsub: decode, crypt | yes (TS) | done; matches reference |
@@ -673,3 +672,25 @@ atbash, 35 for caesar) are render pass.
 
 **Checking:** `check-reference` compares `ciphertext` as for aristocrats (letters-only fallback, since
 boxes space the letters apart).
+
+**Result (2026-11-14):** done, as kinds `atbash` and `caesar`. All four questions match Toebes's
+PDF by text (and the check fails when one letter is changed in either kind); pages look as before.
+The leak scan still finds nothing. `render-dual-box-cipher` and the Typst encoders are gone. Only
+cryptarithm stays legacy (formula only, no leak; its work grid is in the render-pass inputs).
+For the render pass: a closing period can wrap onto a line of its own (with its answer row), from
+`smart-line-break`.
+
+## Decisions — 2026-11-14 (render pass order)
+
+The owner verified the xenocrypt on paper: **every question in `competitiondata/001` is verified for
+logic.** The render pass comes next, in this order (owner):
+
+1. **Global:** page header and footer (Stage 4: test title, page number, "Team Number" blank).
+2. **Question-independent formatting:** what every question shares: heading, question number,
+   points, spacing, fonts, line breaking.
+3. **Question-dependent formatting:** each kind's own layout, from "Decisions — 2026-11-14
+   (render-pass inputs)" and the notes in each detail section (cryptarithm work grid included).
+
+The sister attempt, `~/workspace/codebusters-test-papers`, is the first reference for 1 and 2.
+Fonts for a browser build fit under 2. Open from earlier, still the owner's call: the fractionated
+morse repeated letter at a line break ("Fractionated morse detail").

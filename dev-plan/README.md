@@ -19,10 +19,10 @@ Porta and nihilistsub (decode) followed, verified by the owner on paper. Baconia
 and compcolumnar (decode) followed, also verified on paper. Checkerboard (decode, crypt) followed,
 also verified on paper. Homophonic (decode, crypt) followed; the owner verified the packet through its first question. Nihilistsub crypt
 followed; verified on paper up to the first fractionated morse question. Fractionated morse,
-patristocrat and the xenocrypt followed: **the packet no longer leaks.** Next is the owner's pick
-from the list at the end of the plan's "Xenocrypt detail" (owner check of the xenocrypt, atbash and
-caesar to TS, render pass, fonts, page header).
-Work follows the paper's question order; layout fixes wait for one render pass at the end.
+patristocrat, the xenocrypt, atbash and caesar followed: **the packet doesn't leak, and the owner
+verified every question's logic on paper.** Only cryptarithm is still legacy (no leak).
+**Next: the render pass**, global (header, footer) first, then question-independent, then
+question-dependent formatting; see the plan's "Decisions — 2026-11-14 (render pass order)".
 
 ## Index
 
@@ -40,11 +40,9 @@ Work follows the paper's question order; layout fixes wait for one render pass a
 - **Question-paper tool on codebusters.site**: upload a Toebes JSON, get the question paper.
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
   After the November deadline.
-- **Render pass** (after correctness, before the deadline): start from the owner's sister attempt
-  `~/workspace/codebusters-test-papers` (headers, question numbers, fonts). Layout problems the owner noted on
-  paper, listed in the competition-ready plan's Decisions.
 - **Answer key and cover page** if they miss the deadline (Toebes's answer key is the fallback).
-- **Fonts** for a browser build: Courier New won't be available.
+- **Fonts** for a browser build: Courier New won't be available. Part of the render pass's
+  question-independent step.
 - **Cipher types not in `competitiondata/001`** (affine, Hill, Vigenère, etc.), each on its own when a
   real test needs it.
 - **Committing a test fixture**: `competitiondata/001` stays out of git until the owner confirms the test

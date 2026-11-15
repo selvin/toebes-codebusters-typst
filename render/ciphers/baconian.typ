@@ -96,7 +96,6 @@
 #let render-baconian-replacement-table() = {
   let label(t) = text(font: mono-font, weight: "bold", size: 0.9em)[#t]
   let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".clusters()
-  v(1em)
   table(
     columns: (auto,) + (1fr,) * letters.len(),
     stroke: 0.5pt + black,
@@ -113,11 +112,15 @@
   prepared-heading(q)
 
   if q.mode == "words" {
-    align(center, block({
+    align(center, block(below: 0pt, {
       set align(left)
       set text(font: mono-font, weight: "bold", size: 14pt)
-      set par(leading: 2.2em)
+      // About 48pt line to line, as the nihilist and checkerboard lines: room to write under each,
+      // the last one included (above the table)
+      let gap = 2.7em
+      set par(leading: gap)
       q.lines.join(linebreak())
+      v(gap)
     }))
     render-baconian-replacement-table()
   } else {

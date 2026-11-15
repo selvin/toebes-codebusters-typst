@@ -34,7 +34,8 @@ describe("aristocrat", () => {
     expect(prepareAristocrat(cipher())?.ciphertext).toBe("GDKKN, YDAQZ!");
     expect(prepareAristocrat(cipher({ encodeType: "k1" }))?.keyType).toBe("k1");
     expect(prepareAristocrat(cipher({ encodeType: "k2" }))).toBeNull();
-    expect(prepareAristocrat(cipher({ curlang: "es" }))).toBeNull();
+    expect(prepareAristocrat(cipher({ curlang: "fr" }))).toBeNull();
+    expect(prepareAristocrat(cipher({ cipherType: "patristocrat", curlang: "es" }))).toBeNull();
   });
 
   it("encodes a patristocrat's letters only, in blocks of five", () => {
@@ -42,5 +43,19 @@ describe("aristocrat", () => {
     expect(prepareAristocrat(cipher({ cipherType: "patristocrat", cipherString: "Hello, zebras!" }))?.ciphertext).toBe(
       "GDKKN YDAQZ R",
     );
+  });
+
+  it("encodes Spanish over 27 letters, folding accents but keeping Ñ", () => {
+    const es = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    const shiftEs = Object.fromEntries([...es].map((c, i) => [c, es[(i + 1) % 27]]));
+    const q = prepareAristocrat(
+      cipher({ curlang: "es", alphabetSource: es, replacement: shiftEs, cipherString: "¿Qué año? ¡Ningún!" }),
+    );
+    // É → E → D, Ñ → N, O → Ñ, Ú → U → T; ¿ and ¡ kept
+    expect(q?.ciphertext).toBe("¿PTD ZNÑ? ¡MHMFTM!");
+    expect(q?.alphabet).toBe(es);
+    expect(q?.frequencies).toHaveLength(27);
+    expect(q?.frequencies[es.indexOf("Ñ")]).toBe(1);
+    expect(q?.frequencies[es.indexOf("M")]).toBe(3);
   });
 });

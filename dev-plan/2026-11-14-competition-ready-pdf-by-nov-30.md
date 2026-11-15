@@ -3,8 +3,8 @@
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
 2026-11-14; porta, nihilistsub (decode), baconian, compcolumnar (decode), checkerboard and
-homophonic and nihilistsub crypt done the same day. Next, in paper order: fractionated morse (see
-"Nihilist substitution detail", crypt Result).
+homophonic, nihilistsub crypt and fractionated morse done the same day. Next, in paper order:
+patristocrat (see "Fractionated morse detail", Result).
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -69,7 +69,7 @@ Types only; which question uses which stays out of the repo.
 | checkerboard: decode, crypt | yes (TS) | done; matches reference |
 | cryptarithm | no (shows formula only; no leak) | todo: Toebes's work grid |
 | homophonic: decode, crypt | yes (TS) | done; matches reference |
-| fractionatedmorse | no | todo |
+| fractionatedmorse: crypt | yes (TS) | done; matches reference |
 
 Update the Status column as each lands.
 
@@ -540,3 +540,12 @@ port the string handling as is rather than break the finished letter list afterw
 
 **Checking:** `check-reference` compares the cipher letters with the reference's letters (the
 table adds none, and its `●–×` aren't letters).
+
+**Result (2026-11-14):** done. Both questions match Toebes's PDF by letters (and the check fails
+when one letter is changed); line shapes match the reference line for line. A letters-only scan of
+our PDF finds no fractionated morse plaintext. For the render pass: Toebes centers the block of
+lines as a whole, with lines left-aligned inside it; ours centers each line. The table's header
+cells are smaller than Toebes's.
+
+**Next, in paper order** (leak scan): **patristocrat** (K1), then the remaining aristocrat (a
+xenocrypt, per the earlier plan) and the second patristocrat.

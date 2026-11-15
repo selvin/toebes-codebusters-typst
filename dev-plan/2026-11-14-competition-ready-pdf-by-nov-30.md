@@ -4,7 +4,7 @@
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
 2026-11-14; every cipher type in `competitiondata/001` followed the same day, and the owner verified
 the whole packet's logic on paper. Only cryptarithm is still legacy (no leak). Render pass step 1
-(header and footer) done. **Next: step 2**, question-independent formatting (see "Decisions —
+(header and footer) done and verified. **Next:** move the Typst code under `render/`, then step 2, question-independent formatting (see "Decisions —
 2026-11-14 (render pass order)").
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
@@ -745,3 +745,8 @@ instead.
 
 The question heading's rule (from `position-question`) now sits right under the header line; step
 2 (question heading) is where to space them apart.
+
+**Owner check (2026-11-14):** header and footer verified. Before step 2, the owner wants the Typst
+code moved under `render/` (cipher renderers in `render/ciphers/`, shared files in
+`render/common/`, where that makes sense); a refactor only, its own commits, no change to the
+output. Step 2 follows it, possibly in a later session.

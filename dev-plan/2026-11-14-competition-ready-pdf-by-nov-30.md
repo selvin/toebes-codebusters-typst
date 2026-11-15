@@ -1,7 +1,7 @@
 # Competition-ready question paper by 2026-11-30
 
 **Date:** 2026-11-14
-**Status:** **Active.** Stage 0 (docs, decisions) done 2026-11-14. Next: Stage 1.
+**Status:** **Active.** Stage 0 (docs, decisions) done 2026-11-14. Stage 1 in progress.
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -93,3 +93,67 @@ Each stage is a few commits; each cipher type its own commit.
 - No question prints plaintext: a test checks that the question paper's text contains no plaintext
   sentence from the export.
 - Owner prints a packet and reviews it on paper.
+
+## Stage 1 detail — 2026-11-14
+
+### `questions.json` (the question paper's only input for migrated kinds)
+
+```jsonc
+{
+  "test": { "title": "…", "count": 20 },      // count = untimed questions
+  "questions": [
+    {
+      "number": 0,              // 0 = timed; then 1…n in TEST.0.questions order
+      "timed": true,
+      "toebesId": 1234,         // lets main.typ find legacy (not yet migrated) entries
+      "points": 100,
+      "specialBonus": false,
+      "text": [[{ "text": "…", "bold": true, "italic": false, "mono": false }]],
+                                // paragraphs → runs; HTML gone
+      "kind": "aristocrat",     // picks the Typst renderer
+      // kind data, aristocrat:
+      "keyType": "random",      // "random" | "k1"
+      "alphabet": "ABC…Z",
+      "ciphertext": "…",        // uppercase, punctuation and spaces kept
+      "frequencies": [3, 0, …]  // one per alphabet letter
+    }
+  ]
+}
+```
+
+No `cipherString`, `replacement`, `alphabetDest`, `keyword`, `hint`, `author` field or
+`translation`. Every kind not migrated yet is `"kind": "legacy"` with no kind data, and `main.typ`
+renders it from the raw export by `toebesId` as before (still leaking, as today). Each later stage
+turns legacy entries into real kinds; when none are left, `main.typ` stops reading the export.
+
+Stage 1 migrates only English aristocrats with random or K1 keys. Xenocrypts (`curlang` ≠ `en`) stay
+legacy until Stage 2, since their alphabet and accent handling need their own check.
+
+The aristocrat ciphertext comes from the export's `replacement` map applied to the uppercased
+`cipherString`; characters not in the map are kept as they are.
+
+### `prepare/` layout and tooling
+
+```
+prepare/
+  package.json        — tsx (run), vitest (tests), typescript (types only); no runtime deps
+  src/toebes.ts       — types for the export fields we read
+  src/html.ts         — question HTML → paragraphs of runs
+  src/aristocrat.ts   — encode, frequencies
+  src/questions.ts    — order, number, dispatch by cipherType
+  src/cli.ts          — export path in, questions.json path out
+  src/check-reference.ts — compares our ciphertext with `pdftotext -layout` of Toebes's PDF
+  test/               — unit tests on made-up fixtures only
+```
+
+Output goes to `build/questions.json` (gitignored).
+
+### Running it
+
+```
+./compile.sh competitiondata/001.json <out.pdf>
+```
+
+runs `prepare` then `typst compile --input export=… --input questions=…`. Check against the
+reference with
+`npx tsx src/check-reference.ts ../build/questions.json <pdftotext output>` from `prepare/`.

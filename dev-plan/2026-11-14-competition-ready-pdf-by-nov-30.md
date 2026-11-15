@@ -785,3 +785,33 @@ the values to decode are written into the question text by Toebes. The question 
 equation only; `mapping` and `soltext` belong to the answer key. The legacy renderer reads neither,
 so it doesn't leak.
 
+
+## Render pass: question heading — 2026-11-15
+
+Step 2 of the render pass, first slice: the line each question starts with (number, points, then
+the question text). Spacing, fonts and line breaking come later.
+
+### What the references do
+
+- **Toebes's PDF.** A thin rule above each question, set a little below the page header. Then
+  `N)` in the body font (not bold), then `[P points]` all bold, then the question text. The timed
+  question reads `Timed Question [P points]`, and the whole question sits in a frame.
+- **Sister attempt** (`src/renderers/aristocrat.py`): the number bold in a box (`\fbox`), then
+  `[P points]` in small monospace with only `P` bold at normal size, then the question text. No
+  rule; no timed question.
+- **Ours before this step:** the rule, set tight under the page header; `N.` bold; `[P points]`
+  with `P` in bold Courier; `TIMED Question` for the timed one.
+
+### Decided (owner)
+
+1. **The sister attempt's look**, with the number in a **square** box, sized so one or two digits
+   both fit, centered both ways.
+2. **The rule stays above the heading line**, as in Toebes and ours. It gets a small gap below the
+   page header, as in Toebes.
+
+### What we'll do
+
+In `question-heading-core` (`render/common/common.typ`): the boxed number, then `[P points]` in
+Courier New (`[` `points]` small, `P` bold at normal size), then the question text. The timed
+question keeps its `TIMED Question` label in place of the box (the box is for a number). The
+timed question's frame is question-dependent (step 3).

@@ -472,3 +472,7 @@ homophonic plaintext.
 **Next, in paper order** (leak scan): **nihilistsub crypt** (still legacy; see "Nihilist
 substitution detail": blocks of letters, page may differ from decode). After it: fractionated
 morse, then patristocrat, then a xenocrypt aristocrat.
+
+**Owner check (2026-11-14):** the owner verified on paper every question up to and including the
+first homophonic one. Only 100 prints as `00` (Toebes's `plainCt100`); 1–9 print without a leading
+zero, as in the reference.

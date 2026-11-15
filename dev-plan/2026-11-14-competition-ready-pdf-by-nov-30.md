@@ -863,3 +863,31 @@ breaking come later.
 3. **Body to the next question's rule** needs no setting: the next rule is at a fixed place (top of
    the page, or the middle). Not guarded: a top question taller than half a page would run into
    the bottom one. None does in `001` or `000`; if one ever does, that's its own slice.
+   *(Wrong: one top question in `001` already ran into the bottom one; see below.)*
+
+### Decided (owner)
+
+**The bottom question starts at the middle, or lower** if the top one runs past the middle (then a
+clear gap between them). Nothing can overlap; a bottom question that no longer fits moves to the
+next page. Chosen over keeping a fixed middle (and shrinking the tall kind in step 3) and over
+flowing questions as Toebes does.
+
+### Result
+
+Done, pending the owner's check on paper.
+
+- **Half page:** the top question is measured (`layout` + `measure`) and padded down to the middle
+  of the text area, at least 1.5em; the bottom question just follows. `place` is gone, and so is
+  the hard-coded 12.72 cm. A first try computed the padding from `here().position()`; that
+  depends on its own result, Typst warned the layout did not converge, and three bottom questions
+  wrongly moved to the next page. Measuring has no such loop.
+- **Heading to body:** one `v(1.5em)` at the end of `question-heading-core`. The renderers' own
+  leading `v()` and top insets are gone (prepared kinds and the legacy cryptarithm). Measured from
+  the end of that gap to the first ink: every kind within 0.5 pt, except the symbol baconian (3 pt
+  lower, from its table's cell inset). 1em matched the heading's own line spacing, so the body
+  didn't read as separate. The heading's `show` rule never set this gap: the `below` of its
+  wrapping block had no effect, and each renderer's `v()` was doing the work.
+- **Broken window:** a page break after the last question left a blank last page when that
+  question was on the bottom half (`000` is one page shorter now).
+- Page counts otherwise unchanged (in `001` every pair still shares a page); `check-reference`
+  passes for both.

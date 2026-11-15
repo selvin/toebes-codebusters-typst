@@ -3,7 +3,7 @@
 // Handles baconian cipher with different operations (words, sequence, let4let)
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Render baconian cipher with word operation
 #let render-baconian-words(cipher, num) = {

@@ -3,7 +3,7 @@
 // Renders a clear error message for unsupported cipher types
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Render unknown cipher type with error message
 #let render-unknown(cipher, num) = {

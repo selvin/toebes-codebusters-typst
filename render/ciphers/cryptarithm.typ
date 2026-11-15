@@ -3,7 +3,7 @@
 // Handles cryptarithm puzzles
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Render cryptarithm cipher
 #let render-cryptarithm(cipher, num) = {

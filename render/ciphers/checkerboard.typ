@@ -3,7 +3,7 @@
 // Cipher units (row letter + column letter) beside an empty 6×6 grid, as in Toebes's PDF
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Empty 6×6 grid, no headers: the student fills in the keywords and the square
 #let render-checkerboard-grid() = table(

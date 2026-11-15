@@ -2,7 +2,7 @@
 // ARISTOCRAT CIPHER
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Calculate frequency count for each letter A-Z in the cipher text
 #let calculate-frequencies(cipherString) = {

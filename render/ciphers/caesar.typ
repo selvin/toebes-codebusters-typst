@@ -2,7 +2,7 @@
 // CAESAR CIPHER
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // q: a "caesar" entry from questions.json (ciphertext already encoded by prepare/)
 #let render-caesar-prepared(q) = {

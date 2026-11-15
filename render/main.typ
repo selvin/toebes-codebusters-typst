@@ -4,25 +4,25 @@
 // Kinds not yet migrated ("legacy") are still rendered from the raw Toebes export.
 // ============================================================================
 
-#import "common.typ": *
-#import "affine.typ": *
-#import "aristocrats.typ": *
-#import "atbash.typ": *
-#import "baconian.typ": *
-#import "caesar.typ": *
-#import "checkerboard.typ": *
-#import "columnar.typ": *
-#import "cryptarithm.typ": *
-#import "fractionated-morse.typ": *
-#import "homophonic.typ": *
-#import "nihilist.typ": *
-#import "porta.typ": *
-#import "unknown.typ": *
+#import "common/common.typ": *
+#import "ciphers/affine.typ": *
+#import "ciphers/aristocrats.typ": *
+#import "ciphers/atbash.typ": *
+#import "ciphers/baconian.typ": *
+#import "ciphers/caesar.typ": *
+#import "ciphers/checkerboard.typ": *
+#import "ciphers/columnar.typ": *
+#import "ciphers/cryptarithm.typ": *
+#import "ciphers/fractionated-morse.typ": *
+#import "ciphers/homophonic.typ": *
+#import "ciphers/nihilist.typ": *
+#import "ciphers/porta.typ": *
+#import "ciphers/unknown.typ": *
 
 // Load the input data
-// typst compile --input questions=… --input export=… (paths relative to this file)
-#let prepared = json(sys.inputs.at("questions", default: "build/questions.json"))
-#let data = json(sys.inputs.at("export", default: "input.json"))
+// typst compile --input questions=… --input export=… (paths from the repo root: --root .)
+#let prepared = json(sys.inputs.at("questions", default: "/build/questions.json"))
+#let data = json(sys.inputs.at("export", default: "/input.json"))
 
 // Page setup
 // Header: test title, and a team number blank with the division letter pre-filled (as Toebes)

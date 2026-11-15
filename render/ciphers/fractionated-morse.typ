@@ -3,7 +3,7 @@
 // Handles fractionated morse cipher
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Render fractionated morse cipher
 #let render-fractionated-morse(cipher, num) = {

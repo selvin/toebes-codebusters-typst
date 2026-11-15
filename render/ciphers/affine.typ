@@ -3,7 +3,7 @@
 // Handles affine cipher with parameters a and b
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Render affine cipher
 #let render-affine(cipher, num) = {

@@ -3,7 +3,7 @@
 // Cipher values in blocks, then Toebes's help table, as in Toebes's PDF
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // One line of blocks, each value in a fixed-width cell, with room below for the answer
 #let render-homophonic-line(line) = block(below: 2.8em, {

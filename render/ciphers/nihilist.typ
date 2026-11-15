@@ -3,7 +3,7 @@
 // Handles nihilist substitution cipher with polybius square
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Render nihilist substitution cipher
 #let render-nihilist(cipher, num) = {

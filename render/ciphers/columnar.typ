@@ -3,7 +3,7 @@
 // Handles complete columnar cipher
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Render complete columnar cipher
 #let render-columnar(cipher, num) = {

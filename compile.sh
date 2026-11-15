@@ -35,6 +35,6 @@ fi
 echo "Preparing $EXPORT..."
 prepare/node_modules/.bin/tsx prepare/src/cli.ts "$EXPORT" "$QUESTIONS"
 
-echo "Compiling main.typ..."
-typst compile --input "questions=$QUESTIONS" --input "export=$EXPORT" main.typ "$OUTPUT"
+echo "Compiling render/main.typ..."
+typst compile --root . --input "questions=/$QUESTIONS" --input "export=/$EXPORT" render/main.typ "$OUTPUT"
 echo "Success! Output saved to $OUTPUT"

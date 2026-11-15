@@ -2,7 +2,7 @@
 // PATRISTOCRAT CIPHER
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 #let render-patristocrat(cipher, num) = {
   question-heading(num, cipher)

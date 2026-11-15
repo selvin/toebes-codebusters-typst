@@ -2,7 +2,7 @@
 // ATBASH CIPHER
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // q: an "atbash" entry from questions.json (ciphertext already encoded by prepare/)
 #let render-atbash-prepared(q) = {

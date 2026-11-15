@@ -3,7 +3,7 @@
 // Handles porta cipher with keyword
 // ============================================================================
 
-#import "common.typ": *
+#import "../common/common.typ": *
 
 // Render porta cipher
 #let render-porta(cipher, num) = {

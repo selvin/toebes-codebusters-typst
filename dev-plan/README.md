@@ -15,7 +15,8 @@ never sees answers —
 [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md).
 Stage 1 done: `prepare/` writes `build/questions.json`, English aristocrats render from it and match
 Toebes's PDF; every other kind is still "legacy" (rendered from the raw export, and still leaking).
-Next: Stage 2, the easy encoders.
+Next: nihilistsub, then porta. Work now follows the paper's question order; layout fixes wait
+for one render pass at the end.
 
 ## Index
 
@@ -33,6 +34,8 @@ Next: Stage 2, the easy encoders.
 - **Question-paper tool on codebusters.site**: upload a Toebes JSON, get the question paper.
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
   After the November deadline.
+- **Render pass** (after correctness, before the deadline): layout problems the owner noted on
+  paper, listed in the competition-ready plan's Decisions.
 - **Answer key and cover page** if they miss the deadline (Toebes's answer key is the fallback).
 - **Fonts** for a browser build: Courier New won't be available.
 - **Cipher types not in `competitiondata/001`** (affine, Hill, Vigenère, etc.), each on its own when a

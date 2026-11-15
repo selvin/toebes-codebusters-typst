@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
-2026-11-14. Next: Stage 2.
+2026-11-14. Next: nihilistsub, then porta (see Decisions below).
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -176,3 +176,17 @@ Findings for later stages:
   symbols will need their own comparison.
 - Line breaking still uses `smart-line-break`, which breaks at every period; Toebes breaks by width
   only. Layout, so not a Stage 2 blocker.
+
+## Decisions — 2026-11-14 (after Stage 1 review)
+
+The owner checked the Stage 1 packet on paper, in question order, and stopped at the first
+question that showed an answer.
+
+1. **Work follows the paper, not the stage list.** Next is whichever type leaks first in paper
+   order, so the owner can verify one more stretch of the packet each pass. The stage groupings
+   above still say what each type involves; their order no longer decides what comes next. Next:
+   **nihilistsub** (decode), then **porta** (decode and crypt). The legacy porta renderer prints
+   the plaintext; the owner's pass missed it and a text comparison caught it.
+2. **Correctness first, looks last.** Layout problems the owner notices go to a single render pass
+   at the end, not fixed as they come up. Known so far: baconian (words mode) is set too tight
+   compared with Toebes's PDF. Aristocrat line breaks (see Stage 1 results) belong there too.

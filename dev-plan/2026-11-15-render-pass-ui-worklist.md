@@ -11,9 +11,9 @@ Items are numbered for reference only; the sessions below set the order.
 
 ## Question-independent (step 2)
 
-1. **`[P points]`:** the bold, larger `P` sits badly against the small brackets. Set `[` and `]`
+1. ✅ **`[P points]`:** the bold, larger `P` sits badly against the small brackets. Set `[` and `]`
    at the same size as `P`, not bold (`points` stays as it is).
-2. **Cribs in question text:** text the test setter marked monospace (bold) now looks smaller than
+2. ✅ **Cribs in question text:** text the test setter marked monospace (bold) now looks smaller than
    the Noto Serif around it. Make it larger, in that case only: monospace runs inside question text
    (`runs-to-content`, and `html-to-typst` for the legacy kind).
 3. **Timed question: its own page, in a double outline.** Toebes lets another question share its

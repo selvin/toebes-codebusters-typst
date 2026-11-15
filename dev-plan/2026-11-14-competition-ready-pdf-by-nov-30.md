@@ -1018,3 +1018,6 @@ Done, pending the owner's check on paper.
   now stands as tall as the serif capitals beside it. The renderers' own `raw` labels are unchanged.
 - Page counts unchanged for `001` and `000`. `check-reference` passes for `000`; `001` reports
   only its known accent-symbol baconian (see "Render pass: fonts").
+
+**Owner check (2026-11-15):** verified. `[P points]` no longer jars the eye, and cribs print at the
+size of the text around them.

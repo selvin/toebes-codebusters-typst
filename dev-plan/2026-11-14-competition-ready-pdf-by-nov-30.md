@@ -62,7 +62,7 @@ Types only; which question uses which stays out of the repo.
 | atbash | yes | layout ok; move to TS |
 | caesar | yes | layout ok; move to TS |
 | porta: decode, crypt | yes (TS) | done; matches reference |
-| baconian: words, sequence, let4let | no | todo |
+| baconian: words, sequence, let4let | yes (TS) | done; matches reference |
 | nihilistsub: decode, crypt | decode yes (TS) | decode done, matches reference; crypt todo |
 | compcolumnar | no | todo |
 | checkerboard: decode, crypt | missing | todo |
@@ -309,3 +309,11 @@ table written as A/B):
 **Checking:** words and sequence by text (`check-reference`, NFC-normalized, since pdftotext may
 compose combining marks). Let4let prints images when `bitmap` is set: compare our symbol order with
 the order of image object ids from `pdfimages -list` (one object per distinct symbol), in session.
+
+**Result (2026-11-14):** done, all three modes. Words and sequence match Toebes's PDF by text (and
+the check fails when one word or symbol is changed); let4let matches the reference's image order
+symbol for symbol. Every export word matched its letter, so no dictionary fallback was needed. A
+letters-only scan of our PDF finds no baconian plaintext. For the render pass: fonts for combining
+marks and music symbols (Typst falls back on its own today).
+
+**Next, in paper order:** compcolumnar (decode).

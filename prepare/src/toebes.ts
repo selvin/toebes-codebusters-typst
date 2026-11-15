@@ -18,6 +18,8 @@ export interface ToebesCipher {
   curlang?: string;
   alphabetSource?: string;
   replacement?: Record<string, string>;
+  keyword?: string;
+  blocksize?: number;
 }
 
 export interface ToebesExport {

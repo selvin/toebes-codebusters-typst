@@ -2,13 +2,14 @@
 
 import { prepareAristocrat, type AristocratData } from "./aristocrat.js";
 import { htmlToParagraphs, type Paragraph } from "./html.js";
+import { preparePorta, type PortaData } from "./porta.js";
 import type { ToebesCipher, ToebesExport } from "./toebes.js";
 
 interface LegacyData {
   kind: "legacy";
 }
 
-type KindData = AristocratData | LegacyData;
+type KindData = AristocratData | PortaData | LegacyData;
 
 export type Question = {
   number: number;
@@ -27,6 +28,10 @@ export interface QuestionsFile {
 function prepareKind(cipher: ToebesCipher): KindData {
   if (cipher.cipherType === "aristocrat") {
     const data = prepareAristocrat(cipher);
+    if (data) return data;
+  }
+  if (cipher.cipherType === "porta") {
+    const data = preparePorta(cipher);
     if (data) return data;
   }
   return { kind: "legacy" };

@@ -65,8 +65,6 @@
     render-fractionated-morse(cipher, num)
   } else if cipher-type == "nihilistsub" {
     render-nihilist(cipher, num)
-  } else if cipher-type == "patristocrat" {
-    render-patristocrat(cipher, num)
   } else if cipher-type == "porta" {
     render-porta(cipher, num)
   } else {

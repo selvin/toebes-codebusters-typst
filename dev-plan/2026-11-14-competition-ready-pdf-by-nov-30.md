@@ -891,3 +891,16 @@ Done, pending the owner's check on paper.
   question was on the bottom half (`000` is one page shorter now).
 - Page counts otherwise unchanged (in `001` every pair still shares a page); `check-reference`
   passes for both.
+
+**Owner check (2026-11-15):** verified on paper. One change asked for:
+
+### Answer line near the bottom (owner, 2026-11-15)
+
+A cipher's "Answer: ____" line (only the complete columnar has one) sits 3em above the bottom of
+its container: the middle of the page for a top question, the bottom margin for a bottom one.
+Before, a fixed `v(12em)` left it in the middle of the work area.
+
+- A top question that fits in half the page becomes a block of exactly that height (instead of
+  content plus padding), so a `v(1fr)` inside it fills down to the middle. A bottom question is
+  followed by a page break, so a `v(1fr)` there fills down to the bottom margin already.
+- The columnar's `v(12em)` becomes `v(1fr)`, and `v(3em)` follows the answer line.

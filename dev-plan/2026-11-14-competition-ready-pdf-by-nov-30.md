@@ -825,4 +825,9 @@ it and 0.6em below; less let the box touch it in bottom-half questions. Page cou
 for `001` and `000`; `check-reference` passes for `001`, and for `000` reports only the known
 let4let baconian (see "Second yardstick").
 
+**Changed (owner, 2026-11-15): a circle, not a square.** The cipher renders are full of boxes, so
+a boxed number blends in. The number now sits in a circle 6% wider than the square was (1.8em
+across, `circle` inside a `box` with `baseline: 0.55em`). Downscaled previews of it look flat on
+the right; measuring the pixels at 600 ppi shows it is round, so check it at full size.
+
 **Next in step 2:** spacing, then fonts (including a browser-safe monospace), then line breaking.

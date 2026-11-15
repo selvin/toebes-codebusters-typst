@@ -1059,3 +1059,43 @@ Done, pending the owner's check on paper.
 - Not guarded: a timed question taller than its frame would overflow it. None is close.
 
 **Owner check (2026-11-15):** verified on paper.
+
+## Render pass: nihilist and checkerboard tables — 2026-11-15
+
+Worklist items 5 and 6 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)):
+the empty grid larger, still beside only three ciphertext lines, which get more line spacing.
+
+### What the references do
+
+Measured at 72 dpi (points):
+
+| | Toebes | Ours |
+|---|---|---|
+| Nihilist grid | 225 × 135 (6 columns of 37.5, header column included; rows 22.5) | 126 × 96 (header column 16, cells 22; rows 16) |
+| Checkerboard grid | 225 × 132 (6 × 6 of about 37.5 × 22) | 144 × 96 (cells 24 × 16) |
+| Line pitch | about 69 for nihilist | about 39 (12pt text, 2.8em below) |
+
+- **Both kinds share the pattern:** the first three lines beside the grid (`grid` with a `1fr`
+  column), the rest below, each line a block with room under it for the answer.
+- **Nihilist decode with `blocksize` 0** doesn't use Toebes's lines: its words flow freely beside
+  the grid (`words` in `questions.json`). Toebes breaks it like crypt (13 tokens a line for the
+  first three, then 24). With a wider grid the flowing words would take more than three lines,
+  all beside it.
+
+### What we'll do
+
+1. **Refactor (no output change):** a `lines-beside-grid` helper in `render/common/common.typ`
+   for both kinds.
+2. **Nihilist decode with `blocksize` 0 uses Toebes's lines:** `prepare` emits `lines` for it too
+   (`encodeNihilistLines` already handles `blocksize` 0, keeping words and punctuation); the
+   `words` shape and its renderer branch go.
+3. **Nihilist:** grid larger; every line the same pitch, set so three lines fill the grid's height.
+4. **Checkerboard:** the same.
+
+### Decided (owner)
+
+- **Grid size: Toebes's,** not the worklist's 1.4×: our cells scaled by about 5/3, keeping their
+  proportions. Nihilist about 212 × 162 (header column and rows 2.7em, cells 3.7em); checkerboard
+  about 240 × 162 (cells 4em × 2.7em). Taller than Toebes's, so more room to write in the cells.
+- **Every line at the same, larger pitch** (grid height / 3, about 54pt), as Toebes does; not
+  only the three beside the grid. The question gets taller below the grid.

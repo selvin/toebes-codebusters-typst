@@ -265,3 +265,47 @@ against the reference yet, so move all three modes together. After baconian: com
 **Owner check (2026-11-14):** the owner verified on paper the porta questions and the nihilist decode
 question; the packet is now verified up to the last porta question. Priority for the next session:
 **baconian, then compcolumnar**. Both are firm, not "if there's room".
+
+## Baconian detail — 2026-11-14
+
+Source: Toebes's `app/codebusters/cipherbaconianencoder.ts` (`makeBaconianReplacement`,
+`makeWordReplacement`, `genQuestion`), checked against the reference.
+
+**What a student gets**, from the question text and Toebes's PDF:
+
+- **words**: the cipher words, centered, one line per `lines` entry, then an empty A–Z
+  "Replacement" table (26 columns). The crib, when there is one, is in the question text only.
+- **sequence** and **let4let**: the cipher symbols, one per table cell, in rows of `linewidth`
+  symbols, each row followed by an empty answer row. When `bitmap` is set, Toebes prints each
+  symbol as an image (so pdftotext sees nothing); otherwise as text.
+
+No mode shows the A/B letter sets, `abMapping` or the Bacon table, so `questions.json` carries none
+of them.
+
+```jsonc
+{ "kind": "baconian", "mode": "words",   "lines": ["WORD WORD …", "…"] }
+{ "kind": "baconian", "mode": "symbols", "lines": [["s", "s", …], …] }   // sequence and let4let
+```
+
+**Encoding** (plaintext letters only; I = J and U = V share a code, standard 24-letter Bacon
+table written as A/B):
+
+- **words**: the export's `words` holds one cipher word per plaintext letter, already chosen in
+  the editor, with any trailing punctuation as its last character. That punctuation (plus a space)
+  goes before the next word; a `.` alone starts a new line. Lines wrap before 53 characters
+  (Toebes's `maxEncodeWidth`; `linewidth` is ignored for this mode). Non-breaking spaces inside a
+  word print as spaces. Each word is checked: its letters, mapped through `abMapping`
+  (alphabet position → A/B, other characters ignored), must spell the letter's Bacon code. Toebes
+  substitutes a word from its dictionary when they don't; we fail loudly instead, since we don't
+  ship the dictionary.
+- **sequence**: `texta` and `textb` split into graphemes (combining marks stay with their base
+  letter; trailing spaces stay with the previous symbol). One position counter shared by both
+  sets: each A/B bit takes the symbol at that position from its set, then the counter moves on,
+  wrapping to 0 when it reaches the chosen set's length.
+- **let4let**: the same sets, but A and B keep separate counters.
+- `texta`/`textb` with formatting tags (bold, italic, spans) would make A and B differ only in
+  looks; prepare stops with an error for those until a test needs them.
+
+**Checking:** words and sequence by text (`check-reference`, NFC-normalized, since pdftotext may
+compose combining marks). Let4let prints images when `bitmap` is set: compare our symbol order with
+the order of image object ids from `pdfimages -list` (one object per distinct symbol), in session.

@@ -74,6 +74,8 @@
         render-aristocrat-prepared(q)
       } else if q.kind == "baconian" {
         render-baconian-prepared(q)
+      } else if q.kind == "compcolumnar" {
+        render-columnar-prepared(q)
       } else if q.kind == "nihilist" {
         render-nihilist-prepared(q)
       } else if q.kind == "porta" {

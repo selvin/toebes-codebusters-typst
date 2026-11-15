@@ -116,9 +116,10 @@
 // Create a question heading with proper formatting
 // num: "0" for the timed question; body: the question text as content
 #let question-heading-core(num, points, special-bonus, body) = {
-  // Add a thin line above each question for visual separation
+  // Add a thin line above each question for visual separation, clear of the page header
+  v(0.5em)
   line(length: 100%, stroke: 0.25pt)
-  v(0.05em)
+  v(0.6em)
 
   // Remove default heading spacing to make the line hug the heading
   show heading: it => block(above: 0.1em, below: 0.5em, it)
@@ -130,11 +131,22 @@
     []
   }
 
-  let label = if num == "0" [#strong[TIMED] #text(weight: "regular")[Question]] else [#num.]
+  // The question number in a square box that fits one or two digits, centered both ways
+  let number-box = box(
+    width: 1.7em,
+    height: 1.7em,
+    baseline: 0.5em,
+    stroke: 0.5pt,
+    align(center + horizon, text(top-edge: "bounds", bottom-edge: "bounds", strong(num))),
+  )
+  let label = if num == "0" [#strong[TIMED] #text(weight: "regular")[Question]] else { number-box }
+
+  // [P points] in monospace: the brackets and "points" small, P bold at normal size
+  let points-label = text(font: "Courier New", weight: "regular")[#text(size: 0.85em)[\[]#strong(str(points)) #text(size: 0.85em)[points\]]]
 
   heading(level: 3)[
     #text(size: 11pt)[
-      #text(weight: "regular")[#bonus-prefix]#label \[#raw(str(points)) #text(weight: "regular")[points]\]
+      #text(weight: "regular")[#bonus-prefix]#label #points-label
       #text(weight: "regular")[#body]
     ]
   ]

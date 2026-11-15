@@ -91,3 +91,49 @@
     text()[Cipher: #raw(cipher.cipherString)]
   }
 }
+
+// Empty A–Z table for the student's letter replacements (words mode)
+#let render-baconian-replacement-table() = {
+  let label(t) = text(font: "Courier New", weight: "bold", size: 0.9em)[#t]
+  let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".clusters()
+  v(1em)
+  table(
+    columns: (auto,) + (1fr,) * letters.len(),
+    stroke: 0.5pt + black,
+    align: center + horizon,
+    [], ..letters.map(label),
+    label[Replacement], ..letters.map(_ => v(1.5em)),
+  )
+}
+
+// Render a baconian prepared by prepare/ (questions.json); never sees plaintext
+// mode "words": lines of cipher words; mode "symbols" (sequence, let4let): lines of symbols, one
+// per cell, each line followed by an empty answer row
+#let render-baconian-prepared(q) = {
+  prepared-heading(q)
+
+  v(0.5em)
+  if q.mode == "words" {
+    align(center, block({
+      set align(left)
+      set text(font: "Courier New", weight: "bold", size: 14pt)
+      set par(leading: 2.2em)
+      q.lines.join(linebreak())
+    }))
+    render-baconian-replacement-table()
+  } else {
+    set text(font: "Courier New", size: 14pt)
+    let width = calc.max(..q.lines.map(l => l.len()))
+    let rows = q.lines.map(line => {
+      let symbols = line.map(s => [#s]) + ([],) * (width - line.len())
+      symbols + (table.cell(colspan: width)[#v(1.8em)],)
+    })
+    align(center, table(
+      columns: width,
+      stroke: none,
+      inset: (x: 1pt, y: 4pt),
+      align: center + horizon,
+      ..rows.flatten()
+    ))
+  }
+}

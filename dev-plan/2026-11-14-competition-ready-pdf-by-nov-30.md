@@ -640,3 +640,36 @@ cryptarithm (formula only).
 
 Open: the repeated letter at a line break in fractionated morse ("Fractionated morse detail"):
 keep matching Toebes, or print the correct ciphertext.
+
+## Atbash and caesar detail — 2026-11-14
+
+Source: Toebes's `app/codebusters/ciphertableencoder.ts` (`genAlphabet`, `genQuestion`), one
+encoder for both types.
+
+**What a student gets**, from the question text and Toebes's PDF: the ciphertext one letter per
+box, an empty answer box under each, words kept apart and punctuation outside the boxes. No table.
+Lines break at 37 characters in Toebes (`makeReplacement`, width 37; 30 for Division A). For a
+caesar, the offset isn't printed.
+
+Export fields (both types; lengths only): `cipherString` 56–87, `replacement` 26 keys, `offset`,
+`operation` (`decode` in all four), `curlang` `en`. Also present, not read: `author`, `salt`.
+
+**Encoding:** `genAlphabet` builds `replacement` as the decode table (reverse alphabet for atbash,
+the alphabet rotated by `offset` for caesar), the same convention as aristocrats. In
+`competitiondata/001` each `replacement` agrees with its type and offset. So prepare reuses
+`encodeSubstitution` on `replacement`, the source the other substitution kinds read; `offset` is not
+read.
+
+```jsonc
+{ "kind": "atbash", "ciphertext": "GSV …" }   // or "caesar"; uppercase, spaces and punctuation kept
+```
+
+One kind per type, as porta (which prints the same boxes from `ciphertext`): each keeps its current
+line width (32 atbash, 35 caesar), so the owner-verified layout doesn't move before the render pass.
+Typst's `render-dual-box-text` takes the ciphertext as is, so the Typst atbash and caesar encoders
+go. `operation` `encode` (Toebes would print the
+plaintext for the student to encode) stays legacy until a test has one. Line breaks (ours: 32 for
+atbash, 35 for caesar) are render pass.
+
+**Checking:** `check-reference` compares `ciphertext` as for aristocrats (letters-only fallback, since
+boxes space the letters apart).

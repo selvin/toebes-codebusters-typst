@@ -1057,3 +1057,5 @@ Done, pending the owner's check on paper.
 - Page counts unchanged (16 for `001`, 11 for `000`). `check-reference` passes for `000`; `001`
   reports only its known accent-symbol baconian.
 - Not guarded: a timed question taller than its frame would overflow it. None is close.
+
+**Owner check (2026-11-15):** verified on paper.

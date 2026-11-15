@@ -16,7 +16,7 @@ Items are numbered for reference only; the sessions below set the order.
 2. ✅ **Cribs in question text:** text the test setter marked monospace (bold) now looks smaller than
    the Noto Serif around it. Make it larger, in that case only: monospace runs inside question text
    (`runs-to-content`, and `html-to-typst` for the legacy kind).
-3. **Timed question: its own page, in a double outline.** Toebes lets another question share its
+3. ✅ **Timed question: its own page, in a double outline.** Toebes lets another question share its
    page; the owner thinks that's wrong: the timed question usually goes to the team's aristocrat
    specialist, so every other question should be on pages other team members can take. The double
    outline makes that page stand out.
@@ -56,6 +56,11 @@ Items are numbered for reference only; the sessions below set the order.
 - **Baconian combining marks:** the P with a combining tilde now prints its mark on the P (fixed
   by the switch to Noto; the owner confirmed on paper). Closes the "Render-pass bug" in the plan's
   "Baconian detail".
+- **`check-reference`'s NOT FOUND on `001`'s accent-symbol baconian** is a known false alarm
+  (pdftotext reads each P + combining tilde twice; see the plan's "Render pass: fonts"). The owner
+  checked the question on paper again (2026-11-15): each P carries one tilde, and the symbols match
+  Toebes's. **Ignore it** until a change touches the symbol baconian's path (its `prepare` mode or
+  `render/ciphers/baconian.typ`); then check that question by eye once more.
 - **Baconian music symbols:** the owner finds ours (Libertinus fallback) more legible than
   Toebes's. Keep.
 

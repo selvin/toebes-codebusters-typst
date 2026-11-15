@@ -16,6 +16,7 @@
 #import "ciphers/fractionated-morse.typ": *
 #import "ciphers/homophonic.typ": *
 #import "ciphers/nihilist.typ": *
+#import "ciphers/patristocrats.typ": *
 #import "ciphers/porta.typ": *
 #import "ciphers/unknown.typ": *
 
@@ -99,6 +100,8 @@
         render-homophonic-prepared(q)
       } else if q.kind == "nihilist" {
         render-nihilist-prepared(q)
+      } else if q.kind == "patristocrat" {
+        render-patristocrat-prepared(q)
       } else if q.kind == "porta" {
         render-porta-prepared(q)
       } else {

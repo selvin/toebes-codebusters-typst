@@ -6,7 +6,7 @@ import { chunk } from "./chunk.js";
 import type { ToebesCipher } from "./toebes.js";
 
 export interface AristocratData {
-  kind: "aristocrat";
+  kind: "aristocrat" | "patristocrat";
   keyType: "random" | "k1";
   alphabet: string;
   ciphertext: string;
@@ -54,7 +54,7 @@ export function prepareAristocrat(cipher: ToebesCipher): AristocratData | null {
   const plaintext = cipher.cipherType === "patristocrat" ? chunk(cipher.cipherString, 5) : cipher.cipherString;
   const ciphertext = encodeSubstitution(plaintext, cipher.replacement, fold);
   return {
-    kind: "aristocrat",
+    kind: cipher.cipherType === "patristocrat" ? "patristocrat" : "aristocrat",
     keyType,
     alphabet: cipher.alphabetSource,
     ciphertext,

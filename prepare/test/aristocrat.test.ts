@@ -39,6 +39,7 @@ describe("aristocrat", () => {
   });
 
   it("encodes a patristocrat's letters only, in blocks of five", () => {
+    expect(prepareAristocrat(cipher({ cipherType: "patristocrat" }))?.kind).toBe("patristocrat");
     expect(prepareAristocrat(cipher({ cipherType: "patristocrat" }))?.ciphertext).toBe("GDKKN YDAQZ");
     expect(prepareAristocrat(cipher({ cipherType: "patristocrat", cipherString: "Hello, zebras!" }))?.ciphertext).toBe(
       "GDKKN YDAQZ R",

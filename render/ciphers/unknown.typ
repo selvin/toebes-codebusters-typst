@@ -29,10 +29,4 @@
       ]
     ]
   ]
-
-  // Show the raw cipher data for debugging
-  v(1em)
-  text(size: 9pt, fill: gray)[
-    #strong[Debug Info:] Cipher string: #raw(str(cipher.cipherString))
-  ]
 }

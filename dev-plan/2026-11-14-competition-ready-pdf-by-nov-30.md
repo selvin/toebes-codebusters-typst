@@ -427,3 +427,38 @@ Collected for the render pass at the end; not to be fixed before then.
    team number, and more. Its fonts are Arial for body text and MesloLGS NF (scaled 1.1) for
    monospace: compare MesloLGS with Courier New here, especially since Courier New won't exist in
    a browser build (see Backlog, Fonts).
+
+## Homophonic detail — 2026-11-14
+
+Source: Toebes's `app/codebusters/cipherhomophonicencoder.ts` (`updateMapping`,
+`buildReplacementHomophonic`, `genQuestion`, `genHelpTable`) and `chunk` in
+`app/common/cipherhandler.ts`.
+
+**What a student gets**, from the question text and Toebes's PDF: the ciphertext as numbers, in
+blocks of `blocksize`, each line followed by an empty answer row. Below it a help table: for
+`decode`, four header rows numbering 1–25, 26–50, 51–75, 76–00; for `crypt`, one header row of the
+25 letters (`I/J` shared). Then four empty rows. The keyword (decode) or the crib and its position
+(crypt) are in the question text only. So `questions.json` carries no keyword, crib or slot
+choices.
+
+```jsonc
+{ "kind": "homophonic", "header": "numbers", "lines": [[["00", "92", …], …], …] }
+                         // "numbers" (decode) | "letters" (crypt); lines → blocks → tokens
+```
+
+A token is a cipher value (100 prints as `00`), or (with `blocksize` 0) a punctuation mark.
+
+**Encoding** (export: `keyword`, `randomSlot`, `blocksize`, `cipherString` = plaintext): the
+alphabet is the 25 letters without J (J encodes as I). The keyword's first four letters (padded
+with `A`) each own one range of 25 values; in range `i` (0–3), letter `c` is
+`1 + 25i + (pos(c) − pos(keyword[i])) mod 25`. Which range each plaintext letter uses is **not
+random at print time**: the export's `randomSlot` holds one choice (0–3) per plaintext letter,
+saved when the question was written. So Toebes's ciphertext can be reproduced exactly.
+
+**Line breaks** follow `buildReplacementHomophonic` with width 25 (Division A uses 15; not handled
+until a test needs it): tokens, spaces included, break at the last space once a line reaches 25.
+Toebes doesn't reset the last-space marker after a split; we copy that. With blocks of 5 that gives
+four blocks a line.
+
+**Checking:** `check-reference` compares the cipher values in order with the reference's numbers,
+minus the help table's.

@@ -56,5 +56,5 @@
 // the first three sit beside the grid
 #let render-nihilist-prepared(q) = {
   prepared-heading(q)
-  lines-beside-grid(q.lines.map(render-nihilist-line), render-polybius-grid(), even: true)
+  lines-beside-grid(q.lines.map(render-nihilist-line), render-polybius-grid())
 }

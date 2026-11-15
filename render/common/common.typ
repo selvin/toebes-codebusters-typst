@@ -202,18 +202,14 @@
   question-heading-core(str(q.number), q.points, q.specialBonus, body)
 }
 
-// Ciphertext lines (content) with an empty work grid beside the first three; the rest below
-// even: every line gets the same pitch (room below it for the answer), so three span the grid and
-// the fourth starts 1em below it; a line that wraps grows instead
-#let lines-beside-grid(lines, work-grid, even: false) = context {
-  let lines = if even {
-    let pitch = (measure(work-grid).height + 1em.to-absolute()) / 3
-    lines.map(l => block(above: 0pt, below: 0pt, inset: (bottom: pitch - measure(l).height), l))
-  } else {
-    lines
-  }
+// Ciphertext lines (content) with an empty work grid beside the first three; the rest below.
+// Every line gets the same pitch (room below it for the answer), so three span the grid and the
+// fourth starts 1em below it; a line that wraps grows instead
+#let lines-beside-grid(lines, work-grid) = context {
+  let pitch = (measure(work-grid).height + 1em.to-absolute()) / 3
+  let lines = lines.map(l => block(above: 0pt, below: 0pt, inset: (bottom: pitch - measure(l).height), l))
   let beside = calc.min(3, lines.len())
-  block(below: if even { 0pt } else { auto }, grid(
+  block(below: 0pt, grid(
     columns: (1fr, auto),
     gutter: 1em,
     lines.slice(0, beside).join(),

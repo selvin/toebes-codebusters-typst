@@ -23,5 +23,5 @@
 // lines: lines → blocks → tokens; the first three lines sit beside the grid
 #let render-checkerboard-prepared(q) = {
   prepared-heading(q)
-  lines-beside-grid(q.lines.map(render-checkerboard-line), render-checkerboard-grid(), even: true)
+  lines-beside-grid(q.lines.map(render-checkerboard-line), render-checkerboard-grid())
 }

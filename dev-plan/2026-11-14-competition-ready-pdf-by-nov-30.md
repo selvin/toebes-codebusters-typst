@@ -260,6 +260,22 @@ reference's numbers with two or more digits.
 fails when one number is changed), and our PDF holds no plaintext for it. Toebes gives the
 ciphertext more vertical room, for the render pass.
 
+**Crypt and blocks (2026-11-14):** Toebes's `genQuestion` is the same for decode and crypt: the
+values in lines from `buildNihilistSequenceSets` (width 24, extra 11: the first three lines break
+at 13 tokens, beside the grid, later lines at 24; tokens include spaces; a break falls after the
+last non-letter). With `blocksize` > 0 only letters survive, in blocks, so a line beside the grid
+holds two blocks of four and later lines four. Each line has an empty answer row below; the grid is
+the same as decode's. The crib and its position are in the question text only.
+
+```jsonc
+{ "kind": "nihilist", "lines": [[["65", "92", …], …], …] }   // lines → blocks → values
+```
+
+Prepare uses `lines` for crypt, and for decode with `blocksize` > 0; decode with `blocksize` 0
+keeps `words` (verified on paper; moving it to Toebes's line breaks is render-pass work). Like
+homophonic, Toebes doesn't reset the last-split marker after a split; we copy that. Checked by
+`check-reference` as decode is (numbers of two digits or more).
+
 **Next, in paper order** (from a letters-only leak scan of the compiled packet): **baconian**.
 Sequence and let4let print the plaintext. Words mode doesn't leak, but nothing has checked it
 against the reference yet, so move all three modes together. After baconian: compcolumnar.

@@ -549,3 +549,22 @@ cells are smaller than Toebes's.
 
 **Next, in paper order** (leak scan): **patristocrat** (K1), then the remaining aristocrat (a
 xenocrypt, per the earlier plan) and the second patristocrat.
+
+## Patristocrat detail — 2026-11-14
+
+Source: Toebes's `getEncodingString` in `app/codebusters/cipherencoder.ts` and `chunk` in
+`app/common/cipherhandler.ts`.
+
+**What a student gets**, from the question text and Toebes's PDF: the ciphertext in blocks of five
+letters (eight blocks a line, from `maxEncodeWidth` 53), then the same table as an aristocrat: a
+"K1" (or "Random") header row of the alphabet, a frequency row, an empty replacement row. The
+hint is in the question text only. Export fields are the aristocrat's (`replacement`,
+`alphabetSource`, `alphabetDest`, `keyword`, `hint`, `offset`, …); only `replacement` and
+`alphabetSource` are read, as for aristocrats.
+
+**Encoding:** Toebes chunks the plaintext (letters only, blocks of five) and then encodes it like an
+aristocrat. So prepare reuses the aristocrat kind: `"kind": "aristocrat"` with the blocked
+ciphertext; no new field, no new renderer. Our line breaking (55 characters) fits nine blocks a line
+where Toebes fits eight: render pass.
+
+**Checking:** `check-reference` compares `ciphertext` as for aristocrats.

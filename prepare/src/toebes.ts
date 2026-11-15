@@ -20,6 +20,8 @@ export interface ToebesCipher {
   replacement?: Record<string, string>;
   keyword?: string;
   blocksize?: number;
+  polybiusKey?: string;
+  operation?: string;
 }
 
 export interface ToebesExport {

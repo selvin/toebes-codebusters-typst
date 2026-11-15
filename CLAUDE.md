@@ -8,10 +8,11 @@ status and what's next.
 ## Repository layout
 
 ```
-main.typ            — entry point; reads input.json, numbers questions, dispatches by cipherType
-common.typ          — shared helpers (question heading, HTML→Typst, line breaking, dual boxes)
-<cipher>.typ        — one renderer per cipher type
-compile.sh          — wrapper around `typst compile main.typ`
+prepare/            — TypeScript: Toebes export → build/questions.json (cipher logic, no layout)
+render/main.typ     — Typst entry point; reads build/questions.json, dispatches by kind
+render/common/      — shared Typst helpers (question heading, HTML→Typst, line breaking, dual boxes)
+render/ciphers/     — one Typst renderer per cipher type
+compile.sh          — runs prepare, then `typst compile --root . render/main.typ`
 dev-plan/           — plans and decisions (source of truth across sessions)
 competitiondata/    — gitignored real competition exports and reference PDFs (hard rule below)
 ```

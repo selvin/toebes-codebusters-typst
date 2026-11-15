@@ -1,7 +1,8 @@
 # Move the Typst code under `render/`
 
 **Date:** 2026-11-14
-**Status:** Planned.
+**Status:** **Done** 2026-11-14. Text, `check-reference` and every page image of
+`competitiondata/001` are identical before and after.
 **Related:** [2026-11-14-competition-ready-pdf-by-nov-30.md](2026-11-14-competition-ready-pdf-by-nov-30.md)
 (render pass, before step 2)
 

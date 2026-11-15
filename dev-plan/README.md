@@ -22,7 +22,7 @@ followed; verified on paper up to the first fractionated morse question. Fractio
 patristocrat, the xenocrypt, atbash and caesar followed: **the packet doesn't leak, and the owner
 verified every question's logic on paper.** Only cryptarithm is still legacy (no leak).
 **The render pass** is under way: step 1, global (page header and footer), is done and verified by
-the owner. **Next:** move the Typst code under `render/` (refactor only), then step 2,
+the owner. The Typst code now lives under `render/`. **Next:** step 2,
 question-independent formatting, starting with the question heading; see the plan's
 "Decisions — 2026-11-14 (render pass order)".
 
@@ -32,7 +32,7 @@ question-independent formatting, starting with the question heading; see the pla
 |------|-----|--------|
 | 2026-11-14 | [Competition-ready question paper by 2026-11-30](2026-11-14-competition-ready-pdf-by-nov-30.md) | Active |
 | 2026-11-14 | [Split: TypeScript prepares, Typst lays out](2026-11-14-ts-prepare-typst-layout-split.md) | Decided |
-| 2026-11-14 | [Move the Typst code under `render/`](2026-11-14-render-folder.md) | Planned |
+| 2026-11-14 | [Move the Typst code under `render/`](2026-11-14-render-folder.md) | Done |
 
 ## Backlog
 

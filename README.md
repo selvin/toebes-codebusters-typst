@@ -16,7 +16,8 @@ Requires [Typst](https://github.com/typst/typst/releases) (developed on 0.14.2) 
 ```
 
 Run it from the repo root, with the export inside the repo. It runs `prepare/` (TypeScript), which
-writes `build/questions.json`, then `typst compile`. `cd prepare && npm test` runs the unit tests.
+writes `build/questions.json`, then `typst compile` on `render/main.typ` (the Typst layout code
+lives under `render/`). `cd prepare && npm test` runs the unit tests.
 
 `input.json`, `build/` and `*.pdf` are gitignored. Test exports contain the answers, so keep them
 out of git.

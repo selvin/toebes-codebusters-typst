@@ -5,7 +5,6 @@
 // ============================================================================
 
 #import "common/common.typ": *
-#import "ciphers/affine.typ": *
 #import "ciphers/aristocrats.typ": *
 #import "ciphers/atbash.typ": *
 #import "ciphers/baconian.typ": *
@@ -51,9 +50,7 @@
 #let render-legacy(cipher, num) = {
   // Delegate to appropriate cipher renderer based on cipherType
   let cipher-type = cipher.cipherType
-  if cipher-type == "affine" {
-    render-affine(cipher, num)
-  } else if cipher-type == "aristocrat" {
+  if cipher-type == "aristocrat" {
     render-aristocrat(cipher, num)
   } else if cipher-type == "baconian" {
     render-baconian(cipher, num)

@@ -165,6 +165,29 @@
   }
 }
 
+// Render an aristocrat prepared by prepare/ (questions.json); never sees plaintext
+#let render-aristocrat-prepared(q) = {
+  prepared-heading(q)
+
+  v(0.5em)
+  block(
+    inset: 10pt,
+    radius: 4pt,
+    width: 100%
+  )[
+    #set text(font: "Courier New", weight: "bold", size: 16pt)
+    #let lines = smart-line-break(q.ciphertext, max-chars: 55)
+    #for line in lines {
+      line
+      linebreak()
+      v(2.5em)  // Space for students to write answers
+    }
+  ]
+
+  let keyType = if q.keyType == "k1" { "K1" } else { "Random" }
+  render-frequency-table(q.alphabet, q.frequencies, keyType: keyType)
+}
+
 // Render a patristocrat cipher (similar to aristocrat but with different spacing)
 #let render-patristocrat(cipher, num) = {
   question-heading(num, cipher)

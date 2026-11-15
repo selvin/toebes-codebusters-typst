@@ -1,5 +1,14 @@
 #!/bin/bash
 # Compile script for Toebes CodeBusters Typst
+# Usage: ./compile.sh [toebes-export.json] [output.pdf]
+# Run from the repo root; the export path must be inside it (Typst reads it for legacy kinds).
+# Runs prepare/ (export → build/questions.json), then Typst.
+
+set -e
+
+EXPORT="${1:-input.json}"
+OUTPUT="${2:-main.pdf}"
+QUESTIONS="build/questions.json"
 
 echo "Toebes CodeBusters Typst Compiler"
 echo "=================================="
@@ -12,20 +21,20 @@ if ! command -v typst &> /dev/null; then
     exit 1
 fi
 
-# Check if input.json exists
-if [ ! -f "input.json" ]; then
-    echo "Error: input.json not found."
-    echo "Please copy your exported JSON file to input.json"
+if [ ! -f "$EXPORT" ]; then
+    echo "Error: $EXPORT not found."
+    echo "Usage: ./compile.sh [toebes-export.json] [output.pdf]"
     exit 1
 fi
 
-# Compile
+if [ ! -d prepare/node_modules ]; then
+    echo "Installing prepare/ dependencies..."
+    (cd prepare && npm install --silent)
+fi
+
+echo "Preparing $EXPORT..."
+prepare/node_modules/.bin/tsx prepare/src/cli.ts "$EXPORT" "$QUESTIONS"
+
 echo "Compiling main.typ..."
-typst compile main.typ
-
-if [ $? -eq 0 ]; then
-    echo "Success! Output saved to main.pdf"
-else
-    echo "Compilation failed. Please check for errors."
-    exit 1
-fi
+typst compile --input "questions=$QUESTIONS" --input "export=$EXPORT" main.typ "$OUTPUT"
+echo "Success! Output saved to $OUTPUT"

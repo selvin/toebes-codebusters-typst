@@ -1,6 +1,7 @@
 // ============================================================================
 // MAIN ORCHESTRATOR
-// Loads input.json and delegates rendering to appropriate cipher type files
+// Loads questions.json (from prepare/) and delegates rendering by kind.
+// Kinds not yet migrated ("legacy") are still rendered from the raw Toebes export.
 // ============================================================================
 
 #import "common.typ": *
@@ -17,70 +18,72 @@
 #import "unknown.typ": *
 
 // Load the input data
-#let data = json("input.json")
+// typst compile --input questions=… --input export=… (paths relative to this file)
+#let prepared = json(sys.inputs.at("questions", default: "build/questions.json"))
+#let data = json(sys.inputs.at("export", default: "input.json"))
 
 // Page setup
 #set page(
   paper: "us-letter",
   margin: (top: 1.5cm, bottom: 1cm, left: 1cm, right: 1cm),
 )
+#set document(title: prepared.test.title)
 #set text(size: 11pt)
 #show raw: set text(font: "Courier New", weight: "bold")
 
+// Render a kind prepare/ doesn't handle yet, from the raw export (may print plaintext)
+#let render-legacy(cipher, num) = {
+  // Delegate to appropriate cipher renderer based on cipherType
+  let cipher-type = cipher.cipherType
+  if cipher-type == "affine" {
+    render-affine(cipher, num)
+  } else if cipher-type == "aristocrat" {
+    render-aristocrat(cipher, num)
+  } else if cipher-type == "atbash" {
+    render-atbash(cipher, num)
+  } else if cipher-type == "baconian" {
+    render-baconian(cipher, num)
+  } else if cipher-type == "caesar" {
+    render-caesar(cipher, num)
+  } else if cipher-type == "compcolumnar" {
+    render-columnar(cipher, num)
+  } else if cipher-type == "cryptarithm" {
+    render-cryptarithm(cipher, num)
+  } else if cipher-type == "fractionatedmorse" {
+    render-fractionated-morse(cipher, num)
+  } else if cipher-type == "nihilistsub" {
+    render-nihilist(cipher, num)
+  } else if cipher-type == "patristocrat" {
+    render-patristocrat(cipher, num)
+  } else if cipher-type == "porta" {
+    render-porta(cipher, num)
+  } else {
+    // Fallback for unknown cipher types
+    render-unknown(cipher, num)
+  }
+}
+
 // Main document rendering logic
 #{
-  let keys = data.keys().filter(k => k.starts-with("CIPHER."))
-
-  // Sort numerically by extracting the number after "CIPHER."
-  keys = keys.sorted(key: k => {
-    let num-str = k.split(".").at(1)
-    int(num-str)
-  })
-
-  for (idx, key) in keys.enumerate() {
-    let cipher = data.at(key)
-    let num = key.split(".").at(1)
-
-    // Delegate to appropriate cipher renderer based on cipherType
-    let cipher-type = cipher.cipherType
+  for q in prepared.questions {
+    let num = str(q.number)
 
     // Wrap question rendering in position-question for proper vertical positioning
     position-question(num, {
-      if cipher-type == "affine" {
-        render-affine(cipher, num)
-      } else if cipher-type == "aristocrat" {
-        render-aristocrat(cipher, num)
-      } else if cipher-type == "atbash" {
-        render-atbash(cipher, num)
-      } else if cipher-type == "baconian" {
-        render-baconian(cipher, num)
-      } else if cipher-type == "caesar" {
-        render-caesar(cipher, num)
-      } else if cipher-type == "compcolumnar" {
-        render-columnar(cipher, num)
-      } else if cipher-type == "cryptarithm" {
-        render-cryptarithm(cipher, num)
-      } else if cipher-type == "fractionatedmorse" {
-        render-fractionated-morse(cipher, num)
-      } else if cipher-type == "nihilistsub" {
-        render-nihilist(cipher, num)
-      } else if cipher-type == "patristocrat" {
-        render-patristocrat(cipher, num)
-      } else if cipher-type == "porta" {
-        render-porta(cipher, num)
+      if q.kind == "aristocrat" {
+        render-aristocrat-prepared(q)
       } else {
-        // Fallback for unknown cipher types
-        render-unknown(cipher, num)
+        render-legacy(data.at("CIPHER." + str(q.toebesId)), num)
       }
     })
 
     // Apply half-page layout control (except for TIMED question)
-    if num != "0" {
+    if not q.timed {
       question-page-control(num)
     }
 
     // TIMED question gets its own page
-    if num == "0" {
+    if q.timed {
       pagebreak()
     }
   }

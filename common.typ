@@ -147,6 +147,27 @@
   question-heading-core(num, cipher.points, special-bonus, body)
 }
 
+// Question text prepared by prepare/ (paragraphs of runs) → content
+#let runs-to-content(paragraphs) = {
+  paragraphs.map(runs => {
+    runs.map(run => {
+      let body = if run.mono { raw(run.text) } else { [#run.text] }
+      if run.bold and not run.mono { body = strong(body) }
+      if run.italic { body = emph(body) }
+      body
+    }).join()
+  }).join(linebreak())
+}
+
+// Heading from a prepared question (questions.json)
+#let prepared-heading(q) = {
+  let body = runs-to-content(q.text)
+  if q.timed {
+    body += [ When you have solved it, raise your hand so that the time can be recorded and the solution checked.]
+  }
+  question-heading-core(str(q.number), q.points, q.specialBonus, body)
+}
+
 // Display cipher text in a grid format (common for many ciphers)
 #let display-cipher-grid(cipherString, columns: 5) = {
   // TODO: Implement grid display logic

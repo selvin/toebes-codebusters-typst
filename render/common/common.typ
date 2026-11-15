@@ -5,6 +5,10 @@
 
 #import "fonts.typ": *
 
+// A monospace run inside question text (a crib or hint): bold, at the size of the text around it
+// (not raw, which Typst sets at 0.8em; the two fonts' cap heights match)
+#let mono-run(body) = text(font: mono-font, weight: "bold", body)
+
 // Convert HTML directly to Typst content, processing recursively
 #let html-to-typst(html-str) = {
   let text = html-str
@@ -32,8 +36,8 @@
       ("<strong>", "</strong>", strong),
       ("<i>", "</i>", emph),
       ("<em>", "</em>", emph),
-      ("<code>", "</code>", raw),
-      ("<span style=\"font-family:'Courier New', Courier, monospace;\">", "</span>", raw),
+      ("<code>", "</code>", mono-run),
+      ("<span style=\"font-family:'Courier New', Courier, monospace;\">", "</span>", mono-run),
     ) {
       let open-tag = tag-info.at(0)
       let parts = text.split(open-tag)
@@ -172,7 +176,7 @@
 #let runs-to-content(paragraphs) = {
   paragraphs.map(runs => {
     runs.map(run => {
-      let body = if run.mono { raw(run.text) } else { [#run.text] }
+      let body = if run.mono { mono-run(run.text) } else { [#run.text] }
       if run.bold and not run.mono { body = strong(body) }
       if run.italic { body = emph(body) }
       body

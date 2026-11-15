@@ -660,7 +660,7 @@ the alphabet rotated by `offset` for caesar), the same convention as aristocrats
 read.
 
 ```jsonc
-{ "kind": "atbash", "ciphertext": "GSV …" }   // or "caesar"; uppercase, spaces and punctuation kept
+{ "kind": "atbash", "ciphertext": "SVOOL, AVYIZ." }   // or "caesar"; uppercase, spaces and punctuation kept
 ```
 
 One kind per type, as porta (which prints the same boxes from `ciphertext`): each keeps its current

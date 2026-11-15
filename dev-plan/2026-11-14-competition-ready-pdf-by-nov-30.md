@@ -282,6 +282,9 @@ grid, then four). A letters-only scan of our PDF finds no nihilist plaintext. To
 wider, for the render pass. **Next, in paper order:** fractionated morse, then patristocrat, then
 a xenocrypt aristocrat.
 
+**Owner check (2026-11-14):** the owner verified on paper every question up to and including the
+nihilistsub crypt question and the two after it, i.e. up to the first fractionated morse one.
+
 **Next, in paper order** (from a letters-only leak scan of the compiled packet): **baconian**.
 Sequence and let4let print the plaintext. Words mode doesn't leak, but nothing has checked it
 against the reference yet, so move all three modes together. After baconian: compcolumnar.

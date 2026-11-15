@@ -950,3 +950,32 @@ table labels), and their sizes. Line breaking comes later.
    which hold no letter O, so it isn't needed. Courier New and DejaVu Sans Mono are equally wide
    (0.600 vs 0.602 em) but DejaVu's capitals are a third taller; a smaller size to match heights
    would make it narrower than the boxes, so sizes stay and the letters just read larger.
+
+### Result
+
+Done, pending the owner's check on paper.
+
+- `render/common/fonts.typ` names `body-font`, `title-font`, `mono-font` and `body-size`; no
+  renderer names a font any more (the `'Courier New'` strings left in `common.typ` match Toebes's
+  HTML, they don't choose a font). A first commit routed everything through it with the old fonts
+  and gave identical output; the switch to Noto was the second.
+- `fonts/` holds Noto Serif (regular, bold, italic, bold italic), Noto Sans and Noto Sans Mono
+  (regular, bold), with `OFL.txt`. `compile.sh` passes `--font-path fonts --ignore-system-fonts`.
+- **Body size 10pt, not 11pt.** Noto Serif's x-height is 25% larger than Libertinus's and its text
+  runs 16% wider; at 11pt one bottom aristocrat no longer fit and its Replacement row spilled onto
+  a page of its own (17 pages for `001`, 12 for `000`). 10pt is near Libertinus 11pt on the page
+  (a width match would be about 9.5pt) and restores 16 and 11 pages; 10.5pt also fits.
+- **The question heading takes `body-size`** instead of its own fixed 11pt, so one setting sizes
+  the question text. Monospace sizes in the renderers are unchanged: Noto Sans Mono is as wide as
+  Courier New, so line breaks and box widths are the same.
+- **Symbols fall back to Libertinus Serif** (built into Typst, so a browser build has it): the
+  symbol baconian glyphs (★ ♩ ♪ ♫ ♬ ●) and combining accents aren't in Noto. Libertinus drew them
+  before too. A P with a combining tilde (no precomposed form) now sits right; under Courier New
+  the tilde sat beside it.
+- **`check-reference`:** `000` passes. `001` reports its accent-symbol baconian as NOT FOUND: the
+  PDF's text layer maps both glyphs of each P + combining tilde to the whole cluster, so
+  pdftotext reads every one twice (10 of 10). The page shows each once; checked by eye.
+
+**Found, not fixed:** a bottom question too tall for the rest of its page is split across pages
+(the 11pt try split an aristocrat's table), though "Render pass: spacing" decided it moves to the
+next page. Only the top question is measured. Backlog.

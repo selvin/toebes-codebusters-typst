@@ -2,8 +2,8 @@
 
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
-2026-11-14; porta and nihilistsub (decode) done the same day. Next, in paper order: baconian (see
-"Nihilist substitution detail", Result).
+2026-11-14; porta, nihilistsub (decode), baconian and compcolumnar (decode) done the same day.
+Next, in paper order: checkerboard (see "Complete columnar detail", Result).
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -64,7 +64,7 @@ Types only; which question uses which stays out of the repo.
 | porta: decode, crypt | yes (TS) | done; matches reference |
 | baconian: words, sequence, let4let | yes (TS) | done; matches reference |
 | nihilistsub: decode, crypt | decode yes (TS) | decode done, matches reference; crypt todo |
-| compcolumnar | no | todo |
+| compcolumnar: decode | yes (TS) | decode done; matches reference |
 | checkerboard: decode, crypt | missing | todo |
 | cryptarithm | no | todo |
 | homophonic: decode, crypt | missing | todo |
@@ -339,3 +339,11 @@ give the reading order: the column of the smallest key character first, ties lef
 column is read top to bottom. `crypt` stays legacy until a test needs it.
 
 **Checking:** `check-reference` compares `ciphertext` as it does for aristocrats.
+
+**Result (2026-11-14):** decode done. Both questions match Toebes's PDF by text, and a letters-only
+scan of our PDF finds no compcolumnar plaintext. The page follows Toebes's: eight blocks a line,
+work space, answer line.
+
+**Next, in paper order:** **checkerboard** (decode and crypt). It has no renderer, so it falls to
+the "unknown" box, whose debug line prints `cipherString`: a leak. Checkerboard is in Stage 3's
+hard list, so expect more reading of Toebes's source than for the kinds so far.

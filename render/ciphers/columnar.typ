@@ -47,6 +47,8 @@
     set par(leading: 1.5em)
     blocks.chunks(8).map(line => line.join(" ")).join(linebreak())
   })
-  v(12em)
+  // Work space down to the answer line, 3em above the bottom of the question's half page
+  v(1fr)
   text(font: "Courier New", weight: "bold", size: 14pt)[Answer: #box(width: 1fr, line(length: 100%))]
+  v(3em)
 }

@@ -98,12 +98,18 @@
 // longer fits moves to the next page.
 #let position-question(num, content) = {
   if num != "0" and calc.rem(int(num), 2) == 1 {
-    // Odd question: at the top of the page, padded down to the middle (measured, not placed, so
-    // a tall question pushes the next one down instead of running into it)
+    // Odd question: at the top of the page, in a block down to the middle, so a v(1fr) in it fills
+    // to the middle (measured, not placed, so a tall question pushes the next one down instead of
+    // running into it, with a clear gap)
     layout(size => {
-      content
       let height = measure(block(width: size.width, content)).height
-      v(calc.max(1.5em.to-absolute(), size.height / 2 - height))
+      let gap = 1.5em.to-absolute()
+      if height + gap <= size.height / 2 {
+        block(height: size.height / 2, width: 100%, content)
+      } else {
+        content
+        v(gap)
+      }
     })
   } else {
     // Even question: follows the padding; question 0 (TIMED): render normally

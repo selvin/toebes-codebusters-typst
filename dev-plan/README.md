@@ -26,8 +26,9 @@ the owner. The Typst code now lives under `render/`. Step 2,
 question-independent formatting, has its first slice: the question heading (circled number,
 monospace points), verified by the owner. Spacing (heading-to-body gap, half-page layout that
 can't overlap) is done and verified by the owner; so is the follow-up (answer line near the bottom of
-its half page). **Next:** the rest of step 2 (fonts,
-line breaking); see the plan's "Render pass: spacing — 2026-11-15".
+its half page). Fonts are done, pending the owner's check on paper: all Noto (serif body at
+10pt, sans titles, sans mono), bundled in `fonts/`, system fonts ignored. **Next:** the rest of
+step 2 (line breaking); see the plan's "Render pass: fonts — 2026-11-15".
 
 ## Index
 
@@ -47,8 +48,9 @@ line breaking); see the plan's "Render pass: spacing — 2026-11-15".
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
   After the November deadline.
 - **Answer key and cover page** if they miss the deadline (Toebes's answer key is the fallback).
-- **Fonts** for a browser build: Courier New won't be available. Part of the render pass's
-  question-independent step.
+- **A bottom question that doesn't fit is split across pages** instead of moving to the next
+  page, as the spacing slice decided. Only the top question is measured. None splits in `001` or
+  `000` today. See the plan's "Render pass: fonts — 2026-11-15".
 - **2027-season cipher types not in `competitiondata/001`**, each on its own when a real test needs
   it. Only 2027-season types and later are supported (owner): affine and K2 alphabets are out.
 - **A committed test fixture**: a made-up export in `testdata/`, so the full pipeline can be tested

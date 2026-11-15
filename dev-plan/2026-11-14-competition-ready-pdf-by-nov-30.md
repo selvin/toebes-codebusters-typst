@@ -32,6 +32,8 @@ In `competitiondata/` (gitignored; see `CLAUDE.md`, "Hard rule"):
 
 - `001.json` — input.
 - `001.pdf` — Toebes's question paper for it, printed from Chrome. No answer key.
+- `000.json`, `000.pdf` — an older real test and Toebes's PDF of it (added 2026-11-15), a second
+  check. See "Second yardstick: competitiondata/000".
 
 Check ciphertext by text: `pdftotext -layout competitiondata/001.pdf` gives each question's ciphertext,
 which tests can compare with ours. Check looks by eye.
@@ -750,3 +752,19 @@ The question heading's rule (from `position-question`) now sits right under the 
 code moved under `render/` (cipher renderers in `render/ciphers/`, shared files in
 `render/common/`, where that makes sense); a refactor only, its own commits, no change to the
 output. Step 2 follows it, possibly in a later session.
+
+## Second yardstick: competitiondata/000 — 2026-11-15
+
+An older real test (formerly the untracked `input.json` at the repo root) and Toebes's PDF of it.
+Checked with the pipeline as built for `001`:
+
+- **`check-reference` passes** for every question it can compare. Baconian symbol questions have
+  no text layer in Toebes's PDF; checked by eye instead, and they match.
+- **Bug found and fixed:** this export stores the baconian `linewidth` as a string, which broke
+  line breaking for symbol baconians (`prepare/src/baconian.ts`).
+- **Legacy kinds still in it:** affine, cryptarithm, and K2 aristocrat and patristocrat (`prepare`
+  handles random and K1 only). Legacy affine and K2 aristocrat still print the plaintext; a K2
+  patristocrat shows the "unsupported" box. Not a blocker: `001` is the deadline test.
+- **K2 won't be added** (owner): it was a Division B alphabet until last season and was dropped as
+  a cipher type for the 2027 season. Affine stays in the Backlog.
+

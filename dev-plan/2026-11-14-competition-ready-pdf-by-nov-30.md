@@ -1039,5 +1039,21 @@ the timed question on a page of its own, in a double outline.
 Draw a double outline around the timed question. Its page already holds nothing else, so the
 page count stays as it is (16 for `001`, 11 for `000`).
 
-Open for the owner: whether the outline frames the whole text area or just the question's own
-height, and whether it takes in the heading.
+### Decided (owner)
+
+- **The outline frames the whole text area**, heading included, from under the page header to
+  above the footer: the page reads as the timed page when flipping through. Chosen over framing
+  only the question's height, or only its body.
+- **Two equal thin lines**: 0.75pt each, 2pt apart. Chosen over a thick outer, thin inner frame.
+
+### Result
+
+Done, pending the owner's check on paper.
+
+- `position-question` wraps question 0 in two nested full-height blocks (0.75pt stroke, 2pt
+  apart); the content sits 0.5 cm in from the sides, 0.4 cm from top and bottom.
+- The thin rule above the heading is left out for the timed question: the outline's top edge
+  takes its place.
+- Page counts unchanged (16 for `001`, 11 for `000`). `check-reference` passes for `000`; `001`
+  reports only its known accent-symbol baconian.
+- Not guarded: a timed question taller than its frame would overflow it. None is close.

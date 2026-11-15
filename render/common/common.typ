@@ -117,8 +117,14 @@
         v(gap)
       }
     })
+  } else if num == "0" {
+    // TIMED question: a page of its own (main.typ breaks the page after it), framed by a double
+    // outline around the whole text area so it stands out
+    let rule = 0.75pt + black
+    block(width: 100%, height: 100%, stroke: rule, inset: 2pt,
+      block(width: 100%, height: 100%, stroke: rule, inset: (x: 0.5cm, y: 0.4cm), content))
   } else {
-    // Even question: follows the padding; question 0 (TIMED): render normally
+    // Even question: follows the padding
     content
   }
 }
@@ -127,9 +133,12 @@
 // num: "0" for the timed question; body: the question text as content
 #let question-heading-core(num, points, special-bonus, body) = {
   // Add a thin line above each question for visual separation, clear of the page header
-  v(0.5em)
-  line(length: 100%, stroke: 0.25pt)
-  v(0.6em)
+  // (not for the timed question: its outline already sets it apart)
+  if num != "0" {
+    v(0.5em)
+    line(length: 100%, stroke: 0.25pt)
+    v(0.6em)
+  }
 
   // Remove default heading spacing to make the line hug the heading
   show heading: it => block(above: 0.1em, below: 0em, it)

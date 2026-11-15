@@ -98,11 +98,8 @@
   if num != "0" {
     let question-num = int(num)
     if calc.rem(question-num, 2) == 0 {
-      // Even question: position at exactly 50% of page height using absolute positioning
-      // US Letter: 11in = 27.94cm, margins: top 1.5cm + bottom 1cm
-      // Usable height: 27.94 - 1.5 - 1 = 25.44cm
-      // 50% of usable height = 12.72cm from top margin
-      place(top, dy: 12.72cm, content)
+      // Even question: at the middle of the text area (dy is relative to it, so it follows the margins)
+      place(top, dy: 50%, content)
     } else {
       // Odd question: render normally at top of page
       content

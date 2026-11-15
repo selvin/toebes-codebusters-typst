@@ -28,9 +28,9 @@ monospace points), verified by the owner. Spacing (heading-to-body gap, half-pag
 can't overlap) is done and verified by the owner; so is the follow-up (answer line near the bottom of
 its half page). Fonts are done and verified: all Noto (serif body at 10pt, sans titles, sans
 mono), bundled in `fonts/`, system fonts ignored. **Next:** the owner's UI notes, in sessions of 1–3
-items. Sessions A (points label, crib size) and B (timed question in a double outline on its own page) are
-done and verified; session C (nihilist and checkerboard tables at Toebes's size) is done, pending
-the owner's check on paper; then session D (baconian writing space, columnar layout):
+items. Sessions A (points label, crib size), B (timed question in a double outline on its own page) and C
+(nihilist and checkerboard tables at Toebes's size) are done and verified; next is session D
+(baconian writing space, columnar layout):
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index

@@ -1101,7 +1101,7 @@ Measured at 72 dpi (points):
 
 ### Result
 
-Done, pending the owner's check on paper.
+Done and verified by the owner.
 
 - **Shared helper** `lines-beside-grid` in `render/common/common.typ`: the first three lines
   beside the grid, the rest below, every line at the same pitch, (grid height + 1em) / 3, so the
@@ -1121,3 +1121,8 @@ Done, pending the owner's check on paper.
 - Page counts unchanged (16 for `001`, 11 for `000`). `check-reference` passes for `000`; `001`
   reports only its known accent-symbol baconian. Against Toebes's PDF, every nihilist and
   checkerboard question matches.
+
+**Owner check (2026-11-15):** verified on paper, every nihilist and checkerboard question in `001`
+and `000`. The owner's note: students write the plaintext directly below each ciphertext line, so
+neither kind needs a separate answer area (no "Answer:" line); the room under each line is that
+writing space.

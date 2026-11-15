@@ -190,3 +190,29 @@ question that showed an answer.
 2. **Correctness first, looks last.** Layout problems the owner notices go to a single render pass
    at the end, not fixed as they come up. Known so far: baconian (words mode) is set too tight
    compared with Toebes's PDF. Aristocrat line breaks (see Stage 1 results) belong there too.
+
+## Porta detail — 2026-11-14
+
+**What a student gets**, from the question text and Toebes's PDF: both operations print the same
+thing. The ciphertext, letters only (spaces and punctuation dropped), in blocks of `blocksize`
+letters. Each letter sits in a box with an empty box below it for the answer. No Porta tableau, no
+keyword row. For `decode` the keyword is in the question text; for `crypt` the question text gives
+the crib and its position. So `questions.json` carries neither the keyword nor the crib.
+
+```jsonc
+{
+  "kind": "porta",
+  "ciphertext": "ABCD EFGH IJ"   // uppercase letters, blocks of `blocksize` joined by one space
+}
+```
+
+`operation` and `blocksize` stay out: the paper looks the same for both, and the blocks already
+carry the size.
+
+**Encoding** (Toebes export: `keyword`, `blocksize`, `cipherString` = plaintext): the standard
+Porta tableau. Key letters pair up (AB → 0, CD → 1, …, YZ → 12). With shift `s`, a plaintext
+letter `p` in A–M becomes `13 + (p + s) mod 13`; one in N–Z becomes `(p − 13 − s) mod 13`. The
+keyword repeats over letters only. Checked by hand against the reference before coding.
+
+**Checking:** pdftotext spaces porta letters apart, so `check-reference` falls back to a
+letters-only comparison when the exact one fails.

@@ -14,6 +14,7 @@
 #import "columnar.typ": *
 #import "cryptarithm.typ": *
 #import "fractionated-morse.typ": *
+#import "homophonic.typ": *
 #import "nihilist.typ": *
 #import "porta.typ": *
 #import "unknown.typ": *
@@ -79,6 +80,8 @@
         render-checkerboard-prepared(q)
       } else if q.kind == "compcolumnar" {
         render-columnar-prepared(q)
+      } else if q.kind == "homophonic" {
+        render-homophonic-prepared(q)
       } else if q.kind == "nihilist" {
         render-nihilist-prepared(q)
       } else if q.kind == "porta" {

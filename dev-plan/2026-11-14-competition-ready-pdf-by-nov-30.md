@@ -697,3 +697,35 @@ logic.** The render pass comes next, in this order (owner):
 
 The sister attempt, `~/workspace/codebusters-test-papers`, is the first reference for 1 and 2.
 Fonts for a browser build fit under 2.
+
+## Render pass: header and footer — 2026-11-14
+
+Step 1 of the render pass (Stage 4).
+
+### What the references do
+
+- **Toebes's PDF.** The cover page has no header or footer, and page numbering starts on the first
+  question page ("Page 1"). Every question page, the timed one included, has a header line: the
+  test title, then at the right "Team Number:" with a blank that has the division letter
+  pre-filled (the first letter of `TEST.0.testtype`, which names the division, e.g. a made-up
+  `cregional` → `_C_____`). The footer is "Page N", centered. No rule under the header.
+- **Sister attempt** (`~/workspace/codebusters-test-papers`, `src/driver.py`,
+  `render_page_header`): header only, on every question page: the title at the left (70% of the
+  width), "Page N" and "Team: ____" at the right, a horizontal rule under it. No footer. No cover
+  page, so nothing differs on page 1. The team number is a plain blank, not a box.
+
+### What we'll do
+
+`set page(header: …, footer: …)` in `main.typ`, the title from `prepared.test.title`, read at
+compile time, so nothing about the test sits in a tracked file. Every page carries it, the timed
+question's page included (we have no cover page yet; when one comes, it opts out and numbering
+starts after it, as in Toebes).
+
+### Decided (owner)
+
+1. **Toebes's layout:** the title and "Team Number:" in the header, the page number centered in the
+   footer, no rule.
+2. **"Page N of M"**, so students can check no page is missing.
+3. **Division letter pre-filled** in the team number blank, as in Toebes. `prepare` adds
+   `test.division` (`"A"`, `"B"`, `"C"`, or `""` when `testtype` doesn't start with one of them);
+   the blank is plain when it's empty.

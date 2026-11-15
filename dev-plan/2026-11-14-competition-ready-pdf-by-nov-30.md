@@ -556,7 +556,8 @@ long word (about 11 plaintext letters or more; a fuzz of made-up texts found non
 fill the next line before another word break. Toebes then splits at the stale position, at or past
 the line's end, pushes the padded last letter with the line, and encodes it again on the next
 line: one extra cipher letter, on Toebes's paper too. We copy it, so ours matches Toebes. Whether
-to keep matching Toebes or print the correct ciphertext is the owner's call; open.
+to keep matching Toebes or print the correct ciphertext was the owner's call. **Decided
+(owner, 2026-11-14): keep matching Toebes**, so our paper and Toebes's answer key agree.
 
 **Next, in paper order** (leak scan): **patristocrat** (K1), then the remaining aristocrat (a
 xenocrypt, per the earlier plan) and the second patristocrat.
@@ -637,8 +638,8 @@ cryptarithm (formula only).
 4. Fonts for a browser build (Courier New won't exist there).
 5. Stage 4: page header (title, "Team Number").
 
-Open: the repeated letter at a line break in fractionated morse ("Fractionated morse detail"):
-keep matching Toebes, or print the correct ciphertext.
+The repeated letter at a line break in fractionated morse: since decided, keep matching Toebes
+("Fractionated morse detail").
 
 ## Atbash and caesar detail — 2026-11-14
 
@@ -695,5 +696,4 @@ logic.** The render pass comes next, in this order (owner):
    (render-pass inputs)" and the notes in each detail section (cryptarithm work grid included).
 
 The sister attempt, `~/workspace/codebusters-test-papers`, is the first reference for 1 and 2.
-Fonts for a browser build fit under 2. Open from earlier, still the owner's call: the fractionated
-morse repeated letter at a line break ("Fractionated morse detail").
+Fonts for a browser build fit under 2.

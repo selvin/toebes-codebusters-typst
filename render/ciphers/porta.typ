@@ -16,7 +16,7 @@
     radius: 4pt,
     width: 100%
   )[
-    #set text(font: "Courier New", weight: "bold", size: 10pt)
+    #set text(font: mono-font, weight: "bold", size: 10pt)
     #cipher.cipherString
   ]
   

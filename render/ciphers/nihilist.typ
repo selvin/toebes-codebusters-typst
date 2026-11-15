@@ -16,7 +16,7 @@
     radius: 4pt,
     width: 100%
   )[
-    #set text(font: "Courier New", weight: "bold", size: 10pt)
+    #set text(font: mono-font, weight: "bold", size: 10pt)
     #cipher.cipherString
   ]
   
@@ -32,7 +32,7 @@
 
 // Empty 5×5 grid, headed 1–5, for the student to build the Polybius square in
 #let render-polybius-grid() = {
-  let header(n) = text(font: "Courier New", weight: "bold", size: 0.8em)[#n]
+  let header(n) = text(font: mono-font, weight: "bold", size: 0.8em)[#n]
   table(
     columns: (1.6em,) + (2.2em,) * 5,
     rows: 1.6em,
@@ -45,7 +45,7 @@
 
 // One line of blocks, each value in a fixed-width cell, with room below for the answer
 #let render-nihilist-line(line) = block(below: 2.8em, {
-  set text(font: "Courier New", weight: "bold", size: 12pt)
+  set text(font: mono-font, weight: "bold", size: 12pt)
   line.map(b => b.map(v => box(width: 2.2em, align(center, v))).join(h(0.3em))).join(h(1.2em))
 })
 
@@ -71,7 +71,7 @@
     columns: (1fr, auto),
     gutter: 1em,
     {
-      set text(font: "Courier New", weight: "bold", size: 12pt)
+      set text(font: mono-font, weight: "bold", size: 12pt)
       set par(leading: 2.5em)
       q.words.map(w => box(w.join(h(0.6em)))).join(h(1.8em))
     },

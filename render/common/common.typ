@@ -3,6 +3,8 @@
 // Shared functions used across multiple cipher types
 // ============================================================================
 
+#import "fonts.typ": *
+
 // Convert HTML directly to Typst content, processing recursively
 #let html-to-typst(html-str) = {
   let text = html-str
@@ -146,7 +148,7 @@
   let label = if num == "0" [#strong[TIMED] #text(weight: "regular")[Question]] else { number-box }
 
   // [P points] in monospace: the brackets and "points" small, P bold at normal size
-  let points-label = text(font: "Courier New", weight: "regular")[#text(size: 0.85em)[\[]#strong(str(points)) #text(size: 0.85em)[points\]]]
+  let points-label = text(font: mono-font, weight: "regular")[#text(size: 0.85em)[\[]#strong(str(points)) #text(size: 0.85em)[points\]]]
 
   heading(level: 3)[
     #text(size: 11pt)[
@@ -364,7 +366,7 @@
 
   // Render the lines
   block(inset: (x: 4pt, bottom: 4pt))[
-    #set text(font: "Courier New", weight: "bold", size: 12pt)
+    #set text(font: mono-font, weight: "bold", size: 12pt)
     #for line in lines [
       // Render each character in the line
       #box[

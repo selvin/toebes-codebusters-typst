@@ -7,7 +7,7 @@
 
 // One line of blocks, each value in a fixed-width cell, with room below for the answer
 #let render-homophonic-line(line) = block(below: 2.8em, {
-  set text(font: "Courier New", weight: "bold", size: 12pt)
+  set text(font: mono-font, weight: "bold", size: 12pt)
   line.map(b => b.map(v => box(width: 1.6em, align(center, v))).join(h(0.3em))).join(h(1.2em))
 })
 
@@ -24,7 +24,7 @@
     align: center + horizon,
     inset: 2pt,
     stroke: if header == "numbers" { 0.5pt + black } else { (x, y) => if y > 0 { 0.5pt + black } },
-    ..heads.map(h => text(font: "Courier New", size: 7pt, weight: "bold", h)),
+    ..heads.map(h => text(font: mono-font, size: 7pt, weight: "bold", h)),
     ..([],) * 100
   )
 }

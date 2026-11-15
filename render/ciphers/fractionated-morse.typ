@@ -16,7 +16,7 @@
     radius: 4pt,
     width: 100%
   )[
-    #set text(font: "Courier New", weight: "bold", size: 10pt)
+    #set text(font: mono-font, weight: "bold", size: 10pt)
     #cipher.cipherString
   ]
   
@@ -40,7 +40,7 @@
 // Replacement row (empty) over the 26 fractions, each stacked vertically as ●, –, ×
 #let render-fm-table() = {
   let symbol = (O: "●", "-": "–", X: "×")
-  let head(t) = text(font: "Courier New", weight: "bold", size: 8pt, t)
+  let head(t) = text(font: mono-font, weight: "bold", size: 8pt, t)
   table(
     columns: (auto,) + (1fr,) * 26,
     align: center + horizon,
@@ -58,7 +58,7 @@
   prepared-heading(q)
 
   for line in q.lines {
-    block(width: 100%, below: 2.4em, align(center, text(font: "Courier New", weight: "bold", size: 13pt,
+    block(width: 100%, below: 2.4em, align(center, text(font: mono-font, weight: "bold", size: 13pt,
       line.join(h(1em)))))
   }
   render-fm-table()

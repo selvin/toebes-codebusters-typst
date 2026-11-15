@@ -37,14 +37,14 @@
   margin: (top: 1.5cm, bottom: 1.5cm, left: 1cm, right: 1cm),
   header: grid(
     columns: (1fr, auto),
-    align(center, prepared.test.title),
+    align(center, text(font: title-font, prepared.test.title)),
     [Team Number: #team-number-blank],
   ),
   footer: context align(center)[Page #counter(page).get().first() of #counter(page).final().first()],
 )
 #set document(title: prepared.test.title)
-#set text(size: 11pt)
-#show raw: set text(font: "Courier New", weight: "bold")
+#set text(font: body-font, size: 11pt)
+#show raw: set text(font: mono-font, weight: "bold")
 
 // Render a kind prepare/ doesn't handle yet, from the raw export (may print plaintext)
 #let render-legacy(cipher, num) = {

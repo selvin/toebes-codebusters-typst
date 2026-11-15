@@ -14,7 +14,7 @@
     inset: (x: 10pt, bottom: 10pt),
     radius: 4pt
   )[
-    #set text(font: "Courier New", weight: "bold", size: 12pt)
+    #set text(font: mono-font, weight: "bold", size: 12pt)
     #align(center)[
       #cipher.cipherString
     ]

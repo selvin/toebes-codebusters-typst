@@ -16,7 +16,7 @@
     radius: 4pt,
     width: 100%
   )[
-    #set text(font: "Courier New", weight: "bold", size: 10pt)
+    #set text(font: mono-font, weight: "bold", size: 10pt)
     #cipher.cipherString
   ]
   
@@ -43,12 +43,12 @@
 
   let blocks = q.ciphertext.split(" ")
   block(inset: (x: 10pt, bottom: 10pt), width: 100%, {
-    set text(font: "Courier New", weight: "bold", size: 14pt)
+    set text(font: mono-font, weight: "bold", size: 14pt)
     set par(leading: 1.5em)
     blocks.chunks(8).map(line => line.join(" ")).join(linebreak())
   })
   // Work space down to the answer line, 3em above the bottom of the question's half page
   v(1fr)
-  text(font: "Courier New", weight: "bold", size: 14pt)[Answer: #box(width: 1fr, line(length: 100%))]
+  text(font: mono-font, weight: "bold", size: 14pt)[Answer: #box(width: 1fr, line(length: 100%))]
   v(3em)
 }

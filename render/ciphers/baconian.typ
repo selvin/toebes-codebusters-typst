@@ -43,7 +43,7 @@
     radius: 4pt,
     width: 100%
   )[
-    #set text(font: "Courier New", size: 10pt)
+    #set text(font: mono-font, size: 10pt)
     // In the actual implementation, this would display the encoded sequence
     // using the texta and textb symbols
     #cipher.cipherString
@@ -66,7 +66,7 @@
     radius: 4pt,
     width: 100%
   )[
-    #set text(font: "Courier New", size: 10pt)
+    #set text(font: mono-font, size: 10pt)
     #cipher.cipherString
     \
     \
@@ -94,7 +94,7 @@
 
 // Empty A–Z table for the student's letter replacements (words mode)
 #let render-baconian-replacement-table() = {
-  let label(t) = text(font: "Courier New", weight: "bold", size: 0.9em)[#t]
+  let label(t) = text(font: mono-font, weight: "bold", size: 0.9em)[#t]
   let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".clusters()
   v(1em)
   table(
@@ -115,13 +115,13 @@
   if q.mode == "words" {
     align(center, block({
       set align(left)
-      set text(font: "Courier New", weight: "bold", size: 14pt)
+      set text(font: mono-font, weight: "bold", size: 14pt)
       set par(leading: 2.2em)
       q.lines.join(linebreak())
     }))
     render-baconian-replacement-table()
   } else {
-    set text(font: "Courier New", size: 14pt)
+    set text(font: mono-font, size: 14pt)
     let width = calc.max(..q.lines.map(l => l.len()))
     let rows = q.lines.map(line => {
       let symbols = line.map(s => [#s]) + ([],) * (width - line.len())

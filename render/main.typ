@@ -104,8 +104,8 @@
       }
     })
 
-    // Apply half-page layout control (except for TIMED question)
-    if not q.timed {
+    // Apply half-page layout control (except for TIMED question, and after the last one: no blank page)
+    if not q.timed and q != prepared.questions.last() {
       question-page-control(num)
     }
 

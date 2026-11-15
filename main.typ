@@ -72,6 +72,8 @@
     position-question(num, {
       if q.kind == "aristocrat" {
         render-aristocrat-prepared(q)
+      } else if q.kind == "porta" {
+        render-porta-prepared(q)
       } else {
         render-legacy(data.at("CIPHER." + str(q.toebesId)), num)
       }

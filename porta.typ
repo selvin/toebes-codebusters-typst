@@ -24,3 +24,10 @@
   v(0.5em)
   text()[Keyword: #raw(upper(cipher.keyword))]
 }
+
+// Render a porta prepared by prepare/ (questions.json); never sees plaintext
+// ciphertext: letter blocks separated by spaces, each letter boxed with an answer box below
+#let render-porta-prepared(q) = {
+  prepared-heading(q)
+  render-dual-box-text(q.ciphertext)
+}

@@ -56,3 +56,21 @@ before.
 1. This plan.
 2. The `git mv` with only the path fixes it needs (one commit, so history follows the files).
 3. Doc updates (`CLAUDE.md`, `README.md`).
+
+## Decisions — 2026-11-15 (patristocrat proxy)
+
+The dead `patristocrats.typ` becomes a light proxy instead of being deleted (owner). Both old
+`render-patristocrat` copies (it and the one in `aristocrats.typ`) printed the export's
+`cipherString`, which is the plaintext. Patristocrats in `competitiondata/001` never reached them
+(`prepare` made them `kind: "aristocrat"`), but a non-English patristocrat, which `prepare` still
+leaves legacy, would have printed its answer.
+
+1. `prepare` gives patristocrats `kind: "patristocrat"` (same data as an aristocrat).
+   `render/ciphers/patristocrats.typ` has `render-patristocrat-prepared(q)`, which calls
+   `render-aristocrat-prepared(q)` for now: patristocrat layout lands there in the render pass.
+   `main.typ` dispatches the new kind to it. The PDF must not change. `check-reference` needs no
+   change (it compares anything with `ciphertext`).
+2. Both old `render-patristocrat` copies and their legacy branch go. A legacy patristocrat falls
+   through to `render-unknown`. Its own commit, since it changes what unsupported input does.
+3. `render-unknown` stops printing `cipherString` as "Debug Info" (it leaks the answer for any
+   unsupported type). Its own commit.

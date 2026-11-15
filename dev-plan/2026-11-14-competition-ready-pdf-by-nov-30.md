@@ -906,5 +906,6 @@ Before, a fixed `v(12em)` left it in the middle of the work area.
 - The columnar's `v(12em)` becomes `v(1fr)`, and `v(3em)` follows the answer line.
 
 **Result:** done; the answer line sits just above the middle (top question) or the bottom margin
-(bottom question). Page counts unchanged, `check-reference` passes for `001` and `000`. Pending the
-owner's check on paper.
+(bottom question). Page counts unchanged, `check-reference` passes for `001` and `000`.
+
+**Owner check (2026-11-15):** verified.

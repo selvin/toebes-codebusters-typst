@@ -40,9 +40,9 @@ Items are numbered for reference only; the sessions below set the order.
 9. **Fractionated morse table**, following the earlier notes ("Decisions — 2026-11-14
    (render-pass inputs)", item 2, and the detail section):
    - the Replacement row as tall as the aristocrats' Replacement row, to pencil in a letter;
-   - "Morse fraction" on two lines (`Morse` over `fraction`), so the header column is narrower and
-     each letter's column gets more width and a larger font (the owner wrote "two columns"; confirm
-     which is meant when the slice starts);
+   - "Morse fraction" on two lines within its one header cell (`Morse` over `fraction`; owner,
+     2026-11-15), so the header column is narrower and each letter's column gets more width and a
+     larger font;
    - cell padding like the aristocrats' table; **put what both tables share in `common`**;
    - ciphertext lines left-aligned (Toebes left-aligns lines inside a centered block; ours centers
      each line); use the spare width for larger letters or more space per letter.

@@ -8,7 +8,7 @@ Planning and decision documents for `toebes-codebusters-typst`. How this folder 
 Picked back up after a pause since 2025-12-15. Repo docs set up following the
 `sunnystepslearning-com` conventions.
 
-**Active:** a competition-ready question paper for `testdata/001` by 2026-11-30 —
+**Active:** a competition-ready question paper for `competitiondata/001` by 2026-11-30 —
 [2026-11-14-competition-ready-pdf-by-nov-30.md](2026-11-14-competition-ready-pdf-by-nov-30.md).
 Cipher logic moves to TypeScript (`prepare/`); Typst only lays out, and the question-paper template
 never sees answers —
@@ -32,7 +32,7 @@ never sees answers —
   After the November deadline.
 - **Answer key and cover page** if they miss the deadline (Toebes's answer key is the fallback).
 - **Fonts** for a browser build: Courier New won't be available.
-- **Cipher types not in `testdata/001`** (affine, Hill, Vigenère, etc.), each on its own when a
+- **Cipher types not in `competitiondata/001`** (affine, Hill, Vigenère, etc.), each on its own when a
   real test needs it.
-- **Committing a test fixture**: `testdata/001` stays out of git until the owner confirms the test
+- **Committing a test fixture**: `competitiondata/001` stays out of git until the owner confirms the test
   has been held.

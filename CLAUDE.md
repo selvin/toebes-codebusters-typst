@@ -13,7 +13,7 @@ common.typ          — shared helpers (question heading, HTML→Typst, line bre
 <cipher>.typ        — one renderer per cipher type
 compile.sh          — wrapper around `typst compile main.typ`
 dev-plan/           — plans and decisions (source of truth across sessions)
-testdata/           — gitignored test exports and reference PDFs (see the hard rule below)
+competitiondata/    — gitignored real competition exports and reference PDFs (hard rule below)
 ```
 
 This layout is expected to change: see
@@ -24,12 +24,14 @@ This layout is expected to change: see
 **This repo is public, and a Toebes export holds every answer in plaintext** (`cipherString` is the
 plaintext, not the ciphertext). Until the owner says a test has been held:
 
-- Never commit its export, or a PDF made from one. Test files live in `testdata/` (gitignored),
-  named by number: `testdata/001.json` (input), `testdata/001.pdf` (Toebes's own PDF of it).
+- Never commit its export, or a PDF made from one. Test files live in `competitiondata/` (gitignored),
+  named by number: `competitiondata/001.json` (input), `competitiondata/001.pdf` (Toebes's own PDF of it).
 - **Never write anything identifying the test into a tracked file or a commit message**: not its
   name, the tournament, its division, or which cipher sits at which question number. Refer to it
-  only as `testdata/001`. This applies to `.gitignore` too.
+  only as `competitiondata/001`. This applies to `.gitignore` too.
 - Docs may name cipher *types* the work supports, but not tie them to a test's questions.
+- `competitiondata/` is for real competitions only. Safe fixtures (made-up quotes, or tests already
+  held) can go in a tracked `testdata/` folder when one is needed.
 
 **The question-paper template never receives answers.** `prepare` (TS) gives the question-paper
 Typst template only what a student may see: no `cipherString`, no keys, no plaintext. Answers go to

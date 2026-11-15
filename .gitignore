@@ -2,7 +2,7 @@ input.json
 *.pdf
 
 # Test exports hold plaintext answers and this repo is public (see CLAUDE.md)
-testdata/
+competitiondata/
 
 # Local-only session handoff (see CLAUDE.md, "Session discipline")
 next-session-prompt.md

@@ -43,7 +43,16 @@ Typst template only what a student may see: no `cipherString`, no keys, no plain
 a separate answer-key input. See
 [dev-plan/2026-11-14-ts-prepare-typst-layout-split.md](dev-plan/2026-11-14-ts-prepare-typst-layout-split.md).
 
-Compiling is fine in a session: there is no PII here. Use the scratchpad for output, not the repo.
+Compiling is fine in a session: there is no PII here. Our PDFs of a real test go next to it in
+`competitiondata/` (gitignored), never anywhere tracked.
+
+**Visual checks.** When the owner needs to look at the output, prompt them with these commands (our
+PDF opens beside Toebes's), using the test numbers the change touches:
+
+```sh
+./compile.sh competitiondata/000.json competitiondata/000-tct.pdf && open competitiondata/000-tct.pdf competitiondata/000.pdf
+./compile.sh competitiondata/001.json competitiondata/001-tct.pdf && open competitiondata/001-tct.pdf competitiondata/001.pdf
+```
 
 ## Philosophy
 

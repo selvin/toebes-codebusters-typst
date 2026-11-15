@@ -347,7 +347,7 @@ symbol for symbol. Every export word matched its letter, so no dictionary fallba
 letters-only scan of our PDF finds no baconian plaintext. For the render pass: fonts for combining
 marks and music symbols (Typst falls back on its own today).
 
-**Render-pass bug (owner, 2026-11-14): combining marks land on the wrong symbol.** In a sequence
+**Render-pass bug (owner, 2026-11-14), fixed by the Noto fonts (2026-11-15): combining marks land on the wrong symbol.** In a sequence
 question whose symbols carry accents, a P with a tilde followed by an I with an acute prints both
 marks over the I, leaving the P bare. Other pairs on the same line print correctly. Unverified
 guess: P-with-tilde has no precomposed character, so it stays P + U+0303 (combining tilde); Courier
@@ -979,3 +979,9 @@ Done, pending the owner's check on paper.
 **Found, not fixed:** a bottom question too tall for the rest of its page is split across pages
 (the 11pt try split an aristocrat's table), though "Render pass: spacing" decided it moves to the
 next page. Only the top question is measured. Backlog.
+
+**Owner check (2026-11-15):** reviewed on paper. The fonts stay; the P with a combining tilde now
+prints right, and the music symbols read better than Toebes's. The owner's UI notes from this
+review (crib size among them) are in
+[2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md), which now sets the
+order of the rest of the render pass.

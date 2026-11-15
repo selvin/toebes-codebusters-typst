@@ -26,9 +26,10 @@ the owner. The Typst code now lives under `render/`. Step 2,
 question-independent formatting, has its first slice: the question heading (circled number,
 monospace points), verified by the owner. Spacing (heading-to-body gap, half-page layout that
 can't overlap) is done and verified by the owner; so is the follow-up (answer line near the bottom of
-its half page). Fonts are done, pending the owner's check on paper: all Noto (serif body at
-10pt, sans titles, sans mono), bundled in `fonts/`, system fonts ignored. **Next:** the rest of
-step 2 (line breaking); see the plan's "Render pass: fonts — 2026-11-15".
+its half page). Fonts are done and verified: all Noto (serif body at 10pt, sans titles, sans
+mono), bundled in `fonts/`, system fonts ignored. **Next:** the owner's UI notes, in sessions of 1–3
+items, starting with session A (points label, crib size):
+[2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index
 
@@ -37,6 +38,7 @@ step 2 (line breaking); see the plan's "Render pass: fonts — 2026-11-15".
 | 2026-11-14 | [Competition-ready question paper by 2026-11-30](2026-11-14-competition-ready-pdf-by-nov-30.md) | Active |
 | 2026-11-14 | [Split: TypeScript prepares, Typst lays out](2026-11-14-ts-prepare-typst-layout-split.md) | Decided |
 | 2026-11-14 | [Move the Typst code under `render/`](2026-11-14-render-folder.md) | Done |
+| 2026-11-15 | [Render pass: UI worklist](2026-11-15-render-pass-ui-worklist.md) | Active |
 
 ## Backlog
 

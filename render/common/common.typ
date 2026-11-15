@@ -83,30 +83,14 @@
   process-tags(text)
 }
 
-// Control page layout: half-page per question
-// Call this after rendering each question to handle spacing and page breaks
-#let question-page-control(num) = {
-  if num != "0" {
-    let question-num = int(num)
-    // After any question (odd or even), force a page break
-    // Odd questions will have the next (even) question positioned at 50% on same page
-    // Even questions will start a new page for the next (odd) question
-    if calc.rem(question-num, 2) == 0 {
-      // After even question: start new page
-      pagebreak()
-    }
-  }
-}
-
-// Wrapper for positioning questions at the correct vertical position
-// Odd questions start a page; the even question after one starts at the middle of the text area,
-// or lower if the odd one runs past it (then a clear gap between them). An even question that no
-// longer fits moves to the next page.
-#let position-question(num, content) = {
-  if num != "0" and calc.rem(int(num), 2) == 1 {
-    // Odd question: at the top of the page, in a block down to the middle, so a v(1fr) in it fills
-    // to the middle (measured, not placed, so a tall question pushes the next one down instead of
-    // running into it, with a clear gap)
+// Place a question in its slot on the page (main.typ tracks the slot and breaks the pages):
+// "top" starts a page; "bottom" follows it at the middle of the text area, or lower if the top one
+// runs past it (then a clear gap between them); "timed" is a page of its own
+#let position-question(slot, content) = {
+  if slot == "top" {
+    // At the top of the page, in a block down to the middle, so a v(1fr) in it fills to the middle
+    // (measured, not placed, so a tall question pushes the next one down instead of running into
+    // it, with a clear gap)
     layout(size => {
       let height = measure(block(width: size.width, content)).height
       let gap = 1.5em.to-absolute()
@@ -117,14 +101,13 @@
         v(gap)
       }
     })
-  } else if num == "0" {
-    // TIMED question: a page of its own (main.typ breaks the page after it), framed by a double
-    // outline around the whole text area so it stands out
+  } else if slot == "timed" {
+    // A page of its own, framed by a double outline around the whole text area so it stands out
     let rule = 0.75pt + black
     block(width: 100%, height: 100%, stroke: rule, inset: 2pt,
       block(width: 100%, height: 100%, stroke: rule, inset: (x: 0.5cm, y: 0.4cm), content))
   } else {
-    // Even question: follows the padding
+    // Bottom: follows the padding
     content
   }
 }

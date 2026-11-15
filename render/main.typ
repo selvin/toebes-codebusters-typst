@@ -71,12 +71,15 @@
 }
 
 // Main document rendering logic
+// Two questions a page: each fills the next slot, top then bottom; the timed question takes a page
+// of its own
 #{
+  let slot = "top"
   for q in prepared.questions {
     let num = str(q.number)
+    let this-slot = if q.timed { "timed" } else { slot }
 
-    // Wrap question rendering in position-question for proper vertical positioning
-    position-question(num, {
+    position-question(this-slot, {
       if q.kind == "aristocrat" {
         render-aristocrat-prepared(q)
       } else if q.kind == "atbash" {
@@ -104,14 +107,13 @@
       }
     })
 
-    // Apply half-page layout control (except for TIMED question, and after the last one: no blank page)
-    if not q.timed and q != prepared.questions.last() {
-      question-page-control(num)
-    }
-
-    // TIMED question gets its own page
-    if q.timed {
+    // After a top question the bottom one follows on the same page; otherwise a new page (none
+    // after the last question: no blank page)
+    if this-slot == "top" {
+      slot = "bottom"
+    } else if q != prepared.questions.last() {
       pagebreak()
+      slot = "top"
     }
   }
 }

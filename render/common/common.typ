@@ -147,8 +147,8 @@
   ))
   let label = if num == "0" [#strong[TIMED] #text(weight: "regular")[Question]] else { number-box }
 
-  // [P points] in monospace: the brackets and "points" small, P bold at normal size
-  let points-label = text(font: mono-font, weight: "regular")[#text(size: 0.85em)[\[]#strong(str(points)) #text(size: 0.85em)[points\]]]
+  // [P points] in monospace: the brackets and P at normal size, only P bold, "points" small
+  let points-label = text(font: mono-font, weight: "regular")[\[#strong(str(points)) #text(size: 0.85em)[points]\]]
 
   heading(level: 3)[
     #text(size: body-size)[

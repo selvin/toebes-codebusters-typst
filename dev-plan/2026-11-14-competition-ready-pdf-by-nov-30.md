@@ -835,3 +835,31 @@ at a glance. Formatting a hint or crib in the question text (bold, monospace) is
 job in Toebes; we render the question's HTML as given and add no emphasis of our own.
 
 **Next in step 2:** spacing, then fonts (including a browser-safe monospace), then line breaking.
+
+## Render pass: spacing — 2026-11-15
+
+Step 2 of the render pass, second slice: the vertical space every question shares. Fonts and line
+breaking come later.
+
+### What the references do
+
+- **Toebes's PDF.** Questions flow: each starts right after the last one ends, so a page holds
+  one, two or three questions. A small, even gap between the heading text and the cipher body.
+- **Sister attempt** (`src/driver.py`): two questions a page, the second pushed down a fixed
+  `\vspace{10cm}` after the first. The cipher body starts one paragraph break under the heading.
+- **Ours.** Two questions a page (`position-question`, `question-page-control`): odd questions at
+  the top, even ones placed at a fixed 12.72 cm below the top margin. That length was worked out
+  for a 1 cm bottom margin; since the footer made it 1.5 cm, the "middle" sits 0.25 cm low. The
+  gap from heading to body is set by each renderer: none, `v(0.5em)` or `v(1em)`, on top of the
+  heading's own 0.5em, and some bodies add a 4–10 pt top inset; so it differs from kind to kind.
+
+### What we'll do
+
+1. **Keep the half-page layout** (a fixed place for each question is easier to find on paper), and
+   place the bottom question at **50% of the text area** instead of a hard-coded length, so it
+   follows the margins.
+2. **The heading owns the heading-to-body gap**: one value in `question-heading-core`, and the
+   renderers' own leading `v()` and top insets go (prepared kinds and the legacy cryptarithm).
+3. **Body to the next question's rule** needs no setting: the next rule is at a fixed place (top of
+   the page, or the middle). Not guarded: a top question taller than half a page would run into
+   the bottom one. None does in `001` or `000`; if one ever does, that's its own slice.

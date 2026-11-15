@@ -815,3 +815,14 @@ In `question-heading-core` (`render/common/common.typ`): the boxed number, then 
 Courier New (`[` `points]` small, `P` bold at normal size), then the question text. The timed
 question keeps its `TIMED Question` label in place of the box (the box is for a number). The
 timed question's frame is question-dependent (step 3).
+
+### Result
+
+Done, pending the owner's check on paper. The number box is 1.7em square (fits two digits), the
+digits centered by their glyph bounds (`top-edge`/`bottom-edge: "bounds"`; with the default edges
+they sat high), the box centered on the text line (`baseline: 0.5em`). The rule has 0.5em above
+it and 0.6em below; less let the box touch it in bottom-half questions. Page counts are unchanged
+for `001` and `000`; `check-reference` passes for `001`, and for `000` reports only the known
+let4let baconian (see "Second yardstick").
+
+**Next in step 2:** spacing, then fonts (including a browser-safe monospace), then line breaking.

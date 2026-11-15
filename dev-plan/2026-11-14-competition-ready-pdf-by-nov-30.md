@@ -931,10 +931,22 @@ table labels), and their sizes. Line breaking comes later.
 
 ### What we'll do
 
-1. **One place names the fonts:** `render/common/fonts.typ` with `body-font` and `mono-font`;
-   `main.typ` sets the body font, and every renderer uses `mono-font` instead of `"Courier New"`.
-   Sizes stay where they are in this slice (each kind's sizes are question-dependent, step 3).
-2. **Ship the fonts in the repo** (`fonts/`, open licenses, with their license files) and compile
-   with `--font-path fonts --ignore-system-fonts`, so the local build uses exactly what a browser
-   build will.
-3. **Which fonts:** for the owner (below).
+1. **One place names the fonts:** `render/common/fonts.typ` with `body-font`, `title-font` and
+   `mono-font`; `main.typ` sets the body font, the page header's title uses `title-font` (so will
+   the cover page, later), and every renderer uses `mono-font` instead of `"Courier New"`. Sizes
+   stay where they are in this slice (each kind's sizes are question-dependent, step 3).
+2. **Ship the fonts in the repo** (`fonts/`, with the OFL license file) and compile with
+   `--font-path fonts --ignore-system-fonts`, so the local build uses exactly what a browser build
+   will.
+
+### Decided (owner)
+
+1. **All Noto** (SIL OFL): Noto Serif for body text, Noto Sans for titles, Noto Sans Mono for
+   monospace. The owner prefers a serif for body text (sharper edges) and a sans for titles. Typst
+   embeds no sans font, so one family had to be bundled anyway; one design for all three was
+   preferred over Libertinus Serif + DejaVu Sans Mono (both built into Typst) + a bundled sans.
+2. **Keep the monospace sizes.** A slashed zero was considered: Courier New has none, nor does
+   DejaVu Sans Mono (its `zero` feature does nothing). Digits only appear in number ciphertexts,
+   which hold no letter O, so it isn't needed. Courier New and DejaVu Sans Mono are equally wide
+   (0.600 vs 0.602 em) but DejaVu's capitals are a third taller; a smaller size to match heights
+   would make it narrower than the boxes, so sizes stay and the letters just read larger.

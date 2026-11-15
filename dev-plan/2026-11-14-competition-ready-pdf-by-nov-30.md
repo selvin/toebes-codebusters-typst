@@ -2,7 +2,8 @@
 
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
-2026-11-14. Next: porta, then nihilistsub (see Decisions below).
+2026-11-14; porta and nihilistsub (decode) done the same day. Next, in paper order: baconian (see
+"Nihilist substitution detail", Result).
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -62,7 +63,7 @@ Types only; which question uses which stays out of the repo.
 | caesar | yes | layout ok; move to TS |
 | porta: decode, crypt | yes (TS) | done; matches reference |
 | baconian: words, sequence, let4let | no | todo |
-| nihilistsub: decode, crypt | no | todo |
+| nihilistsub: decode, crypt | decode yes (TS) | decode done, matches reference; crypt todo |
 | compcolumnar | no | todo |
 | checkerboard: decode, crypt | missing | todo |
 | cryptarithm | no | todo |
@@ -252,3 +253,11 @@ reference before coding.
 **Checking:** pdftotext interleaves the ciphertext lines with the grid's 1–5 headers. Every
 nihilist number is at least 22 (11 + 11), so `check-reference` compares our numbers against the
 reference's numbers with two or more digits.
+
+**Result (2026-11-14):** decode done. It matches Toebes's PDF by number comparison (and the check
+fails when one number is changed), and our PDF holds no plaintext for it. Toebes gives the
+ciphertext more vertical room, for the render pass.
+
+**Next, in paper order** (from a letters-only leak scan of the compiled packet): **baconian**.
+Sequence and let4let print the plaintext. Words mode doesn't leak, but nothing has checked it
+against the reference yet, so move all three modes together. After baconian: compcolumnar.

@@ -772,6 +772,13 @@ Checked with the pipeline as built for `001`:
 aristocrat, K2 patristocrat and affine are unsupported. The owner will re-export `000.json` from
 Toebes with those questions removed.
 
+**Re-exported (2026-11-15):** `000.json` and `000.pdf` now hold only supported types. Every question
+is a prepared kind except cryptarithm (legacy, no leak); `check-reference` passes for everything
+it can compare, and a scan of our PDF's text finds no plaintext. The re-export changed nothing in
+the remaining questions, so the by-eye baconian check above still holds. `check-reference` reports a
+let4let baconian whose letters are the A/B symbols as "NOT FOUND" rather than "check by eye": its
+image detection looks for any symbol in the reference text, and plain letters are always there.
+
 **Cryptarithm, for when it moves to `prepare`:** its `cipherString` is the equation, which students
 see, not the answer. The answer is `mapping` (letter → digit) and `soltext` (the decoded words);
 the values to decode are written into the question text by Toebes. The question paper gets the

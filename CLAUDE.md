@@ -116,7 +116,7 @@ Work in short sessions of 1–3 tasks. Before ending one:
    next session's smallest unit of work. Then print this line on its own:
    `Please follow the instructions in the untracked next-session-prompt.md at repo root`
 4. Update memory only if needed.
-5. Commit (and push when the owner says so).
+5. Commit and push. Always push: reverts and forward fixes are both cheap (owner, 2026-11-15).
 
 Prompt the owner to do this after 1–3 tasks, and say which steps applied.
 

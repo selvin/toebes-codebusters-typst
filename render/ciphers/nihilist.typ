@@ -55,7 +55,6 @@
 #let render-nihilist-prepared(q) = {
   prepared-heading(q)
 
-  v(0.5em)
   if "lines" in q {
     grid(
       columns: (1fr, auto),

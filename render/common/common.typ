@@ -120,7 +120,7 @@
   v(0.6em)
 
   // Remove default heading spacing to make the line hug the heading
-  show heading: it => block(above: 0.1em, below: 0.5em, it)
+  show heading: it => block(above: 0.1em, below: 0em, it)
 
   // Prepare special bonus prefix if needed
   let bonus-prefix = if special-bonus {
@@ -148,6 +148,9 @@
       #text(weight: "regular")[#body]
     ]
   ]
+
+  // The one gap between heading and body (renderers add no space of their own before the body)
+  v(1.5em)
 }
 
 // Heading from a raw Toebes cipher (legacy kinds)
@@ -353,9 +356,8 @@
   // Use smart-line-break for the cipher text
   let lines = smart-line-break(encodedString, max-chars: max-chars)
 
-  v(1em)
   // Render the lines
-  block(inset: 4pt)[
+  block(inset: (x: 4pt, bottom: 4pt))[
     #set text(font: "Courier New", weight: "bold", size: 12pt)
     #for line in lines [
       // Render each character in the line

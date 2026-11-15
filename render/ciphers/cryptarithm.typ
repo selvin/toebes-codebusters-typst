@@ -10,9 +10,8 @@
   question-heading(num, cipher)
   
   // Display the cryptarithm puzzle
-  v(0.5em)
   block(
-    inset: 10pt,
+    inset: (x: 10pt, bottom: 10pt),
     radius: 4pt
   )[
     #set text(font: "Courier New", weight: "bold", size: 12pt)

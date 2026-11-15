@@ -169,9 +169,8 @@
 #let render-aristocrat-prepared(q) = {
   prepared-heading(q)
 
-  v(0.5em)
   block(
-    inset: 10pt,
+    inset: (x: 10pt, bottom: 10pt),
     radius: 4pt,
     width: 100%
   )[

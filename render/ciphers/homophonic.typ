@@ -33,7 +33,6 @@
 #let render-homophonic-prepared(q) = {
   prepared-heading(q)
 
-  v(1em)
   for line in q.lines {
     render-homophonic-line(line)
   }

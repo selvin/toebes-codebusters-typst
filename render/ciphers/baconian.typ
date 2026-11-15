@@ -112,7 +112,6 @@
 #let render-baconian-prepared(q) = {
   prepared-heading(q)
 
-  v(0.5em)
   if q.mode == "words" {
     align(center, block({
       set align(left)

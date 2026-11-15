@@ -57,7 +57,6 @@
 #let render-fractionated-morse-prepared(q) = {
   prepared-heading(q)
 
-  v(1em)
   for line in q.lines {
     block(width: 100%, below: 2.4em, align(center, text(font: "Courier New", weight: "bold", size: 13pt,
       line.join(h(1em)))))

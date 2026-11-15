@@ -24,7 +24,6 @@
 #let render-checkerboard-prepared(q) = {
   prepared-heading(q)
 
-  v(1em)
   grid(
     columns: (1fr, auto),
     gutter: 1em,

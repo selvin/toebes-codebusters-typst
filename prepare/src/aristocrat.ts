@@ -10,8 +10,11 @@ export interface AristocratData {
   frequencies: number[];
 }
 
+// Toebes's `replacement` is the decode table: ciphertext letter → plaintext letter (the row a
+// student fills in). Encoding goes the other way.
 export function encodeSubstitution(plaintext: string, replacement: Record<string, string>): string {
-  return [...plaintext.toUpperCase()].map((ch) => replacement[ch] ?? ch).join("");
+  const encode = new Map(Object.entries(replacement).map(([cipher, plain]) => [plain, cipher]));
+  return [...plaintext.toUpperCase()].map((ch) => encode.get(ch) ?? ch).join("");
 }
 
 export function letterFrequencies(ciphertext: string, alphabet: string): number[] {

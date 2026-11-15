@@ -3,7 +3,7 @@ import { encodeSubstitution, letterFrequencies, prepareAristocrat } from "../src
 import type { ToebesCipher } from "../src/toebes.js";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-// Shift by one: A→B … Z→A
+// Decode table shifting by one: ciphertext A → plaintext B … Z → A, so encoding shifts back
 const shift1 = Object.fromEntries([...ALPHABET].map((c, i) => [c, ALPHABET[(i + 1) % 26]]));
 
 const cipher = (extra: Partial<ToebesCipher> = {}): ToebesCipher => ({
@@ -19,19 +19,19 @@ const cipher = (extra: Partial<ToebesCipher> = {}): ToebesCipher => ({
 
 describe("aristocrat", () => {
   it("encodes uppercase, keeping spaces and punctuation", () => {
-    expect(encodeSubstitution("Hello, zebra!", shift1)).toBe("IFMMP, AFCSB!");
+    expect(encodeSubstitution("Hello, zebra!", shift1)).toBe("GDKKN, YDAQZ!");
   });
 
   it("counts letters per alphabet position", () => {
-    const f = letterFrequencies("IFMMP, AFCSB!", ALPHABET);
-    expect(f[ALPHABET.indexOf("M")]).toBe(2);
-    expect(f[ALPHABET.indexOf("F")]).toBe(2);
-    expect(f[ALPHABET.indexOf("Z")]).toBe(0);
+    const f = letterFrequencies("GDKKN, YDAQZ!", ALPHABET);
+    expect(f[ALPHABET.indexOf("K")]).toBe(2);
+    expect(f[ALPHABET.indexOf("D")]).toBe(2);
+    expect(f[ALPHABET.indexOf("B")]).toBe(0);
     expect(f.reduce((a, b) => a + b)).toBe(10);
   });
 
   it("prepares random and K1, and leaves other variants alone", () => {
-    expect(prepareAristocrat(cipher())?.ciphertext).toBe("IFMMP, AFCSB!");
+    expect(prepareAristocrat(cipher())?.ciphertext).toBe("GDKKN, YDAQZ!");
     expect(prepareAristocrat(cipher({ encodeType: "k1" }))?.keyType).toBe("k1");
     expect(prepareAristocrat(cipher({ encodeType: "k2" }))).toBeNull();
     expect(prepareAristocrat(cipher({ curlang: "es" }))).toBeNull();

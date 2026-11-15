@@ -909,3 +909,32 @@ Before, a fixed `v(12em)` left it in the middle of the work area.
 (bottom question). Page counts unchanged, `check-reference` passes for `001` and `000`.
 
 **Owner check (2026-11-15):** verified.
+
+## Render pass: fonts — 2026-11-15
+
+Step 2 of the render pass, third slice: the body font, the monospace font (ciphertext, `[P points]`,
+table labels), and their sizes. Line breaking comes later.
+
+### What the references do
+
+- **Toebes's PDF.** Arial (regular, bold, italic) for body text; Courier New (regular and bold) for
+  ciphertext and labels. A few symbol fonts (Segoe UI Symbol, JuliaMono) for special glyphs.
+- **Sister attempt** (`src/driver.py`): Arial at 0.9 scale for body; MesloLGS NF at 1.1 scale for
+  monospace.
+- **Ours.** No body font is set, so Typst's default, Libertinus Serif (a serif), is used by
+  accident. `"Courier New"` is named about 40 times across `render/main.typ`,
+  `render/common/common.typ` and 8 cipher renderers, each with its own size. The base size is
+  11pt in `main.typ`.
+- **What a browser build has.** Typst's WASM build only has the fonts it embeds (Libertinus Serif,
+  New Computer Modern, DejaVu Sans Mono) plus any we ship. Courier New and Arial are Microsoft
+  fonts we can't redistribute.
+
+### What we'll do
+
+1. **One place names the fonts:** `render/common/fonts.typ` with `body-font` and `mono-font`;
+   `main.typ` sets the body font, and every renderer uses `mono-font` instead of `"Courier New"`.
+   Sizes stay where they are in this slice (each kind's sizes are question-dependent, step 3).
+2. **Ship the fonts in the repo** (`fonts/`, open licenses, with their license files) and compile
+   with `--font-path fonts --ignore-system-fonts`, so the local build uses exactly what a browser
+   build will.
+3. **Which fonts:** for the owner (below).

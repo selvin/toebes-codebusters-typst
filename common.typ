@@ -338,21 +338,8 @@
   }
 }
 
-// Generic function to render a cipher with dual-box format
-// This can be reused for Atbash, Caesar, Affine, etc.
-// Parameters:
-//   cipher: The cipher object containing cipherString and other properties
-//   num: The question number
-//   encode-fn: Function to encode the plaintext (e.g., atbash-encode, caesar-encode)
-//   max-chars: Maximum characters per line (default: 35)
-#let render-dual-box-cipher(cipher, num, encode-fn, max-chars: 35) = {
-  question-heading(num, cipher)
-
-  let cipherString = upper(cipher.cipherString)
-
-  // Encode the string with the provided encoding function
-  let encodedString = encode-fn(cipherString)
-
+// Render already-encoded text in dual-box format: each letter boxed, an empty box below it
+#let render-dual-box-text(encodedString, max-chars: 35) = {
   // Use smart-line-break for the cipher text
   let lines = smart-line-break(encodedString, max-chars: max-chars)
 
@@ -378,4 +365,22 @@
       #v(1em)
     ]
   ]
+}
+
+// Generic function to render a cipher with dual-box format
+// This can be reused for Atbash, Caesar, Affine, etc.
+// Parameters:
+//   cipher: The cipher object containing cipherString and other properties
+//   num: The question number
+//   encode-fn: Function to encode the plaintext (e.g., atbash-encode, caesar-encode)
+//   max-chars: Maximum characters per line (default: 35)
+#let render-dual-box-cipher(cipher, num, encode-fn, max-chars: 35) = {
+  question-heading(num, cipher)
+
+  let cipherString = upper(cipher.cipherString)
+
+  // Encode the string with the provided encoding function
+  let encodedString = encode-fn(cipherString)
+
+  render-dual-box-text(encodedString, max-chars: max-chars)
 }

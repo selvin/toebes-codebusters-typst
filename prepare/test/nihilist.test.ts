@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { encodeNihilist, polybiusValues, prepareNihilist } from "../src/nihilist.js";
+import { encodeNihilist, encodeNihilistLines, polybiusValues, prepareNihilist } from "../src/nihilist.js";
 import type { ToebesCipher } from "../src/toebes.js";
 
 // Square for KEY: K E Y A B / C D F G H / I L M N O / P Q R S T / U V W X Z
@@ -33,7 +33,31 @@ describe("nihilist", () => {
       polybiusKey: "KEY",
     };
     expect(prepareNihilist(cipher)).toEqual({ kind: "nihilist", words: [["46", "45", ","], ["29", "36", "."]] });
-    expect(prepareNihilist({ ...cipher, operation: "crypt" })).toBeNull();
-    expect(prepareNihilist({ ...cipher, blocksize: 4 })).toBeNull();
+    expect(prepareNihilist({ ...cipher, operation: "encode" })).toBeNull();
+  });
+
+  it("keeps letters only, in blocks, when blocksize is set", () => {
+    expect(encodeNihilistLines("Hi, ab.", "KEY", "CAB", 2)).toEqual([[["46", "45"], ["29", "36"]]]);
+  });
+
+  it("breaks the first three lines at 13 tokens and later ones at 24, after the last space", () => {
+    const lines = encodeNihilistLines("A".repeat(60), "KEY", "CAB", 4);
+    expect(lines.map((l) => l.length)).toEqual([2, 2, 2, 4, 4, 1]);
+    expect(lines.flat(2)).toHaveLength(60);
+  });
+
+  it("prepares crypt, and decode with blocks, as lines", () => {
+    const cipher: ToebesCipher = {
+      cipherType: "nihilistsub",
+      cipherString: "Hi, ab.",
+      points: 100,
+      operation: "crypt",
+      blocksize: 2,
+      keyword: "CAB",
+      polybiusKey: "KEY",
+    };
+    const expected = { kind: "nihilist", lines: [[["46", "45"], ["29", "36"]]] };
+    expect(prepareNihilist(cipher)).toEqual(expected);
+    expect(prepareNihilist({ ...cipher, operation: "decode" })).toEqual(expected);
   });
 });

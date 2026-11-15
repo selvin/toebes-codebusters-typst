@@ -317,3 +317,25 @@ letters-only scan of our PDF finds no baconian plaintext. For the render pass: f
 marks and music symbols (Typst falls back on its own today).
 
 **Next, in paper order:** compcolumnar (decode).
+
+## Complete columnar detail — 2026-11-14
+
+Source: Toebes's `app/codebusters/ciphercompletecolumnarencoder.ts` (`CompleteColumnarSolver`,
+`genQuestion`, `makeReplacement`).
+
+**What a student gets** (decode), from the question text and Toebes's PDF: the ciphertext in
+blocks of five letters, eight blocks to a line (Toebes wraps at 48 characters), then empty work
+space and an `Answer: ____` line. The crib is in the question text only. The paper shows neither the
+column count nor the key (the legacy renderer printed both, along with the plaintext).
+
+```jsonc
+{ "kind": "compcolumnar", "ciphertext": "ABCDE FGHIJ …" }   // blocks of 5 joined by one space
+```
+
+**Encoding** (export: `columns`, `keyword` = column order string, `cipherString` = plaintext):
+letters only, padded with `X` to a multiple of `columns`, written into rows of `columns` letters.
+The key is cut or padded with `~` to `columns` characters; its characters sorted (by code unit)
+give the reading order: the column of the smallest key character first, ties left to right. Each
+column is read top to bottom. `crypt` stays legacy until a test needs it.
+
+**Checking:** `check-reference` compares `ciphertext` as it does for aristocrats.

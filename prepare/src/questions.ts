@@ -4,6 +4,7 @@ import { prepareAristocrat, type AristocratData } from "./aristocrat.js";
 import { prepareBaconian, type BaconianData } from "./baconian.js";
 import { prepareCheckerboard, type CheckerboardData } from "./checkerboard.js";
 import { prepareCompColumnar, type CompColumnarData } from "./compcolumnar.js";
+import { prepareHomophonic, type HomophonicData } from "./homophonic.js";
 import { htmlToParagraphs, type Paragraph } from "./html.js";
 import { prepareNihilist, type NihilistData } from "./nihilist.js";
 import { preparePorta, type PortaData } from "./porta.js";
@@ -18,6 +19,7 @@ type KindData =
   | BaconianData
   | CheckerboardData
   | CompColumnarData
+  | HomophonicData
   | NihilistData
   | PortaData
   | LegacyData;
@@ -51,6 +53,10 @@ function prepareKind(cipher: ToebesCipher): KindData {
   }
   if (cipher.cipherType === "compcolumnar") {
     const data = prepareCompColumnar(cipher);
+    if (data) return data;
+  }
+  if (cipher.cipherType === "homophonic") {
+    const data = prepareHomophonic(cipher);
     if (data) return data;
   }
   if (cipher.cipherType === "nihilistsub") {

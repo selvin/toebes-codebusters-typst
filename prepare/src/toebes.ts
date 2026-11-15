@@ -29,6 +29,7 @@ export interface ToebesCipher {
   textb?: string;
   linewidth?: number;
   columns?: number; // compcolumnar
+  randomSlot?: number[]; // homophonic: range (0–3) for each plaintext letter
 }
 
 export interface ToebesExport {

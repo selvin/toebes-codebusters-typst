@@ -904,3 +904,7 @@ Before, a fixed `v(12em)` left it in the middle of the work area.
   content plus padding), so a `v(1fr)` inside it fills down to the middle. A bottom question is
   followed by a page break, so a `v(1fr)` there fills down to the bottom margin already.
 - The columnar's `v(12em)` becomes `v(1fr)`, and `v(3em)` follows the answer line.
+
+**Result:** done; the answer line sits just above the middle (top question) or the bottom margin
+(bottom question). Page counts unchanged, `check-reference` passes for `001` and `000`. Pending the
+owner's check on paper.

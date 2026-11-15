@@ -25,7 +25,8 @@ verified every question's logic on paper.** Only cryptarithm is still legacy (no
 the owner. The Typst code now lives under `render/`. Step 2,
 question-independent formatting, has its first slice: the question heading (circled number,
 monospace points), verified by the owner. Spacing (heading-to-body gap, half-page layout that
-can't overlap) is done, pending the owner's check on paper. **Next:** the rest of step 2 (fonts,
+can't overlap) is done and verified by the owner; the follow-up (answer line near the bottom of
+its half page) is pending the owner's check. **Next:** the rest of step 2 (fonts,
 line breaking); see the plan's "Render pass: spacing — 2026-11-15".
 
 ## Index

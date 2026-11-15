@@ -2,8 +2,9 @@
 
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
-2026-11-14; porta, nihilistsub (decode), baconian, compcolumnar (decode) and checkerboard done the
-same day. Next, in paper order: homophonic (see "Checkerboard detail", Result).
+2026-11-14; porta, nihilistsub (decode), baconian, compcolumnar (decode), checkerboard and
+homophonic done the same day. Next, in paper order: nihilistsub crypt (see "Homophonic detail",
+Result).
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -67,7 +68,7 @@ Types only; which question uses which stays out of the repo.
 | compcolumnar: decode | yes (TS) | decode done; matches reference |
 | checkerboard: decode, crypt | yes (TS) | done; matches reference |
 | cryptarithm | no (shows formula only; no leak) | todo: Toebes's work grid |
-| homophonic: decode, crypt | missing | todo |
+| homophonic: decode, crypt | yes (TS) | done; matches reference |
 | fractionatedmorse | no | todo |
 
 Update the Status column as each lands.
@@ -462,3 +463,12 @@ four blocks a line.
 
 **Checking:** `check-reference` compares the cipher values in order with the reference's numbers,
 minus the help table's.
+
+**Result (2026-11-14):** done, decode and crypt. Both questions match Toebes's PDF by number
+comparison (and the check fails when one value is changed); line shapes match the reference (four
+blocks a line) and the help tables look like Toebes's. A letters-only scan of our PDF finds no
+homophonic plaintext.
+
+**Next, in paper order** (leak scan): **nihilistsub crypt** (still legacy; see "Nihilist
+substitution detail": blocks of letters, page may differ from decode). After it: fractionated
+morse, then patristocrat, then a xenocrypt aristocrat.

@@ -50,23 +50,9 @@
 })
 
 // Render a nihilist substitution prepared by prepare/ (questions.json); never sees plaintext
-// words: arrays of tokens (numbers or punctuation); words are spaced wider than tokens
-// lines (crypt, or blocks): Toebes's lines; the first three sit beside the grid
+// lines: Toebes's lines → blocks (words when blocksize is 0) → values or punctuation;
+// the first three sit beside the grid
 #let render-nihilist-prepared(q) = {
   prepared-heading(q)
-
-  if "lines" in q {
-    lines-beside-grid(q.lines.map(render-nihilist-line), render-polybius-grid())
-    return
-  }
-  grid(
-    columns: (1fr, auto),
-    gutter: 1em,
-    {
-      set text(font: mono-font, weight: "bold", size: 12pt)
-      set par(leading: 2.5em)
-      q.words.map(w => box(w.join(h(0.6em)))).join(h(1.8em))
-    },
-    render-polybius-grid(),
-  )
+  lines-beside-grid(q.lines.map(render-nihilist-line), render-polybius-grid())
 }

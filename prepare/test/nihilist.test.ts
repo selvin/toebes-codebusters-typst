@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { encodeNihilist, encodeNihilistLines, polybiusValues, prepareNihilist } from "../src/nihilist.js";
+import { encodeNihilistLines, polybiusValues, prepareNihilist } from "../src/nihilist.js";
 import type { ToebesCipher } from "../src/toebes.js";
 
 // Square for KEY: K E Y A B / C D F G H / I L M N O / P Q R S T / U V W X Z
@@ -15,14 +15,14 @@ describe("nihilist", () => {
 
   it("adds keyword values over letters only, keeping words and punctuation", () => {
     // Keyword CAB = 21 14 15. H 25+21, I 31+14, A 14+15, B 15+21
-    expect(encodeNihilist("Hi, ab.", "KEY", "CAB")).toEqual([["46", "45", ","], ["29", "36", "."]]);
+    expect(encodeNihilistLines("Hi, ab.", "KEY", "CAB", 0)).toEqual([[["46", "45", ","], ["29", "36", "."]]]);
   });
 
   it("encodes J as I", () => {
-    expect(encodeNihilist("J", "KEY", "K")).toEqual(encodeNihilist("I", "KEY", "K"));
+    expect(encodeNihilistLines("J", "KEY", "K", 0)).toEqual(encodeNihilistLines("I", "KEY", "K", 0));
   });
 
-  it("prepares decode with word breaks and nothing else", () => {
+  it("prepares decode as lines of words, and nothing else", () => {
     const cipher: ToebesCipher = {
       cipherType: "nihilistsub",
       cipherString: "Hi, ab.",
@@ -32,7 +32,7 @@ describe("nihilist", () => {
       keyword: "CAB",
       polybiusKey: "KEY",
     };
-    expect(prepareNihilist(cipher)).toEqual({ kind: "nihilist", words: [["46", "45", ","], ["29", "36", "."]] });
+    expect(prepareNihilist(cipher)).toEqual({ kind: "nihilist", lines: [[["46", "45", ","], ["29", "36", "."]]] });
     expect(prepareNihilist({ ...cipher, operation: "encode" })).toBeNull();
   });
 

@@ -17,18 +17,30 @@ if (!questionsPath || !referencePath) {
 const collapse = (s: string) => s.replace(/\s+/g, " ").trim();
 // Some kinds (porta) print one letter per box, which pdftotext spaces apart: compare letters only.
 const lettersOnly = (s: string) => s.replace(/[^A-Z]/g, "");
+// Nihilist numbers are all two digits or more; the grid headers (1–5) pdftotext interleaves are not.
+const numbersOnly = (s: string) => (s.match(/\d{2,}/g) ?? []).join(" ");
 
 const { questions }: QuestionsFile = JSON.parse(readFileSync(questionsPath, "utf8"));
 const referenceText = readFileSync(referencePath, "utf8");
 const reference = collapse(referenceText);
 const referenceLetters = lettersOnly(referenceText);
+const referenceNumbers = numbersOnly(referenceText);
+
+function matches(q: QuestionsFile["questions"][number]): boolean | null {
+  if ("ciphertext" in q) {
+    return (
+      reference.includes(collapse(q.ciphertext)) ||
+      referenceLetters.includes(lettersOnly(q.ciphertext))
+    );
+  }
+  if ("words" in q) return referenceNumbers.includes(numbersOnly(q.words.flat().join(" ")));
+  return null;
+}
 
 let failed = 0;
 for (const q of questions) {
-  if (!("ciphertext" in q)) continue;
-  const ok =
-    reference.includes(collapse(q.ciphertext)) ||
-    referenceLetters.includes(lettersOnly(q.ciphertext));
+  const ok = matches(q);
+  if (ok === null) continue;
   if (!ok) failed++;
   console.log(`${q.timed ? "Timed" : q.number} (${q.kind}): ${ok ? "ok" : "NOT FOUND in reference"}`);
 }

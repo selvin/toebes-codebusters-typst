@@ -10,6 +10,6 @@
 
 #let body-size = 10pt
 
-// The ciphertext's weight. Labels and cribs
-// stay bold.
-#let cipher-weight = 700
+// The ciphertext's weight: SemiBold, a tad below bold, for legibility and to save ink. Labels
+// and cribs stay bold.
+#let cipher-weight = 600

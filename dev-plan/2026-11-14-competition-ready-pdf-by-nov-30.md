@@ -1386,4 +1386,16 @@ session H: the ciphertext a tad less bold than the usual bold, for legibility an
 
 ### Decided (owner)
 
-Pending: the weight, and whether labels and cribs follow it.
+- **SemiBold (600)**, picked from a sample of four `001` pages at 500, 600 and 700. Medium (500)
+  isn't bundled.
+- **Labels and cribs stay bold** (the default proposed; the owner raised no change).
+
+### Result
+
+Done and verified by the owner (on screen, from the sample).
+
+- `fonts/NotoSansMono-SemiBold.ttf`; `cipher-weight` (600) in `render/common/fonts.typ`, used at
+  the ciphertext sites listed above. A first commit routed them through it at 700: every page of
+  both tests identical to before.
+- At 600 every page changes (each has ciphertext); page counts unchanged (16 for `001`, 11 for
+  `000`), as widths don't change. `check-reference` passes for both.

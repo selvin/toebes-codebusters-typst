@@ -82,7 +82,7 @@ Items are numbered for reference only; the sessions below set the order.
     morse tables). Plan which strokes count (rules and the timed question's double outline
     likely not), and define the colour once in `common`.
 
-14. **Ciphertext a little less bold** (owner, 2026-11-15): a weight a tad below the usual bold,
+14. ✅ **Ciphertext a little less bold** (SemiBold 600; labels and cribs stay bold) (owner, 2026-11-15): a weight a tad below the usual bold,
     for legibility and to save ink. The ciphertext is `mono-font` at `weight: "bold"` (about 30
     places in `render/`). `fonts/` bundles only Noto Sans Mono Regular and Bold, so a lighter weight
     means bundling another static weight (SemiBold 600 or Medium 500, OFL) or the variable font,

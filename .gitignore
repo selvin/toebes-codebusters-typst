@@ -10,3 +10,6 @@ next-session-prompt.md
 # prepare output (holds a real test's ciphertext) and dependencies
 build/
 node_modules/
+
+# Toebes's PDFs of the committed made-up fixtures (4-digit names); our outputs (-tct) stay ignored
+!testdata/[0-9][0-9][0-9][0-9].pdf

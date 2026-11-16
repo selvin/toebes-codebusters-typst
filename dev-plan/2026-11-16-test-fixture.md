@@ -1,7 +1,7 @@
 # A committed test fixture
 
 **Date:** 2026-11-16
-**Status:** In progress: slice 1, `testdata/fixture.json` written; Toebes's PDF of it to come.
+**Status:** In progress: slice 1 done but for the owner's visual check; slice 2 next.
 **Related:** `CLAUDE.md` ("Hard rule: test content is confidential"), Backlog in
 [README.md](README.md)
 
@@ -26,7 +26,7 @@ the point of the rule.
 ## How the export gets made
 
 **Recommended: the owner builds it in toebes.com** from the list below, and exports both the JSON
-and Toebes's PDF into `testdata/` (`testdata/fixture.json`, `testdata/fixture.pdf`). Why:
+and Toebes's PDF into `testdata/` (`testdata/0000.json`, `testdata/0000.pdf`). Why:
 
 - Toebes fills fields at random that we can't fake faithfully by hand (`replacement` for random
   alphabets, homophonic `randomSlot`, Baconian `words`, cryptarithm `mapping`). A hand-written
@@ -89,9 +89,9 @@ Baconian A/B sets with formatting); 2026-season-only kinds (affine, K2), which a
   `alphabetDest[i]`, Baconian words carry the plaintext's punctuation (one has a no-break space),
   homophonic `randomSlot` has one entry per letter. The cryptarithm is SEND + MORE = MONEY, answer
   DRONES.
-- **The owner imports it into toebes.com** to make Toebes's PDF (`testdata/fixture.pdf`), which
+- **The owner imports it into toebes.com** to make Toebes's PDF (`testdata/0000.pdf`), which
   shows whether Toebes reads our JSON as we do, and lets `check-reference` run on it. If the owner
-  fixes anything in Toebes, Toebes's re-export replaces `fixture.json`.
+  fixes anything in Toebes, Toebes's re-export replaces `0000.json`.
 - First run: all 20 questions take their own renderer (none legacy); the paper is 11 pages, the key
   4, the leak check passes, the key marks ★ on 4 and zero errors on 19.
 
@@ -106,7 +106,7 @@ the decode homophonic has three hint letters; the cryptarithm names its values.
 Left on purpose, since fixing them would drop a corner case: fewer than 22 questions, and
 Division B warnings (no misspelled aristocrat, no cryptanalysis, no decode homophonic). Division B
 is what puts the cryptarithm on the key's zero-error path. The owner fixes the rest by hand in
-Toebes, and Toebes's re-export then replaces `fixture.json`.
+Toebes, and Toebes's re-export then replaces `0000.json`.
 
 ## Decisions — 2026-11-16 (owner: length and level)
 
@@ -123,3 +123,16 @@ Toebes, and Toebes's re-export then replaces `fixture.json`.
   now spelled correctly.
 - **Cryptarithm values in the question:** one group of digits per answer word, groups separated by
   spaces (e.g. `782 80959 1567`), as real tests print them. Both answers now have several words.
+
+## Decisions — 2026-11-16 (Toebes's PDF; names)
+
+- **Four-digit names** (owner): `testdata/0000.json` and Toebes's PDF of it, `testdata/0000.pdf`
+  (committed; `.gitignore` excepts 4-digit PDFs in `testdata/`). Real tests have 3 digits, so a
+  fixture can't overwrite one.
+- **`check-reference` passes on `0000`**, with the symbol Baconians (8, 9) left to check by eye:
+  Toebes prints their symbols as images.
+- **Toebes replaces any Baconian word that isn't on its own list**, even one that fits its
+  letter's code. Our first words came from a general word list, and Toebes printed its own. Question 7
+  now stores the words Toebes printed (some are two words joined by a no-break space, e.g.
+  "A DEAR"). See the Backlog item on Toebes's fallback word.
+- `make visualcheck 0000` opens our paper, Toebes's paper and our key.

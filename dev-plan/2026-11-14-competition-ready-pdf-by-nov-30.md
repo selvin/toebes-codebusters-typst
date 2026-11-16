@@ -1226,3 +1226,48 @@ baconian.
 
 **Owner check (2026-11-15):** verified on paper: both aristocrats' last lines, room under every
 aristocrat's last line, and the atbash's closing word (a good stylistic change).
+
+## Cryptarithm detail — 2026-11-15
+
+Worklist item 10 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)),
+session F: the last legacy kind moves to `prepare`, then gets Toebes's layout.
+
+Source: Toebes's `app/codebusters/ciphercryptarithmencoder.ts` (`genQuestion` → `buildSolver`,
+`getSolValues`, `getOutputMapping`) and `parseCryptarithm` in `app/common/cryptarithm.ts`.
+
+**Export fields** (lengths only): `cipherString` is the equation (`A+B=C`, which Toebes prints:
+not an answer), `soltext` the answer words, `mapping` letter → digit (the key), `validmapping`.
+The question text holds the values to decode as well.
+
+**What a student gets**, from `buildSolver(parsed, false)` and Toebes's PDF:
+- **Values to decode for solution:** the digits of `soltext` (each letter through `mapping`), a
+  digit per box: digits in a row, an empty box under each, words apart (`getSolValues`).
+- **Cryptarithm formula:** grade-school addition, right-aligned: one operand per line, `+` before
+  the last one, a rule, then the result. No `=`.
+- **Work grid**, beside both: a header row 0–9, then one row per letter of the equation
+  (alphabetical), cells empty.
+
+```jsonc
+{ "kind": "cryptarithm",
+  "operands": ["SEND", "MORE"],   // top to bottom
+  "result": "MONEY",
+  "values": ["9567", "1085"],     // digits to decode, one string per answer word
+  "letters": ["D", "E", …] }      // work grid rows: the equation's letters, sorted
+```
+
+No `soltext`, `mapping` or letter-to-digit pairing. `letters` comes from the equation, not from
+`mapping`'s keys (the same set). Only addition (`A+B=C`, `A+B+C=D`) is prepared; any other form
+(subtraction, multiplication, division, roots), an invalid mapping, or a `soltext` letter missing
+from `mapping` (Toebes would print it as is) stays legacy until a test has one.
+
+**Checking:** `check-reference` finds the values (`values` joined by spaces) and each equation word
+(letters only) in Toebes's PDF text. A letters-only scan of our PDF finds no `soltext`.
+
+**Layout (step 2), as close to Toebes's as possible:** values and formula on the left, the work
+grid on the right, on the question's half page. Values: digits over individual boxes styled like
+our others. The formula's `+` sits on the last operand's line, left of it (Toebes's sits lower).
+
+### Decided (owner)
+
+- **Room to write a digit under each equation letter**, no boxes: letters spaced wider, with about
+  a line of space under each. Chosen over a box under each letter and over Toebes's tight spacing.

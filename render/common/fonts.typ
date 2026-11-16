@@ -7,6 +7,8 @@
 #let body-font = "Noto Serif"
 #let title-font = "Noto Sans"
 #let mono-font = "Noto Sans Mono"
+// The answer key's answers: Typst's default serif, built into Typst (owner, 2026-11-16)
+#let answer-font = "Libertinus Serif"
 
 #let body-size = 10pt
 

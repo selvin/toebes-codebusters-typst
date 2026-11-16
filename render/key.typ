@@ -14,7 +14,7 @@
 #let key-red = rgb("#d00000")
 #let key-blue = rgb("#1c3f94") // ink blue, for the question numbers
 #let row-rule = 0.5pt + box-stroke-color
-#let stripe = luma(80%) // 20% black, behind odd-numbered questions
+#let stripe = luma(90%) // 10% black, behind odd-numbered questions
 // Roomy rows: one table that flows, so page 1 fills first and page 2 takes what's left
 #let row-inset = 10pt
 
@@ -29,10 +29,23 @@
     text(font: title-font, key.test.title),
     align(right, answer-key-label),
   ),
-  footer: context align(center)[Page #counter(page).get().first() of #counter(page).final().first()],
+  // Covers aren't counted: the table's pages run 1 to the page of <key-end>
+  footer: context align(center)[Page #counter(page).get().first() of #counter(page).at(<key-end>).first()],
 )
 #set document(title: key.test.title + " — Answer key")
 #set text(font: body-font, size: key-size)
+
+// Front and back cover (the same page twice), so the sheets travel face down: ANSWER KEY in red as
+// the title, then the test's name and division, centred on the page. The export has no date.
+#let cover = page(header: none, footer: none, align(center + horizon, {
+  text(font: title-font, size: 48pt, weight: "bold", fill: key-red)[ANSWER KEY]
+  v(1.5em)
+  text(font: title-font, size: 24pt, key.test.title)
+  if key.test.division != "" {
+    v(0.5em)
+    text(font: title-font, size: 16pt, fill: box-stroke-color)[Division #key.test.division]
+  }
+}))
 
 // The timed question is T
 #let label(a) = if a.timed { "T" } else { str(a.number) }
@@ -47,6 +60,9 @@
   let body = if a.zeroErrors { upper(a.answer) } else { a.answer }
   if a.kind == "cryptarithm" { text(font: mono-font, body) } else { text(font: answer-font, body) }
 }
+
+#cover
+#counter(page).update(1)
 
 // Text measured cap height to baseline, so the ★ and the mono answers don't make their rows taller
 #{
@@ -70,3 +86,5 @@
       .flatten(),
   )
 }
+#metadata(none) <key-end>
+#cover

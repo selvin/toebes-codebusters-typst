@@ -83,6 +83,7 @@ The owner supplied a Toebes answer key from another test as the example
 - **Not one page.** At most **18 rows a page** (a test has at most 35 questions plus the timed
   one), at a slightly larger size, so around 7 answers may take two lines.
 - No points column and no cover pages for now; the header says ANSWER KEY and gives the test title.
+  (Covers added later the same day; see below.)
 - Column order: ★, letters, number, answer.
 
 ## Result — slice 1 (2026-11-16)
@@ -118,3 +119,12 @@ Supersedes the page split and the groups above.
   rows than page 2: `001` is 18 + 12, `000` 18 + 3. Made-up keys of 31 and 32 rows fit on 2 pages;
   the maximum (T + 35) takes 3.
 - The ★ sits in a cap-height box, so ★ rows are no taller than the others.
+
+## Decisions — 2026-11-16 (covers, owner)
+
+- Odd-row shading down to **10% black** (20% was too noticeable).
+- **Front and back cover**, the same page twice: ANSWER KEY as the title, large and red, then the
+  test's name and its division, centred on the page both ways. The footer's page numbers skip the
+  covers ("Page 1 of 2" on the table's pages).
+- **No date:** Toebes's export holds none (checked both tests' `TEST.0`). If one is wanted, it
+  needs its own input (e.g. a `compile.sh` option); not built.

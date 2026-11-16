@@ -13,7 +13,13 @@ the cipher logic and writes `build/questions.json` (nothing a student may not se
 [2026-11-16-answer-key.md](2026-11-16-answer-key.md)). Every compile fails if the paper prints a
 run of plaintext. Both real tests in `competitiondata/` render, verified by the owner.
 
-**Next:** a committed test fixture ([2026-11-16-test-fixture.md](2026-11-16-test-fixture.md)).
+**Scope and order (owner, 2026-11-16):** Divisions A and B only; **Division C is out of scope**.
+Production on codebusters.site comes first, in this order: the team's own scorecard reports in
+Typst (Backlog, first item), then the question-paper tool. The 2026–27 rules gaps
+([2026-11-16-rules-summary-2026-27.md](2026-11-16-rules-summary-2026-27.md)) are worked on after.
+
+**Next:** finish the test fixture ([2026-11-16-test-fixture.md](2026-11-16-test-fixture.md)): the
+owner's visual check of `0000`, then slice 2.
 
 ## Index
 
@@ -29,13 +35,13 @@ run of plaintext. Both real tests in `competitiondata/` render, verified by the 
 
 ## Backlog
 
-- **Typst reports in codebusters-site.** A per-team report and an overall ranking report, made with
+- **Typst reports in codebusters-site** (first, per the order above). A per-team report and an overall ranking report, made with
   Typst from the scores graders already enter there. Likely the first way Typst enters the
   codebusters-site codebase: inside an existing utility, rather than as a new one. Its own design
   doc when picked up.
 - **Question-paper tool on codebusters.site**: upload a Toebes JSON, get the question paper.
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
-  After the November deadline.
+  After the reports.
 - **Cover page for the question paper** (the answer key has its own).
 - **Questions that flow, three on a page when they fit** (worklist item 11, parked 2026-11-15), and
   with it: a question that moves to the next page takes its top slot. Two a page is already the
@@ -45,9 +51,8 @@ run of plaintext. Both real tests in `competitiondata/` render, verified by the 
   it. Only 2027-season types and later are supported (owner): affine and K2 alphabets are out.
 - **Baconian words: Toebes's fallback word** (owner, 2026-11-15; not for the 11-30 deadline). When a
   stored word no longer fits its letter's A/B pattern, Toebes prints the first fitting word from
-  its fixed list (`app/common/fiveletterwords.ts` in `toebes/ciphers`, BSD-3); we fail loudly,
+  its fixed list (`app/common/fiveletterwords.ts` in `toebes/ciphers`, BSD-3). It also does this for a
+  word that fits but isn't on its list (seen on the fixture, 2026-11-16). We fail loudly on a misfit,
   which is fine for now. Later: fetch the list from its raw GitHub URL periodically (keeping
   Toebes's license notice) so `prepare` can match. See "Baconian detail" in the competition-ready
   plan.
-- **A committed test fixture**: a made-up export in `testdata/`, so the full pipeline can be tested
-  in the repo. Real tests never go in git, even after they are held (`CLAUDE.md`, "Hard rule").

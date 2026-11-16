@@ -8,17 +8,8 @@
 
 #let cryptarithm-label(body) = text(font: title-font, size: 1.3em, body)
 
-// One digit to decode over an empty answer box, sized like the dual-box kinds' (atbash, caesar)
-#let cryptarithm-value-box(digit) = box(stack(
-  box(width: 1.2em, height: 1.8em, stroke: 0.25pt + black, align(center + horizon, digit)),
-  box(width: 1.2em, height: 1.8em, stroke: 0.25pt + black),
-))
-
-// The values to decode: a word's boxes touch, words sit apart
-#let render-cryptarithm-values(values) = {
-  set text(font: mono-font, weight: "bold", size: 12pt)
-  values.map(v => v.clusters().map(cryptarithm-value-box).join(h(-0.25pt))).join(h(1.2em))
-}
+// The values to decode: each digit over an empty box, as the dual-box kinds' (atbash, caesar)
+#let render-cryptarithm-values(values) = render-dual-box-text(values.join(" "), box-digits: true)
 
 // The equation as grade-school addition: operands right-aligned, `+` on the last operand's line,
 // a rule, then the result. Each letter gets room under it to pencil in its digit.
@@ -61,9 +52,7 @@
       cryptarithm-label[Values to decode for solution]
       v(0.4em)
       render-cryptarithm-values(q.values)
-      v(0.8em)
       line(length: 70%, stroke: 0.5pt + gray)
-      v(0.4em)
       cryptarithm-label[Cryptarithm formula]
       v(0.4em)
       render-cryptarithm-formula(q.operands, q.result)

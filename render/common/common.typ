@@ -326,10 +326,15 @@
   (code >= 65 and code <= 90) or (code >= 97 and code <= 122)
 }
 
+// Whether a character gets dual boxes: letters, and digits too with box-digits (cryptarithm values)
+#let is-dual-boxed(char, box-digits) = {
+  is-alpha(char) or (box-digits and char.match(regex("^[0-9]$")) != none)
+}
+
 // Helper function to render a single character in dual-box format
 // Top box: ciphertext, Bottom box: empty for student to fill in
-#let render-char-dual-box(char) = {
-  if is-alpha(char) {
+#let render-char-dual-box(char, box-digits: false) = {
+  if is-dual-boxed(char, box-digits) {
     // For alphabetic characters: render two stacked boxes
     box(
       stack(
@@ -387,7 +392,8 @@
 }
 
 // Render already-encoded text in dual-box format: each letter boxed, an empty box below it
-#let render-dual-box-text(encodedString, max-chars: 35) = {
+// box-digits: box digits like letters (an atbash or caesar keeps a plaintext digit unboxed)
+#let render-dual-box-text(encodedString, max-chars: 35, box-digits: false) = {
   // Use smart-line-break for the cipher text
   let lines = smart-line-break(encodedString, max-chars: max-chars)
 
@@ -400,9 +406,9 @@
         #{
           let chars = line.clusters()
           for (i, char) in chars.enumerate() [
-            #render-char-dual-box(char)
-            // Add negative spacing between consecutive alphabetic characters
-            #if i < chars.len() - 1 and is-alpha(char) and is-alpha(chars.at(i + 1)) [
+            #render-char-dual-box(char, box-digits: box-digits)
+            // Add negative spacing between consecutive boxed characters
+            #if i < chars.len() - 1 and is-dual-boxed(char, box-digits) and is-dual-boxed(chars.at(i + 1), box-digits) [
               #h(-0.45em)
             ]
           ]

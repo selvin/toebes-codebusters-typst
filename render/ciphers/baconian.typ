@@ -98,7 +98,7 @@
   let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".clusters()
   table(
     columns: (auto,) + (1fr,) * letters.len(),
-    stroke: 0.5pt + black,
+    stroke: 0.5pt + box-stroke-color,
     align: center + horizon,
     [], ..letters.map(label),
     label[Replacement], ..letters.map(_ => v(1.5em)),

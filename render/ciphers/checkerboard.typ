@@ -9,7 +9,7 @@
 #let render-checkerboard-grid() = table(
   columns: (3.75em,) * 6,
   rows: 2.25em,
-  stroke: 0.5pt + black,
+  stroke: 0.5pt + box-stroke-color,
   ..([],) * 36
 )
 

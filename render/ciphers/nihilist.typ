@@ -36,7 +36,7 @@
   table(
     columns: (2.25em,) + (4em,) * 5,
     rows: 2.25em,
-    stroke: 0.5pt + black,
+    stroke: 0.5pt + box-stroke-color,
     align: center + horizon,
     [], ..range(1, 6).map(header),
     ..range(1, 6).map(r => (header(r),) + ([],) * 5).flatten()

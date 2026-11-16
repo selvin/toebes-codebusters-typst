@@ -28,7 +28,7 @@
 // Header: test title, and a team number blank with the division letter pre-filled (as Toebes)
 #let team-number-blank = box(
   width: 2.5cm,
-  stroke: (bottom: 0.5pt),
+  stroke: (bottom: 0.5pt + box-stroke-color),
   outset: (bottom: 2pt),
   align(left, h(2pt) + prepared.test.division),
 )

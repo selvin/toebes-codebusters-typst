@@ -37,7 +37,7 @@
     columns: (1.7em,) + (1.7em,) * 10,
     rows: (1.7em,) + (2.2em,) * letters.len(),
     align: center + horizon,
-    stroke: (x, y) => if x > 0 and y > 0 { 0.5pt + black },
+    stroke: (x, y) => if x > 0 and y > 0 { 0.5pt + box-stroke-color },
     [], ..range(10).map(header),
     ..letters.map(l => (header(l),) + ([],) * 10).flatten(),
   )

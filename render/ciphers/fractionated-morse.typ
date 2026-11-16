@@ -45,7 +45,7 @@
     columns: (auto,) + (1fr,) * 26,
     align: center + horizon,
     inset: 2pt,
-    stroke: 0.5pt + black,
+    stroke: 0.5pt + box-stroke-color,
     head[Replacement], ..([],) * 26,
     head[Morse fraction],
     ..fm-fractions.map(f => text(size: 7pt, f.clusters().map(c => symbol.at(c)).join(linebreak()))),

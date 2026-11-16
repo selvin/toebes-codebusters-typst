@@ -23,7 +23,7 @@
     rows: 1.6em,
     align: center + horizon,
     inset: 2pt,
-    stroke: if header == "numbers" { 0.5pt + black } else { (x, y) => if y > 0 { 0.5pt + black } },
+    stroke: if header == "numbers" { 0.5pt + box-stroke-color } else { (x, y) => if y > 0 { 0.5pt + box-stroke-color } },
     ..heads.map(h => text(font: mono-font, size: 7pt, weight: "bold", h)),
     ..([],) * 100
   )

@@ -66,7 +66,7 @@
   if keyType == "K1" {
     table(
       columns: columns,
-      stroke: 0.5pt + black,
+      stroke: 0.5pt + box-stroke-color,
       align: center + horizon,
 
       // Row 1: K1 + alphabets
@@ -81,7 +81,7 @@
   } else if keyType == "K2" {
     table(
       columns: columns,
-      stroke: 0.5pt + black,
+      stroke: 0.5pt + box-stroke-color,
       align: center + horizon,
 
       // Row 1: Replacement + empty boxes
@@ -96,7 +96,7 @@
   } else { // Random
     table(
       columns: columns,
-      stroke: 0.5pt + black,
+      stroke: 0.5pt + box-stroke-color,
       align: center + horizon,
 
       // Row 1: Empty key + alphabets (Random is understood)

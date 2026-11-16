@@ -51,6 +51,6 @@
   })
   // Work space down to the answer line, 3em above the bottom of the question's half page
   v(1fr)
-  text(font: mono-font, weight: "bold", size: 14pt)[Answer: #box(width: 1fr, line(length: 100%))]
+  text(font: mono-font, weight: "bold", size: 14pt)[Answer: #box(width: 1fr, line(length: 100%, stroke: box-stroke-color))]
   v(3em)
 }

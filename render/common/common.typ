@@ -5,6 +5,9 @@
 
 #import "fonts.typ": *
 
+// Outlines of answer boxes, tables and write-in lines: 60% black, lighter than the text
+#let box-stroke-color = luma(40%)
+
 // A monospace run inside question text (a crib or hint): bold, at the size of the text around it
 // (not raw, which Typst sets at 0.8em; the two fonts' cap heights match)
 #let mono-run(body) = text(font: mono-font, weight: "bold", body)
@@ -103,7 +106,7 @@
     })
   } else if slot == "timed" {
     // A page of its own, framed by a double outline around the whole text area so it stands out
-    let rule = 0.75pt + black
+    let rule = 0.75pt + box-stroke-color
     block(width: 100%, height: 100%, stroke: rule, inset: 2pt,
       block(width: 100%, height: 100%, stroke: rule, inset: (x: 0.5cm, y: 0.4cm), content))
   } else {
@@ -343,7 +346,7 @@
         // Top box: ciphertext
         box(
           inset: 0.5em,
-          stroke: 0.25pt + black,
+          stroke: 0.25pt + box-stroke-color,
           width: 1.2em,
           height: 1.8em,
           align(center + horizon)[#text(char)]
@@ -351,7 +354,7 @@
         // Bottom box: empty for student to fill in
         box(
           inset: 0.5em,
-          stroke: 0.25pt + black,
+          stroke: 0.25pt + box-stroke-color,
           width: 1.2em,
           height: 1.8em,
           []

@@ -36,8 +36,8 @@ never becomes public (owner, 2026-11-14).
   name, the tournament, its division, or which cipher sits at which question number. Refer to it
   only as `competitiondata/001`. This applies to `.gitignore` too.
 - Docs may name cipher *types* the work supports, but not tie them to a test's questions.
-- `competitiondata/` is for real competitions only. Safe fixtures (made-up quotes only, never a
-  real test, held or not) can go in a tracked `testdata/` folder when one is needed.
+- `competitiondata/` is for real competitions only. Safe fixtures (published quotes, e.g.
+  from Goodreads, never from a real test, held or not) can go in a tracked `testdata/` folder.
 
 **The question-paper template never receives answers.** `prepare` (TS) gives the question-paper
 Typst template only what a student may see: no `cipherString`, no keys, no plaintext. Answers go to

@@ -13,7 +13,7 @@ the cipher logic and writes `build/questions.json` (nothing a student may not se
 [2026-11-16-answer-key.md](2026-11-16-answer-key.md)). Every compile fails if the paper prints a
 run of plaintext. Both real tests in `competitiondata/` render, verified by the owner.
 
-**Next:** nothing active. Pick from the Backlog with the owner.
+**Next:** a committed test fixture ([2026-11-16-test-fixture.md](2026-11-16-test-fixture.md)).
 
 ## Index
 
@@ -24,6 +24,7 @@ run of plaintext. Both real tests in `competitiondata/` render, verified by the 
 | 2026-11-14 | [Move the Typst code under `render/`](2026-11-14-render-folder.md) | Done |
 | 2026-11-15 | [Render pass: UI worklist](2026-11-15-render-pass-ui-worklist.md) | Resolved |
 | 2026-11-16 | [Answer key](2026-11-16-answer-key.md) | Resolved |
+| 2026-11-16 | [A committed test fixture](2026-11-16-test-fixture.md) | In progress |
 
 ## Backlog
 

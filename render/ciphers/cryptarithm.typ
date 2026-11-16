@@ -9,7 +9,7 @@
 #let cryptarithm-label(body) = text(font: title-font, size: 1.3em, body)
 
 // The values to decode: each digit over an empty box, as the dual-box kinds' (atbash, caesar)
-#let render-cryptarithm-values(values) = render-dual-box-text(values.join(" "), box-digits: true)
+#let render-cryptarithm-values(values) = render-dual-box-text(values.join(" "), toebes-width: 37, box-digits: true)
 
 // The equation as grade-school addition: operands right-aligned, `+` on the last operand's line,
 // a rule, then the result. Each letter gets room under it to pencil in its digit.

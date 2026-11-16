@@ -1610,3 +1610,30 @@ gone; the legacy aristocrat path breaks at 53 too.
 
 **Owner check (2026-11-15):** verified on screen, both tests: lines break as Toebes's, and the
 shrunk box questions look good. Effort closed.
+
+## Launch gate: leak check — 2026-11-16
+
+The first launch gate: the question paper's text contains no plaintext from the export.
+
+### What counts as a leak
+
+A run of **15 or more consecutive plaintext letters** (letters only, accents stripped, case
+ignored, across word boundaries) found in the letters-only text of our PDF. Stricter than "a whole
+sentence": half a sentence leaking still fails.
+
+Why 15: measured on both tests (2026-11-16), the longest plaintext run that turns up on our paper
+is 11 letters (a crib, which the question text prints on purpose); everything else is 4–9, chance
+matches against the rest of the page. 15 sits clear of both, and a leaked quote is longer.
+
+**Cryptarithms are skipped**: their `cipherString` is the equation, which the paper prints. Their
+answer (`soltext`) is short words; checking it is later work if wanted.
+
+### Where it lives and how it runs
+
+- `prepare/src/leaks.ts`: `findLeaks(plaintext, paperText, minRun)`, unit-tested on made-up
+  strings.
+- `prepare/src/check-leaks.ts <export.json> <paper.txt>`: one line per leaking question (number
+  and kind only, never text), exit 1 on any leak. Same output rule as `check-reference`.
+- `compile.sh` runs it on every compile: `pdftotext` of the PDF it just made (no `-layout`) into
+  `build/`, then the check; a leak fails the build. Owner's choice (2026-11-16): every compile, not
+  a separate command.

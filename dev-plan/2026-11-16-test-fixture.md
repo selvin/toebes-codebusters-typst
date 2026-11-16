@@ -38,7 +38,8 @@ drifting from what Toebes really writes.
 
 ## Questions (each one hits something)
 
-Division **B**, so the cryptarithm takes the zero-error path in the key.
+Division **B**, state level (`bstate`): crypt questions are allowed there, and the cryptarithm
+takes the zero-error path in the key.
 
 | # | Kind / settings | Quote (author) | Hits |
 |---|-----------------|----------------|------|
@@ -62,6 +63,11 @@ Division **B**, so the cryptarithm takes the zero-error path in the key.
 | 17 | Homophonic, decode | "If you tell the truth, you don't have to remember anything." (Twain) | numbers header |
 | 18 | Homophonic, crypt | "A friend is someone who knows all about you and still loves you." (Hubbard) | letters header |
 | 19 | Cryptarithm | (Toebes generates the words) | `soltext` answer, Division B zero errors |
+| 20 | Aristocrat, random | "Be the change that you wish to see in the world." (Gandhi) | repeat |
+| 21 | Aristocrat, K1 | "A room without books is like a body without a soul." (Cicero) | repeat |
+| 22 | Patristocrat, K1 | "The saddest aspect of life right now is that science gathers knowledge faster than society gathers wisdom." (Asimov) | repeat |
+| 23 | Complete columnar | "To live is the rarest thing in the world. Most people exist, that is all." (Wilde) | repeat, 7 columns |
+| 24 | Cryptarithm | BASE + BALL = GAMES, answer GAMBLES | repeat |
 
 Left out on purpose: inputs we already fail on loudly (Morse with digits or an XXX triple,
 Baconian A/B sets with formatting); 2026-season-only kinds (affine, K2), which aren't supported.
@@ -101,3 +107,12 @@ Left on purpose, since fixing them would drop a corner case: fewer than 22 quest
 Division B warnings (no misspelled aristocrat, no cryptanalysis, no decode homophonic). Division B
 is what puts the cryptarithm on the key's zero-error path. The owner fixes the rest by hand in
 Toebes, and Toebes's re-export then replaces `fixture.json`.
+
+## Decisions — 2026-11-16 (owner: length and level)
+
+- **A full-length test: the timed question plus 24.** Top teams now solve about 24 questions, so a
+  shorter test leaves several first places with no tiebreak; real tests repeat question types.
+  Added questions 20–24 (two aristocrats, a patristocrat, a complete columnar, a cryptarithm).
+- **State level, Division B.** Crypt questions are allowed at state level, and the cryptarithm is
+  allowed in Division B, so both stay.
+- First run: 25 questions, none legacy; paper 13 pages, key 4; leak check passes.

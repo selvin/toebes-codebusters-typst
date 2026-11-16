@@ -1591,3 +1591,19 @@ One kind per commit:
 
 Each: check against Toebes's letters per line (scratch script), page counts (16 for `001`, 11 for
 `000`), `check-reference`, and a page-image diff to list the pages that moved.
+
+### Result
+
+Done, pending the owner's check. `toebes-line-break` in `render/common/common.typ` follows
+`makeReplacement` (and porta's letters-only check); a scratch run over every question of both tests
+that uses it gives Toebes's letters per line in all 26. `render-dual-box-text(text, width)` breaks
+with it and, inside `layout`, shrinks a question's boxes only when its widest line is wider than
+the text width (everything but the 4pt side insets scales with the size). `smart-line-break` is
+gone; the legacy aristocrat path breaks at 53 too.
+
+- Aristocrat family at 53: patristocrats 8 blocks a line; several aristocrats move a word or two.
+- Atbash and caesar at 37: one atbash and both caesars in `001` shrink a little; `000`'s stay 12pt.
+- Porta at 40: two lines of 8 blocks in both tests (was 3).
+- Cryptarithm values at 37: no change.
+- Pages that changed: `000` 4, 5, 10; `001` 2, 3, 4, 5, 6, 11, 12, 14, 16. Page counts unchanged
+  (11, 16); `check-reference` passes for both.

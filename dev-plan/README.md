@@ -35,7 +35,8 @@ space; columnar five blocks a line, back on half a page) is done and verified. S
 Toebes's layout) is done and verified. Session F2 (cryptarithm values in the atbash
 box; outlines at 60% black) is done and verified. Session H (ciphertext in SemiBold) is done and verified. D2 (space by kind) is parked: two
 questions a page is already the fewest pages. Session E (fractionated morse table, its lines
-across the full width, filling the slot) is done and verified. Next is G (line breaking):
+across the full width, filling the slot) is done and verified. Session G (line breaking: Toebes's
+rule; box kinds shrink to fit) is done, pending the owner's check; it closes step 2's worklist:
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index

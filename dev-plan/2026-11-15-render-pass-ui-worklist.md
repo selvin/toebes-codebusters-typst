@@ -24,7 +24,9 @@ Items are numbered for reference only; the sessions below set the order.
    wraps at 35 characters where Toebes fits more blocks per line; the patristocrat fits nine
    blocks a line where Toebes fits eight; a closing period can wrap onto a line of its own with its
    answer row (atbash, caesar, from `smart-line-break`; fixed 2026-11-15: a word ending a sentence
-   now wraps whole when it doesn't fit). Re-check each with Noto Sans Mono.
+   now wraps whole when it doesn't fit). Re-check each with Noto Sans Mono. **Done 2026-11-15,
+   pending the owner's check:** Toebes's rule in every kind that used `smart-line-break`; box
+   kinds shrink to fit (plan: "Render pass: line breaking").
 
 ## Question-dependent (step 3)
 

@@ -9,6 +9,7 @@ set -e
 EXPORT="${1:-input.json}"
 OUTPUT="${2:-main.pdf}"
 QUESTIONS="build/questions.json"
+ANSWERS="build/answers.json"
 
 echo "Toebes CodeBusters Typst Compiler"
 echo "=================================="
@@ -33,7 +34,7 @@ if [ ! -d prepare/node_modules ]; then
 fi
 
 echo "Preparing $EXPORT..."
-prepare/node_modules/.bin/tsx prepare/src/cli.ts "$EXPORT" "$QUESTIONS"
+prepare/node_modules/.bin/tsx prepare/src/cli.ts "$EXPORT" "$QUESTIONS" "$ANSWERS"
 
 echo "Compiling render/main.typ..."
 typst compile --root . --font-path fonts --ignore-system-fonts --input "questions=/$QUESTIONS" --input "export=/$EXPORT" render/main.typ "$OUTPUT"

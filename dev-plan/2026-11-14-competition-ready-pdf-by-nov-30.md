@@ -148,7 +148,7 @@ prepare/
   src/html.ts         — question HTML → paragraphs of runs
   src/aristocrat.ts   — encode, frequencies
   src/questions.ts    — order, number, dispatch by cipherType
-  src/cli.ts          — export path in, questions.json path out
+  src/cli.ts          — export path in, questions.json and answers.json paths out
   src/check-reference.ts — compares our ciphertext with `pdftotext -layout` of Toebes's PDF
   test/               — unit tests on made-up fixtures only
 ```

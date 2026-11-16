@@ -18,8 +18,10 @@ Production on codebusters.site comes first, in this order: the team's own scorec
 Typst (Backlog, first item), then the question-paper tool. The 2026–27 rules gaps
 ([2026-11-16-rules-summary-2026-27.md](2026-11-16-rules-summary-2026-27.md)) are worked on after.
 
-**Next:** finish the test fixture ([2026-11-16-test-fixture.md](2026-11-16-test-fixture.md)): the
-owner's visual check of `0000`, then slice 2.
+**Next: work moves to the codebusters-site repo** (`~/workspace/codebusters-site`, plan
+`plan/2026-11-16-Typst-Reports-and-Paper-Tool.md`): Typst reports first. Back here later: slice 2
+of the test fixture ([2026-11-16-test-fixture.md](2026-11-16-test-fixture.md)), a one-command check
+of the pipeline on `testdata/0000`.
 
 ## Index
 

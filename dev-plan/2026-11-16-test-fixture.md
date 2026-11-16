@@ -1,7 +1,8 @@
 # A committed test fixture
 
 **Date:** 2026-11-16
-**Status:** In progress: slice 1 done but for the owner's visual check; slice 2 next.
+**Status:** Slice 1 done (owner checked `0000` by eye, 2026-11-16, Baconians 8 and 9 included).
+Slice 2 waits until the codebusters-site work below is done.
 **Related:** `CLAUDE.md` ("Hard rule: test content is confidential"), Backlog in
 [README.md](README.md)
 

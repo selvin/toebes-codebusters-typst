@@ -1205,3 +1205,12 @@ the block moved there, and settle on that). The block is as tall as that room, o
 if taller (then it moves). Page counts back to 16 for `001` and 11 for `000`, and nothing moves in
 either. Against the build before the whole-page change, only the columnar ciphertext lines differ.
 `check-reference` passes for `000`; `001` reports only its known accent-symbol baconian.
+
+**Owner check (2026-11-15):** the half-page columnar verified on paper, both tests.
+
+**Found in passing (owner, 2026-11-15), fixed as its own commit:** in two of `000`'s aristocrats,
+the last line sits right under the one above it, with no room to write. `smart-line-break` ends a
+line at a period without checking that the word before it fits: a line ending in a sentence can run
+past `max-chars` (57 of 55), and Typst wraps it at normal line spacing. Fix: the period's word gets
+the same fit check as any other word. Shared with the dual-box kinds (atbash, caesar), which get the
+same fix.

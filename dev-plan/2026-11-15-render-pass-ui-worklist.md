@@ -34,7 +34,7 @@ Items are numbered for reference only; the sessions below set the order.
 6. ✅ **Checkerboard: same as 5.** Table 40% larger, still beside only three ciphertext lines.
 7. ✅ **Baconian (words): about 1.5 lines of writing space under each line**; students write larger
    than the printed font.
-8. **Complete columnar: 5 groups of 5 letters per line**, which leaves a clear area on the right
+8. ✅ **Complete columnar: 5 groups of 5 letters per line**, which leaves a clear area on the right
    for one full columnar attempt (fewer columns, more rows), and the space below the ciphertext for
    a second attempt (more columns, fewer rows). Today two attempts can run into the "Answer:" line.
 9. **Fractionated morse table**, following the earlier notes ("Decisions — 2026-11-14

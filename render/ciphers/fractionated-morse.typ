@@ -52,13 +52,19 @@
 }
 
 // Render a fractionated morse prepared by prepare/ (questions.json); never sees plaintext
-// lines: lines → cipher letters, centered and spaced apart, as in Toebes's PDF
+// lines: lines → cipher letters, spaced apart; the lines left-aligned in a block centered as a
+// whole, as in Toebes's PDF
 #let render-fractionated-morse-prepared(q) = {
   prepared-heading(q)
 
-  for line in q.lines {
-    block(width: 100%, below: 2.4em, align(center, text(font: mono-font, weight: cipher-weight, size: 13pt,
-      line.join(h(1em)))))
-  }
+  align(center, block(below: 0pt, {
+    set align(left)
+    set text(font: mono-font, weight: cipher-weight, size: 14.5pt)
+    // Room under each line to write the morse, the last one included (above the table): 24pt, as
+    // before the letters grew
+    for line in q.lines {
+      block(above: 0pt, below: 0pt, inset: (bottom: 1.65em), line.join(h(1.3em)))
+    }
+  }))
   render-fm-table()
 }

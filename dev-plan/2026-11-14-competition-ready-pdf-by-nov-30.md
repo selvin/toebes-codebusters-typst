@@ -1356,3 +1356,34 @@ Done and verified by the owner.
 - Page counts unchanged (16 for `001`, 11 for `000`). `check-reference` passes for both.
 
 **Owner check (2026-11-15):** verified on paper, both tests.
+
+## Render pass: ciphertext weight — 2026-11-15
+
+Worklist item 14 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)),
+session H: the ciphertext a tad less bold than the usual bold, for legibility and to save ink.
+
+### What the references do
+
+- **Toebes's PDF:** Courier New Bold for ciphertext; Courier has no weight between regular and bold.
+- **Ours:** `mono-font` at `weight: "bold"` (700) in about 30 places. `fonts/` bundles Noto Sans
+  Mono Regular and Bold only. Noto ships static Medium (500) and SemiBold (600) from the same
+  release (`notofonts.github.io`, version 2.014; our Bold's file is byte-identical to theirs), OFL.
+- **Widths don't change with weight:** Noto Sans Mono is monospaced at every weight, so line breaks
+  and box widths stay as they are.
+
+### What we'll do
+
+1. Bundle `NotoSansMono-Medium.ttf` and `NotoSansMono-SemiBold.ttf` in `fonts/` (one gets dropped
+   once the owner picks).
+2. `cipher-weight` in `render/common/fonts.typ`, the one place that names the ciphertext weight,
+   used where the ciphertext is set: the aristocrat family's lines, the dual-box text (atbash,
+   caesar, porta, cryptarithm values), nihilist, checkerboard, homophonic, baconian (words),
+   columnar, fractionated morse, the cryptarithm formula.
+3. **Not ciphertext, so bold stays:** table labels and headers (K1, Frequency, Replacement, the
+   grid digits), the columnar "Answer:" label, cribs in question text (`mono-run`, `raw`). The
+   legacy renderers (no kind uses them) are left alone.
+4. Show the owner a sample of each candidate (500, 600, today's 700) to choose from.
+
+### Decided (owner)
+
+Pending: the weight, and whether labels and cribs follow it.

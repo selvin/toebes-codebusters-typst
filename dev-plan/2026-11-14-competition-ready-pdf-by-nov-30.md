@@ -1637,3 +1637,9 @@ answer (`soltext`) is short words; checking it is later work if wanted.
 - `compile.sh` runs it on every compile: `pdftotext` of the PDF it just made (no `-layout`) into
   `build/`, then the check; a leak fails the build. Owner's choice (2026-11-16): every compile, not
   a separate command.
+
+### Result
+
+Done. Both tests pass; page counts unchanged (11, 16). A planted 30-letter plaintext fragment in
+the paper text fails the check (exit 1, question number and kind only). This launch gate is met;
+the other (the owner prints a packet and reviews it on paper) remains.

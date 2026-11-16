@@ -3,7 +3,7 @@
 **Date:** 2026-11-14
 **Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
 2026-11-14; every cipher type in `competitiondata/001` followed the same day, and the owner verified
-the whole packet's logic on paper. Only cryptarithm is still legacy (no leak). Render pass step 1
+the whole packet's logic on paper. Cryptarithm, the last legacy kind, moved to TS on 2026-11-15. Render pass step 1
 (header and footer) done and verified. Typst code moved under `render/`. **Next:** step 2, question-independent formatting (see "Decisions —
 2026-11-14 (render pass order)").
 **Deadline:** 2026-11-30.
@@ -70,7 +70,7 @@ Types only; which question uses which stays out of the repo.
 | nihilistsub: decode, crypt | yes (TS) | done; matches reference |
 | compcolumnar: decode | yes (TS) | decode done; matches reference |
 | checkerboard: decode, crypt | yes (TS) | done; matches reference |
-| cryptarithm | no (shows formula only; no leak) | todo: Toebes's work grid |
+| cryptarithm: addition | yes (TS) | done; matches reference |
 | homophonic: decode, crypt | yes (TS) | done; matches reference |
 | fractionatedmorse: crypt | yes (TS) | done; matches reference |
 
@@ -1271,3 +1271,25 @@ our others. The formula's `+` sits on the last operand's line, left of it (Toebe
 
 - **Room to write a digit under each equation letter**, no boxes: letters spaced wider, with about
   a line of space under each. Chosen over a box under each letter and over Toebes's tight spacing.
+
+### Result
+
+Done, pending the owner's check on paper. **No legacy kind is left in `000` or `001`.**
+
+- **Prepare:** `prepare/src/cryptarithm.ts` writes the shape above; all four cryptarithms in the
+  two tests are additions of two operands and are prepared. The legacy cryptarithm renderer is gone
+  (a cryptarithm that stays legacy now falls to the "unknown" box, which prints the equation: not an
+  answer).
+- **Layout** (`render/ciphers/cryptarithm.typ`): sans labels as Toebes's; each value digit in a
+  box over an empty box (the atbash and caesar box size), a word's boxes touching; the formula at
+  14pt with about 2.2em under each line, `+` on the last operand's line, a 1pt rule over the result;
+  the work grid's cells 1.7em wide, 2.2em tall, headers outside the lines. Each fits its half page,
+  top or bottom.
+- **Page counts unchanged:** 16 for `001`, 11 for `000`. `check-reference` passes for both. A
+  letters-only scan finds no `soltext` in either PDF.
+- **Found in passing, fixed as its own commit:** `check-reference` now reported `000`'s
+  letter-symbol baconian (let4let, symbols are letters) as NOT FOUND, and passed `001`'s accent-symbol
+  one, the reverse of what earlier sections record (cause not looked into). Toebes's PDF has no text
+  for the letter-symbol one, but its single letters turn up anywhere in the reference, so the
+  "images?" fallback never fired. It now needs the question's whole first line. Both tests pass;
+  three symbol baconians are "check by eye". **The accent-symbol false alarm no longer shows.**

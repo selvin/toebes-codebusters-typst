@@ -20,7 +20,8 @@ and compcolumnar (decode) followed, also verified on paper. Checkerboard (decode
 also verified on paper. Homophonic (decode, crypt) followed; the owner verified the packet through its first question. Nihilistsub crypt
 followed; verified on paper up to the first fractionated morse question. Fractionated morse,
 patristocrat, the xenocrypt, atbash and caesar followed: **the packet doesn't leak, and the owner
-verified every question's logic on paper.** Only cryptarithm is still legacy (no leak).
+verified every question's logic on paper.** Cryptarithm (additions) followed on
+2026-11-15: no legacy kind is left in either test.
 **The render pass** is under way: step 1, global (page header and footer), is done and verified by
 the owner. The Typst code now lives under `render/`. Step 2,
 question-independent formatting, has its first slice: the question heading (circled number,
@@ -30,8 +31,8 @@ its half page). Fonts are done and verified: all Noto (serif body at 10pt, sans 
 mono), bundled in `fonts/`, system fonts ignored. **Next:** the owner's UI notes, in sessions of 1–3
 items. Sessions A (points label, crib size), B (timed question in a double outline on its own page) and C
 (nihilist and checkerboard tables at Toebes's size) are done and verified. Session D (baconian writing
-space; columnar five blocks a line, back on half a page) is done and verified. Next, session F: cryptarithm in
-Toebes's layout (moved ahead: the owner finds it jarring), then D2 (space by kind):
+space; columnar five blocks a line, back on half a page) is done and verified. Session F (cryptarithm prepared, in
+Toebes's layout) is done, pending the owner's check on paper. Next, D2 (space by kind):
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index

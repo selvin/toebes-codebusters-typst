@@ -47,7 +47,8 @@ Items are numbered for reference only; the sessions below set the order.
    - cell padding like the aristocrats' table; **put what both tables share in `common`**;
    - ciphertext lines left-aligned (Toebes left-aligns lines inside a centered block; ours centers
      each line); use the spare width for larger letters or more space per letter.
-10. **Cryptarithm: Toebes's layout**, as close as possible: the equation as grade-school addition
+10. **Cryptarithm: Toebes's layout** (done 2026-11-15, pending the owner's check on paper), as
+    close as possible: the equation as grade-school addition
     (one operand per line, a rule under them), the values to decode, and the letter × digit (0–9)
     work grid. Solution boxes are **individual boxes styled like ours elsewhere**. Toebes's `+` and
     `=` sit out of line with the operands: don't copy that.
@@ -77,11 +78,11 @@ Items are numbered for reference only; the sessions below set the order.
 - **Baconian combining marks:** the P with a combining tilde now prints its mark on the P (fixed
   by the switch to Noto; the owner confirmed on paper). Closes the "Render-pass bug" in the plan's
   "Baconian detail".
-- **`check-reference`'s NOT FOUND on `001`'s accent-symbol baconian** is a known false alarm
-  (pdftotext reads each P + combining tilde twice; see the plan's "Render pass: fonts"). The owner
-  checked the question on paper again (2026-11-15): each P carries one tilde, and the symbols match
-  Toebes's. **Ignore it** until a change touches the symbol baconian's path (its `prepare` mode or
-  `render/ciphers/baconian.typ`); then check that question by eye once more.
+- **`check-reference`'s NOT FOUND on `001`'s accent-symbol baconian** no longer shows (2026-11-15;
+  see the plan's "Cryptarithm detail", Result). The owner checked that question on paper
+  (2026-11-15): each P carries one tilde, and the symbols match Toebes's. When a change touches the
+  symbol baconian's path (its `prepare` mode or `render/ciphers/baconian.typ`), check it by eye once
+  more.
 - **Baconian music symbols:** the owner finds ours (Libertinus fallback) more legible than
   Toebes's. Keep.
 

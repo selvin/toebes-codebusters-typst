@@ -1223,3 +1223,6 @@ to keep in mind. Also in `001`, an atbash's closing period no longer sits alone 
 own: its word moves down with it (part of worklist item 4). Page counts unchanged (16 for `001`, 11
 for `000`); `check-reference` passes for `000`, and `001` reports only its known accent-symbol
 baconian.
+
+**Owner check (2026-11-15):** verified on paper: both aristocrats' last lines, room under every
+aristocrat's last line, and the atbash's closing word (a good stylistic change).

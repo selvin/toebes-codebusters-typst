@@ -36,14 +36,16 @@
 #set text(font: body-font, size: key-size)
 
 // Front and back cover (the same page twice), so the sheets travel face down: ANSWER KEY in red as
-// the title, then the test's name and division, centred on the page. The export has no date.
+// the title (large, not bold), then the test's name and division, centred on the page, all in the
+// answers' serif. The export has no date.
 #let cover = page(header: none, footer: none, align(center + horizon, {
-  text(font: title-font, size: 48pt, weight: "bold", fill: key-red)[ANSWER KEY]
+  set text(font: answer-font)
+  text(size: 48pt, fill: key-red)[ANSWER KEY]
   v(1.5em)
-  text(font: title-font, size: 24pt, key.test.title)
+  text(size: 24pt, key.test.title)
   if key.test.division != "" {
     v(0.5em)
-    text(font: title-font, size: 16pt, fill: box-stroke-color)[Division #key.test.division]
+    text(size: 16pt, fill: box-stroke-color)[Division #key.test.division]
   }
 }))
 

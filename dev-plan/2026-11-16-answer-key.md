@@ -123,7 +123,8 @@ Supersedes the page split and the groups above.
 ## Decisions — 2026-11-16 (covers, owner)
 
 - Odd-row shading down to **10% black** (20% was too noticeable).
-- **Front and back cover**, the same page twice: ANSWER KEY as the title, large and red, then the
+- **Front and back cover**, the same page twice, all in the answers' serif: ANSWER KEY as the title,
+  large and red but not bold, then the
   test's name and its division, centred on the page both ways. The footer's page numbers skip the
   covers ("Page 1 of 2" on the table's pages).
 - **No date:** Toebes's export holds none (checked both tests' `TEST.0`). If one is wanted, it

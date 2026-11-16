@@ -332,6 +332,36 @@
   return lines
 }
 
+// Toebes's line breaking (makeReplacement in toebes/ciphers), so our lines match its PDF
+// - Any non-letter except a quote mark marks a split point just after it
+// - Once a line holds `width` characters, it is cut at the last split point (hard cut if none)
+// - letters-only-check: check the width only after a letter (Toebes's porta)
+// No break at sentence ends. Returns an array of strings, one per line, trailing spaces trimmed
+#let toebes-line-break(text, width, letters-only-check: false) = {
+  let lines = ()
+  let line = ()
+  let last-split = none
+  for char in text.clusters() {
+    line.push(char)
+    let letter = char.match(regex("^\\p{L}")) != none
+    if not letter and char not in ("'", "’", "‘", "\"", "“", "”") {
+      last-split = line.len()
+    }
+    if (letter or not letters-only-check) and line.len() >= width {
+      if last-split == none {
+        lines.push(line.join())
+        line = ()
+      } else {
+        lines.push(line.slice(0, last-split).join())
+        line = line.slice(last-split)
+      }
+      last-split = none
+    }
+  }
+  if line.len() > 0 { lines.push(line.join()) }
+  lines.map(l => l.trim(at: end))
+}
+
 // ============================================================================
 // DUAL-BOX CIPHER RENDERING
 // Functions for rendering ciphers with a dual-box format (e.g., Atbash, Caesar, Affine)

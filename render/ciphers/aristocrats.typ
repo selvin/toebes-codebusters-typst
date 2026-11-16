@@ -116,7 +116,7 @@
     width: 100%
   )[
     #set text(font: mono-font, weight: cipher-weight, size: 16pt)
-    #let lines = smart-line-break(q.ciphertext, max-chars: 55)
+    #let lines = toebes-line-break(q.ciphertext, 53)
     #for line in lines {
       line
       linebreak()

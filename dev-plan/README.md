@@ -30,8 +30,7 @@ its half page). Fonts are done and verified: all Noto (serif body at 10pt, sans 
 mono), bundled in `fonts/`, system fonts ignored. **Next:** the owner's UI notes, in sessions of 1–3
 items. Sessions A (points label, crib size), B (timed question in a double outline on its own page) and C
 (nihilist and checkerboard tables at Toebes's size) are done and verified. Session D (baconian writing
-space; columnar five blocks a line, back on half a page) is done; the columnar's half-page version
-is pending the owner's check. Next, session D2: top questions give spare room to the question below,
+space; columnar five blocks a line, back on half a page) is done and verified. Next, session D2: top questions give spare room to the question below,
 by kind (owner's estimates):
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 

@@ -1214,3 +1214,12 @@ line at a period without checking that the word before it fits: a line ending in
 past `max-chars` (57 of 55), and Typst wraps it at normal line spacing. Fix: the period's word gets
 the same fit check as any other word. Shared with the dual-box kinds (atbash, caesar), which get the
 same fix.
+
+**Result:** fixed. Each of the two aristocrats now breaks before its last word, which gets a full
+line of writing room. They then grew by about 1pt past their bottom half page and moved to pages of
+their own, so the aristocrats' 10pt bottom inset under the ciphertext went (own commit; the last
+line keeps its 2.5em of writing room). They now fit with about 9pt to spare: tight, for session D2
+to keep in mind. Also in `001`, an atbash's closing period no longer sits alone on a line of its
+own: its word moves down with it (part of worklist item 4). Page counts unchanged (16 for `001`, 11
+for `000`); `check-reference` passes for `000`, and `001` reports only its known accent-symbol
+baconian.

@@ -36,7 +36,7 @@ Toebes's layout) is done and verified. Session F2 (cryptarithm values in the atb
 box; outlines at 60% black) is done and verified. Session H (ciphertext in SemiBold) is done and verified. D2 (space by kind) is parked: two
 questions a page is already the fewest pages. Session E (fractionated morse table, its lines
 across the full width, filling the slot) is done and verified. Session G (line breaking: Toebes's
-rule; box kinds shrink to fit) is done, pending the owner's check; it closes step 2's worklist:
+rule; box kinds shrink to fit) is done and verified; it closes the worklist:
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index
@@ -46,7 +46,7 @@ rule; box kinds shrink to fit) is done, pending the owner's check; it closes ste
 | 2026-11-14 | [Competition-ready question paper by 2026-11-30](2026-11-14-competition-ready-pdf-by-nov-30.md) | Active |
 | 2026-11-14 | [Split: TypeScript prepares, Typst lays out](2026-11-14-ts-prepare-typst-layout-split.md) | Decided |
 | 2026-11-14 | [Move the Typst code under `render/`](2026-11-14-render-folder.md) | Done |
-| 2026-11-15 | [Render pass: UI worklist](2026-11-15-render-pass-ui-worklist.md) | Active |
+| 2026-11-15 | [Render pass: UI worklist](2026-11-15-render-pass-ui-worklist.md) | Resolved |
 
 ## Backlog
 

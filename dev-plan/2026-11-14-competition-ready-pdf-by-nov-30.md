@@ -1607,3 +1607,6 @@ gone; the legacy aristocrat path breaks at 53 too.
 - Cryptarithm values at 37: no change.
 - Pages that changed: `000` 4, 5, 10; `001` 2, 3, 4, 5, 6, 11, 12, 14, 16. Page counts unchanged
   (11, 16); `check-reference` passes for both.
+
+**Owner check (2026-11-15):** verified on screen, both tests: lines break as Toebes's, and the
+shrunk box questions look good. Effort closed.

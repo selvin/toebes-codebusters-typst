@@ -1,5 +1,8 @@
 # Render pass: UI worklist — 2026-11-15
 
+**Resolved (2026-11-15):** every item is done and verified by the owner, except item 11 (parked,
+in the Backlog).
+
 The owner's review of the packet after the fonts slice (2026-11-15), plus the render-pass notes left
 earlier in the competition-ready plan's detail sections, in one list. Each item is done as its own
 slice, following the "Render pass: …" pattern in
@@ -20,12 +23,12 @@ Items are numbered for reference only; the sessions below set the order.
    page; the owner thinks that's wrong: the timed question usually goes to the team's aristocrat
    specialist, so every other question should be on pages other team members can take. The double
    outline makes that page stand out.
-4. **Line breaking** (the planned last slice of step 2), from the detail sections' notes: porta
+4. ✅ **Line breaking** (the planned last slice of step 2), from the detail sections' notes: porta
    wraps at 35 characters where Toebes fits more blocks per line; the patristocrat fits nine
    blocks a line where Toebes fits eight; a closing period can wrap onto a line of its own with its
    answer row (atbash, caesar, from `smart-line-break`; fixed 2026-11-15: a word ending a sentence
-   now wraps whole when it doesn't fit). Re-check each with Noto Sans Mono. **Done 2026-11-15,
-   pending the owner's check:** Toebes's rule in every kind that used `smart-line-break`; box
+   now wraps whole when it doesn't fit). Re-check each with Noto Sans Mono. **Done and verified
+   2026-11-15:** Toebes's rule in every kind that used `smart-line-break`; box
    kinds shrink to fit (plan: "Render pass: line breaking").
 
 ## Question-dependent (step 3)

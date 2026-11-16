@@ -89,21 +89,31 @@ function prepareKind(cipher: ToebesCipher): KindData {
 }
 
 // "A", "B" or "C" from the test type's first letter; "" when it names no division
-function division(testtype: string | undefined): string {
+export function division(testtype: string | undefined): string {
   return testtype && /^[abc]/i.test(testtype) ? testtype[0].toUpperCase() : "";
 }
 
-export function prepareQuestions(exp: ToebesExport): QuestionsFile {
+// The questions in paper order: the timed one first as 0, then TEST.0's order from 1
+export function paperOrder(
+  exp: ToebesExport,
+): { number: number; timed: boolean; id: number; cipher: ToebesCipher }[] {
   const test = exp["TEST.0"];
   const order: { id: number; timed: boolean }[] = [];
   if (test.timed >= 0) order.push({ id: test.timed, timed: true });
   for (const id of test.questions) order.push({ id, timed: false });
 
-  const questions = order.map(({ id, timed }, i): Question => {
+  return order.map(({ id, timed }, i) => {
     const cipher = exp[`CIPHER.${id}`];
     if (!cipher) throw new Error(`Export has no CIPHER.${id}`);
+    return { number: test.timed >= 0 ? i : i + 1, timed, id, cipher };
+  });
+}
+
+export function prepareQuestions(exp: ToebesExport): QuestionsFile {
+  const test = exp["TEST.0"];
+  const questions = paperOrder(exp).map(({ number, timed, id, cipher }): Question => {
     return {
-      number: test.timed >= 0 ? i : i + 1,
+      number,
       timed,
       toebesId: id,
       points: cipher.points,

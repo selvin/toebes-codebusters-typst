@@ -1447,3 +1447,45 @@ a question that no longer fits can leave a page with one. Measured top-question 
 the next page should take its top slot" go to the Backlog with this finding. Chosen over flowing
 with tighter minimums (less writing room for at most 1–2 pages) and over giving the bottom
 question the spare room (no paper saved). No code changed.
+
+## Render pass: fractionated morse table — 2026-11-15
+
+Worklist item 9 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)),
+session E, with "Decisions — 2026-11-14 (render-pass inputs)", item 2.
+
+### What the references do
+
+- **Toebes:** the table is narrower than the text width (about 72% of it); its header column holds
+  "Morse" over "fraction" and "Replacement" (the widest label), the fraction symbols about 7pt with
+  generous row height. The ciphertext lines are left-aligned inside a block that is centered as a
+  whole (letters about 23pt apart).
+- **Ours:** the table spans the text width, header column as wide as "Morse fraction" on one line
+  (8pt), inset 2pt, the Replacement row only as tall as its label (about 12pt), symbols 7pt. Each
+  ciphertext line centered on its own, 13pt letters 1em apart (about 21pt), a 17-letter line about
+  64% of the text width.
+- **The aristocrat family's table** (`render-frequency-table`) and the baconian (words) replacement
+  table are the same table: an `auto` label column and one `1fr` column per letter, 0.5pt
+  `box-stroke-color` strokes, centered cells, Typst's default 5pt inset, labels in bold mono at
+  0.9em, the Replacement row's cells a `v(1.5em)` (25pt tall with the inset).
+
+### What we'll do
+
+Three slices, each its own commit:
+
+1. **Shared helper in `common`, no output change:** the label style, the Replacement cells and a
+   letter-table function (label column plus one equal column per letter). The aristocrat family
+   and the baconian replacement table move onto it. Proof: page images of both tests, before and
+   after, identical (`pdftoppm`, `cmp`).
+2. **The fractionated morse table on the helper:** Replacement row as tall as the aristocrats';
+   `Morse` over `fraction` in its one header cell (the header column then as wide as
+   "Replacement"); the aristocrats' padding; the fraction symbols larger, with more room between
+   them.
+3. **Its ciphertext lines:** left-aligned inside a centered block; 14.5pt letters, 1.3em apart
+   (about 80% of the text width at 17 letters). The line pitch stays about what it is, so `000`'s
+   five lines still fit their top half page.
+
+### Decided (owner)
+
+- **Ciphertext: both larger letters and more space per letter, moderately** (14.5pt, 1.3em apart),
+  chosen over 16pt at 1em or 13pt at 1.6em.
+- From the worklist: lines left-aligned (as Toebes), `Morse` over `fraction` (owner, 2026-11-15).

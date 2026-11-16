@@ -114,7 +114,7 @@
   if q.mode == "words" {
     align(center, block(below: 0pt, {
       set align(left)
-      set text(font: mono-font, weight: "bold", size: 14pt)
+      set text(font: mono-font, weight: cipher-weight, size: 14pt)
       // About 48pt line to line, as the nihilist and checkerboard lines: room to write under each,
       // the last one included (above the table)
       let gap = 2.7em

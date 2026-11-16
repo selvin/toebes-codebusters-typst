@@ -15,7 +15,7 @@
 
 // One line of blocks, each block's units spaced apart
 #let render-checkerboard-line(line) = {
-  set text(font: mono-font, weight: "bold", size: 12pt)
+  set text(font: mono-font, weight: cipher-weight, size: 12pt)
   line.map(b => b.join(h(0.5em))).join(h(1.2em))
 }
 

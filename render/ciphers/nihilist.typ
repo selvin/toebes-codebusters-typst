@@ -46,7 +46,7 @@
 // One line of blocks. As in Toebes's 24-token lines, every token (a value, punctuation, or the
 // space between blocks) takes one equal cell: 24 fit the text width
 #let render-nihilist-line(line) = {
-  set text(font: mono-font, weight: "bold", size: 12pt)
+  set text(font: mono-font, weight: cipher-weight, size: 12pt)
   let cell = 1.9em
   line.map(b => b.map(v => box(width: cell, align(center, v))).join()).join(h(cell))
 }

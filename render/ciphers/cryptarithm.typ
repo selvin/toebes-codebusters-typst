@@ -14,7 +14,7 @@
 // The equation as grade-school addition: operands right-aligned, `+` on the last operand's line,
 // a rule, then the result. Each letter gets room under it to pencil in its digit.
 #let render-cryptarithm-formula(operands, result) = {
-  set text(font: mono-font, weight: "bold", size: 14pt)
+  set text(font: mono-font, weight: cipher-weight, size: 14pt)
   let width = calc.max(..operands.map(o => o.len()), result.len())
   let row(prefix, word) = (
     (align(center, prefix),) + ([],) * (width - word.len()) + word.clusters().map(c => align(center, c))

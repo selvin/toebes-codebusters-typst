@@ -58,7 +58,7 @@
   prepared-heading(q)
 
   for line in q.lines {
-    block(width: 100%, below: 2.4em, align(center, text(font: mono-font, weight: "bold", size: 13pt,
+    block(width: 100%, below: 2.4em, align(center, text(font: mono-font, weight: cipher-weight, size: 13pt,
       line.join(h(1em)))))
   }
   render-fm-table()

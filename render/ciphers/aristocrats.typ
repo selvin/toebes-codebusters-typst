@@ -175,7 +175,7 @@
     radius: 4pt,
     width: 100%
   )[
-    #set text(font: mono-font, weight: "bold", size: 16pt)
+    #set text(font: mono-font, weight: cipher-weight, size: 16pt)
     #let lines = smart-line-break(q.ciphertext, max-chars: 55)
     #for line in lines {
       line

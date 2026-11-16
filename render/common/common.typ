@@ -402,7 +402,7 @@
 
   // Render the lines
   block(inset: (x: 4pt, bottom: 4pt))[
-    #set text(font: mono-font, weight: "bold", size: 12pt)
+    #set text(font: mono-font, weight: cipher-weight, size: 12pt)
     #for line in lines [
       // Render each character in the line
       #box[

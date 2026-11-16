@@ -45,7 +45,7 @@
 
   let blocks = q.ciphertext.split(" ")
   block(inset: (x: 10pt, bottom: 10pt), width: 100%, {
-    set text(font: mono-font, weight: "bold", size: 14pt)
+    set text(font: mono-font, weight: cipher-weight, size: 14pt)
     set par(leading: 1.5em)
     blocks.chunks(5).map(line => line.join(" ")).join(linebreak())
   })

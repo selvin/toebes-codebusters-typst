@@ -7,7 +7,7 @@
 
 // One line of blocks, each value in a fixed-width cell, with room below for the answer
 #let render-homophonic-line(line) = block(below: 2.8em, {
-  set text(font: mono-font, weight: "bold", size: 12pt)
+  set text(font: mono-font, weight: cipher-weight, size: 12pt)
   line.map(b => b.map(v => box(width: 1.6em, align(center, v))).join(h(0.3em))).join(h(1.2em))
 })
 

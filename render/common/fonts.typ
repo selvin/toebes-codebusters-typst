@@ -9,3 +9,7 @@
 #let mono-font = "Noto Sans Mono"
 
 #let body-size = 10pt
+
+// The ciphertext's weight. Labels and cribs
+// stay bold.
+#let cipher-weight = 700

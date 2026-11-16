@@ -1197,3 +1197,11 @@ the moved questions.
   slot instead measures the room left on the page (`here().position()`), and gives a question that
   fits exactly that height, so `v(1fr)` fills to the page's bottom.
 - **Space by kind** (owner's estimates, for the next slice): see the worklist, item 11.
+
+**Result (half page), 2026-11-15:** done, pending the owner's check on paper. The `page` slot and
+`full-page-kinds` are gone. The bottom slot puts a zero-size marker before the question and
+measures the room left from it (`here()` inside the block itself would report the next page once
+the block moved there, and settle on that). The block is as tall as that room, or as the question
+if taller (then it moves). Page counts back to 16 for `001` and 11 for `000`, and nothing moves in
+either. Against the build before the whole-page change, only the columnar ciphertext lines differ.
+`check-reference` passes for `000`; `001` reports only its known accent-symbol baconian.

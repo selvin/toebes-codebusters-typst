@@ -94,7 +94,7 @@ Items are numbered for reference only; the sessions below set the order.
 | B | 3 | Changes the page layout (half-page logic) |
 | C | 5, 6 | Same pattern: a table beside three lines |
 | D | 7, 8 | Writing space in two kinds; small each |
-| D2 | 8 (back to half a page), 11 | A question moved to the next page takes its top slot; top questions give spare room to the one below |
+| D2 | 11 | Top questions give spare room to the one below; a question moved to the next page takes its top slot |
 | E | 9 | Shared table helper with the aristocrats; widest change in step 3 |
 | F | 10 | The largest; cryptarithm is still a legacy kind |
 | G | 4 | Line breaking, after the kinds' own layouts settle |

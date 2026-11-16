@@ -55,7 +55,8 @@ function matches(q: QuestionsFile["questions"][number]): boolean | null {
   if (q.kind === "baconian" && q.mode === "words") return reference.includes(collapse(q.lines.join(" ")));
   if (q.kind === "baconian" && q.mode === "symbols") {
     const symbols = q.lines.flat().map(symbolsOnly);
-    if (!symbols.some((s) => s !== "" && referenceSymbols.includes(s))) {
+    // A whole line, not one symbol: letter symbols (N, O…) turn up anywhere in the reference.
+    if (!referenceSymbols.includes(symbols.slice(0, q.lines[0].length).join(""))) {
       console.log(`${q.number} (${q.kind}): symbols not in reference text (images?); check by eye`);
       return null;
     }

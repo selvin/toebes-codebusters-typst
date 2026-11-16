@@ -215,6 +215,20 @@
   }
 }
 
+// Letter tables (aristocrat family, baconian replacement): a label column, then one equal column
+// per letter; cells centered, Typst's default padding
+#let table-label(t) = text(font: mono-font, weight: "bold", size: 0.9em, t)
+
+// The Replacement row: its label, then n empty cells tall enough to pencil in a letter
+#let replacement-row(n) = (table-label[Replacement],) + ([#v(1.5em)],) * n
+
+#let letter-table(n, ..cells) = table(
+  columns: (auto,) + (1fr,) * n,
+  stroke: 0.5pt + box-stroke-color,
+  align: center + horizon,
+  ..cells,
+)
+
 // Display cipher text in a grid format (common for many ciphers)
 #let display-cipher-grid(cipherString, columns: 5) = {
   // TODO: Implement grid display logic

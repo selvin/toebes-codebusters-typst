@@ -27,88 +27,28 @@
 // alphabet: the letters heading the columns; frequencies: one count per letter, same order
 // keyType: "K1", "K2", or "Random" (if not K1 or K2, treated as Random)
 #let render-frequency-table(alphabet, frequencies, keyType: "Random") = {
-  let columns = (auto,) + (1fr,) * alphabet.clusters().len()
+  let letters = alphabet.clusters()
 
-  // Helper function to create empty cells for replacement row
-  let empty-boxes = {
-    let row = ()
-    for letter in alphabet.clusters() {
-      row.push([#v(1.5em)])
-    }
-    row
-  }
+  // Alphabet row (bold code font)
+  let alphabet-row = letters.map(table-label)
 
-  // Helper function to create alphabet row (bold code font)
-  let alphabet-row = {
-    let row = ()
-    for letter in alphabet.clusters() {
-      row.push([#text(font: mono-font, weight: "bold", size: 0.9em)[#letter]])
-    }
-    row
-  }
+  // Frequency row (not bold code font); a zero count stays blank
+  let frequency-row = (table-label[Frequency],) + frequencies.map(freq =>
+    if freq == 0 { [] } else { text(font: mono-font, size: 0.9em, str(freq)) })
 
-  // Helper function to create frequency row (not bold code font)
-  let frequency-row = {
-    let row = ()
-    for freq in frequencies {
-      if freq == 0 {
-        row.push([])
-      } else {
-        row.push([#text(font: mono-font, size: 0.9em)[#str(freq)]])
-      }
-    }
-    row
-  }
+  let key-label(k) = text(font: mono-font, weight: "bold", size: 1.1em, k)
 
   v(1em)
 
-  // Render table based on key type
-  if keyType == "K1" {
-    table(
-      columns: columns,
-      stroke: 0.5pt + box-stroke-color,
-      align: center + horizon,
-
-      // Row 1: K1 + alphabets
-      [#text(font: mono-font, weight: "bold", size: 1.1em)[K1]], ..alphabet-row,
-
-      // Row 2: Frequency + frequencies
-      [#text(font: mono-font, weight: "bold", size: 0.9em)[Frequency]], ..frequency-row,
-
-      // Row 3: Replacement + empty boxes
-      [#text(font: mono-font, weight: "bold", size: 0.9em)[Replacement]], ..empty-boxes
-    )
+  // Rows ordered by key type; Random leaves the key label empty (understood)
+  let rows = if keyType == "K1" {
+    ((key-label[K1],) + alphabet-row, frequency-row, replacement-row(letters.len()))
   } else if keyType == "K2" {
-    table(
-      columns: columns,
-      stroke: 0.5pt + box-stroke-color,
-      align: center + horizon,
-
-      // Row 1: Replacement + empty boxes
-      [#text(font: mono-font, weight: "bold", size: 0.9em)[Replacement]], ..empty-boxes,
-
-      // Row 2: K2 + alphabets
-      [#text(font: mono-font, weight: "bold", size: 1.1em)[K2]], ..alphabet-row,
-
-      // Row 3: Frequency + frequencies
-      [#text(font: mono-font, weight: "bold", size: 0.9em)[Frequency]], ..frequency-row
-    )
-  } else { // Random
-    table(
-      columns: columns,
-      stroke: 0.5pt + box-stroke-color,
-      align: center + horizon,
-
-      // Row 1: Empty key + alphabets (Random is understood)
-      [], ..alphabet-row,
-
-      // Row 2: Frequency + frequencies
-      [#text(font: mono-font, weight: "bold", size: 0.9em)[Frequency]], ..frequency-row,
-
-      // Row 3: Replacement + empty boxes
-      [#text(font: mono-font, weight: "bold", size: 0.9em)[Replacement]], ..empty-boxes
-    )
+    (replacement-row(letters.len()), (key-label[K2],) + alphabet-row, frequency-row)
+  } else {
+    (([],) + alphabet-row, frequency-row, replacement-row(letters.len()))
   }
+  letter-table(letters.len(), ..rows.flatten())
 }
 
 // Mapping table computed from a plain string (legacy kinds)

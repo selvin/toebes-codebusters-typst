@@ -94,15 +94,8 @@
 
 // Empty A–Z table for the student's letter replacements (words mode)
 #let render-baconian-replacement-table() = {
-  let label(t) = text(font: mono-font, weight: "bold", size: 0.9em)[#t]
   let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".clusters()
-  table(
-    columns: (auto,) + (1fr,) * letters.len(),
-    stroke: 0.5pt + box-stroke-color,
-    align: center + horizon,
-    [], ..letters.map(label),
-    label[Replacement], ..letters.map(_ => v(1.5em)),
-  )
+  letter-table(letters.len(), [], ..letters.map(table-label), ..replacement-row(letters.len()))
 }
 
 // Render a baconian prepared by prepare/ (questions.json); never sees plaintext

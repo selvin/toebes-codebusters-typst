@@ -53,7 +53,8 @@ Items are numbered for reference only; the sessions below set the order.
     work grid. Solution boxes are **individual boxes styled like ours elsewhere**. Toebes's `+` and
     `=` sit out of line with the operands: don't copy that.
 
-11. **Steal space from the top question by kind** (owner, 2026-11-15), to save paper. Many kinds
+11. ⏸ **Parked** (owner, 2026-11-15; two a page is already the fewest pages, see the plan's
+    "Render pass: space by kind"). **Steal space from the top question by kind** (owner, 2026-11-15), to save paper. Many kinds
     rarely need their half page (fractionated morse answers are written in line, under the
     ciphertext). Give each top question a minimum height, the rest of its half page going to the
     question below, which can grow into it. Spare share of the half page, the owner's estimates:
@@ -116,7 +117,7 @@ Items are numbered for reference only; the sessions below set the order.
 | F | 10 | The largest; cryptarithm is still a legacy kind |
 | F2 | 12, 13 | Both in box styling; small, and most pages show box outlines, so ahead of D2 |
 | H | 14 | The owner's pick to start the next session; every page shows ciphertext |
-| D2 | 11 | Top questions give spare room to the one below; a question moved to the next page takes its top slot |
+| D2 | 11 | Parked: two a page is already the fewest pages (see item 11) |
 | E | 9 | Shared table helper with the aristocrats; widest change in step 3 |
 | G | 4 | Line breaking, after the kinds' own layouts settle |
 

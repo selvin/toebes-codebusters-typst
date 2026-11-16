@@ -1437,4 +1437,7 @@ a question that no longer fits can leave a page with one. Measured top-question 
 
 ### Decided (owner)
 
-Pending: whether to go on, and how (see the worklist's Sessions).
+**Parked** (owner, 2026-11-15): two questions a page stays. Item 11 and "a question that moves to
+the next page should take its top slot" go to the Backlog with this finding. Chosen over flowing
+with tighter minimums (less writing room for at most 1–2 pages) and over giving the bottom
+question the spare room (no paper saved). No code changed.

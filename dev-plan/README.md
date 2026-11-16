@@ -33,7 +33,8 @@ items. Sessions A (points label, crib size), B (timed question in a double outli
 (nihilist and checkerboard tables at Toebes's size) are done and verified. Session D (baconian writing
 space; columnar five blocks a line, back on half a page) is done and verified. Session F (cryptarithm prepared, in
 Toebes's layout) is done and verified. Session F2 (cryptarithm values in the atbash
-box; outlines at 60% black) is done and verified. Session H (ciphertext in SemiBold) is done and verified. Next, D2 (space by kind):
+box; outlines at 60% black) is done and verified. Session H (ciphertext in SemiBold) is done and verified. D2 (space by kind) is parked: two
+questions a page is already the fewest pages. Next, E (fractionated morse table):
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index
@@ -55,8 +56,10 @@ box; outlines at 60% black) is done and verified. Session H (ciphertext in SemiB
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
   After the November deadline.
 - **Answer key and cover page** if they miss the deadline (Toebes's answer key is the fallback).
-- **A question that moves to the next page should take its top slot**, so the next question can
-  follow below it. Today it sits alone. Nothing moves in `001` or `000` now; part of session D2.
+- **Questions that flow, three on a page when they fit** (worklist item 11, parked 2026-11-15), and
+  with it: a question that moves to the next page takes its top slot. Two a page is already the
+  fewest pages; flowing saves pages only with less writing room than the owner's minimums (at most
+  1 in `000`, 2 in `001`). See "Render pass: space by kind" in the competition-ready plan.
 - **2027-season cipher types not in `competitiondata/001`**, each on its own when a real test needs
   it. Only 2027-season types and later are supported (owner): affine and K2 alphabets are out.
 - **A committed test fixture**: a made-up export in `testdata/`, so the full pipeline can be tested

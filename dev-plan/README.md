@@ -62,5 +62,11 @@ questions a page is already the fewest pages. Next, E (fractionated morse table)
   1 in `000`, 2 in `001`). See "Render pass: space by kind" in the competition-ready plan.
 - **2027-season cipher types not in `competitiondata/001`**, each on its own when a real test needs
   it. Only 2027-season types and later are supported (owner): affine and K2 alphabets are out.
+- **Baconian words: Toebes's fallback word** (owner, 2026-11-15; not for the 11-30 deadline). When a
+  stored word no longer fits its letter's A/B pattern, Toebes prints the first fitting word from
+  its fixed list (`app/common/fiveletterwords.ts` in `toebes/ciphers`, BSD-3); we fail loudly,
+  which is fine for now. Later: fetch the list from its raw GitHub URL periodically (keeping
+  Toebes's license notice) so `prepare` can match. See "Baconian detail" in the competition-ready
+  plan.
 - **A committed test fixture**: a made-up export in `testdata/`, so the full pipeline can be tested
   in the repo. Real tests never go in git, even after they are held (`CLAUDE.md`, "Hard rule").

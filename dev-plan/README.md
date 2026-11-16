@@ -40,7 +40,8 @@ rule; box kinds shrink to fit) is done and verified; it closes the worklist:
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 **Launch gate: leak check** is done (2026-11-16): `compile.sh` fails when our PDF prints 15+
 plaintext letters in a row. Left: the owner prints a packet and reviews it on paper. **Next:** the
-answer key (owner's choice, 2026-11-16); the packet review follows.
+answer key (owner's choice, 2026-11-16): planned as a one-page grading sheet,
+[2026-11-16-answer-key.md](2026-11-16-answer-key.md); the packet review follows.
 
 ## Index
 
@@ -50,6 +51,7 @@ answer key (owner's choice, 2026-11-16); the packet review follows.
 | 2026-11-14 | [Split: TypeScript prepares, Typst lays out](2026-11-14-ts-prepare-typst-layout-split.md) | Decided |
 | 2026-11-14 | [Move the Typst code under `render/`](2026-11-14-render-folder.md) | Done |
 | 2026-11-15 | [Render pass: UI worklist](2026-11-15-render-pass-ui-worklist.md) | Resolved |
+| 2026-11-16 | [Answer key](2026-11-16-answer-key.md) | Active |
 
 ## Backlog
 

@@ -56,8 +56,6 @@
     render-baconian(cipher, num)
   } else if cipher-type == "compcolumnar" {
     render-columnar(cipher, num)
-  } else if cipher-type == "cryptarithm" {
-    render-cryptarithm(cipher, num)
   } else if cipher-type == "fractionatedmorse" {
     render-fractionated-morse(cipher, num)
   } else if cipher-type == "nihilistsub" {
@@ -92,6 +90,8 @@
         render-checkerboard-prepared(q)
       } else if q.kind == "compcolumnar" {
         render-columnar-prepared(q)
+      } else if q.kind == "cryptarithm" {
+        render-cryptarithm-prepared(q)
       } else if q.kind == "fractionatedmorse" {
         render-fractionated-morse-prepared(q)
       } else if q.kind == "homophonic" {

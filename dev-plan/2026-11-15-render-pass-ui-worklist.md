@@ -69,7 +69,8 @@ Items are numbered for reference only; the sessions below set the order.
     | Nihilist substitution, checkerboard, 4 lines | 20% |
     | Nihilist substitution, checkerboard, 5 lines | 8% |
     | Fractionated morse (2026-11-15: its lines now fill the slot, 10% left free) | none |
-    | Complete columnar, cryptarithm, homophonic | none |
+    | Cryptarithm (measured 2026-11-15: 13% with one line of question text, 10% with two; its work grid is always 10 rows) | 10% |
+    | Complete columnar, homophonic | none |
 
     Track which kinds overflow their half page in practice, and refine the table from that.
 

@@ -1525,9 +1525,12 @@ needed.
 
 ### Result (owner's check)
 
-Done, pending the owner's second check. Letters sit in 17 equal columns across the text width
+Done and verified by the owner. Letters sit in 17 equal columns across the text width
 (14.5pt still). After each line, 24pt and a `v(1fr)`, so the lines spread over the slot's spare
 height; a `v(10%)` of the slot stays free below the table. `000`'s five-line question already
 nearly filled its half page: its line pitch grows only from about 35pt to 39pt. `001`'s four-line
 questions spread further. Only the three fractionated morse pages change; page counts unchanged;
 `check-reference` passes for both.
+
+**Owner check (2026-11-15):** verified on screen, both tests. Five-line questions stay on half a
+page (a full page, as Toebes's, would add a page to `000`). Effort closed.

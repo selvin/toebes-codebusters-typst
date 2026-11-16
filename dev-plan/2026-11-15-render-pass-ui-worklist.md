@@ -38,7 +38,7 @@ Items are numbered for reference only; the sessions below set the order.
 8. ✅ **Complete columnar: 5 groups of 5 letters per line**, which leaves a clear area on the right
    for one full columnar attempt (fewer columns, more rows), and the space below the ciphertext for
    a second attempt (more columns, fewer rows). Today two attempts can run into the "Answer:" line.
-9. **Fractionated morse table**, following the earlier notes ("Decisions — 2026-11-14
+9. ✅ **Fractionated morse table**, following the earlier notes ("Decisions — 2026-11-14
    (render-pass inputs)", item 2, and the detail section):
    - the Replacement row as tall as the aristocrats' Replacement row, to pencil in a letter;
    - "Morse fraction" on two lines within its one header cell (`Morse` over `fraction`; owner,

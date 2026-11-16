@@ -146,3 +146,7 @@ it renumbered the `CIPHER.n` ids (harmless: `prepare` follows `TEST.0`'s order),
 `<b>` from question text**. Real exports use `<strong>`, `<i>` and `<span>`, never `<b>`. The
 re-export is now the fixture, so its question text has no formatting. Putting `<strong>` back (and
 round-tripping again) would let the fixture cover the HTML→Typst bold path.
+
+Second round trip, with `<strong>` (keywords, cribs, cryptarithm values) and `<i>` (K1) back in the
+question text: Toebes kept both and changed nothing but the ids, which it renumbers on every import.
+An id-only re-export isn't committed.

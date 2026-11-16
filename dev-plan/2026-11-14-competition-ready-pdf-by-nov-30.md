@@ -1338,7 +1338,7 @@ session F2.
 
 ### Result
 
-Done, pending the owner's check on paper.
+Done and verified by the owner.
 
 - **Item 12:** `is-dual-boxed` and a `box-digits` parameter in `render/common/common.typ`; the
   cryptarithm values call `render-dual-box-text(…, box-digits: true)`. Only the four cryptarithm
@@ -1354,3 +1354,5 @@ Done, pending the owner's check on paper.
   `black` stroke left is the cryptarithm's sum rule (the question rule and circle never named a
   colour).
 - Page counts unchanged (16 for `001`, 11 for `000`). `check-reference` passes for both.
+
+**Owner check (2026-11-15):** verified on paper, both tests.

@@ -73,11 +73,11 @@ Items are numbered for reference only; the sessions below set the order.
 
     Track which kinds overflow their half page in practice, and refine the table from that.
 
-12. **Cryptarithm value boxes: individual, by reusing the atbash/caesar box** (owner, 2026-11-15).
+12. ✅ **Cryptarithm value boxes: individual, by reusing the atbash/caesar box** (owner, 2026-11-15).
     Ours touch and share an edge; the dual-box kinds' boxes stand apart with a small gap. Keep the
     digit boxed (owner). `render-char-dual-box` boxes only letters (an atbash keeps a plaintext
     digit outside the boxes), so give it a way to box digits too, then use it for the values.
-13. **Box outlines at 60% black** (owner, 2026-11-15), instead of black: answer boxes and tables
+13. ✅ **Box outlines at 60% black** (owner, 2026-11-15), instead of black: answer boxes and tables
     (dual boxes, cryptarithm values and work grid, aristocrat, nihilist, checkerboard, fractionated
     morse tables). Plan which strokes count (rules and the timed question's double outline
     likely not), and define the colour once in `common`.

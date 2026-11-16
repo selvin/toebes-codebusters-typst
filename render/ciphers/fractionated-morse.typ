@@ -37,18 +37,17 @@
   "---", "--X", "-XO", "-X-", "-XX", "XOO", "XO-", "XOX", "X-O", "X--", "X-X", "XXO", "XX-",
 )
 
-// Replacement row (empty) over the 26 fractions, each stacked vertically as ●, –, ×
+// Replacement row (empty) over the 26 fractions, each stacked vertically as ●, –, ×; the
+// header as "Morse" over "fraction", so the label column is no wider than "Replacement"
 #let render-fm-table() = {
   let symbol = (O: "●", "-": "–", X: "×")
-  let head(t) = text(font: mono-font, weight: "bold", size: 8pt, t)
-  table(
-    columns: (auto,) + (1fr,) * 26,
-    align: center + horizon,
-    inset: 2pt,
-    stroke: 0.5pt + box-stroke-color,
-    head[Replacement], ..([],) * 26,
-    head[Morse fraction],
-    ..fm-fractions.map(f => text(size: 7pt, f.clusters().map(c => symbol.at(c)).join(linebreak()))),
+  let fraction(f) = {
+    set par(leading: 0.55em)
+    text(size: 9pt, f.clusters().map(c => symbol.at(c)).join(linebreak()))
+  }
+  letter-table(fm-fractions.len(),
+    ..replacement-row(fm-fractions.len()),
+    table-label[Morse \ fraction], ..fm-fractions.map(fraction),
   )
 }
 

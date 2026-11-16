@@ -85,8 +85,7 @@
 
 // Place a question in its slot on the page (main.typ tracks the slot and breaks the pages):
 // "top" starts a page; "bottom" follows it at the middle of the text area, or lower if the top one
-// runs past it (then a clear gap between them); "timed" is a page of its own; "page" a page of its
-// own, the whole text area, so a v(1fr) in it fills down to the bottom
+// runs past it (then a clear gap between them); "timed" is a page of its own
 #let position-question(slot, content) = {
   if slot == "top" {
     // At the top of the page, in a block down to the middle, so a v(1fr) in it fills to the middle
@@ -107,12 +106,18 @@
     let rule = 0.75pt + black
     block(width: 100%, height: 100%, stroke: rule, inset: 2pt,
       block(width: 100%, height: 100%, stroke: rule, inset: (x: 0.5cm, y: 0.4cm), content))
-  } else if slot == "page" {
-    block(height: 100%, width: 100%, content)
   } else {
-    // Bottom: follows the padding; one too tall for the rest of the page moves to the next page
-    // whole (alone there: main.typ breaks the page after it) instead of splitting across pages
-    block(breakable: false, width: 100%, content)
+    // Bottom: follows the padding, in a block down to the bottom of the page, so a v(1fr) in it
+    // fills to there. One too tall for the rest of the page moves to the next page whole (alone
+    // there: main.typ breaks the page after it) instead of splitting across pages
+    // (measured from a marker before the block: here() inside it would see the page it moved to)
+    [#metadata(none) <bottom-slot>]
+    layout(size => context {
+      let height = measure(block(width: size.width, content)).height
+      let mark = query(selector(<bottom-slot>).before(here())).last().location().position()
+      let left = size.height - (mark.y - page.margin.top)
+      block(breakable: false, width: 100%, height: calc.max(height, left), content)
+    })
   }
 }
 

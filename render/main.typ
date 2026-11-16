@@ -71,20 +71,13 @@
 }
 
 // Main document rendering logic
-// Two questions a page: each fills the next slot, top then bottom; the timed question and the kinds
-// that need room for work take a page of their own
-#let full-page-kinds = ("compcolumnar",)
+// Two questions a page: each fills the next slot, top then bottom; the timed question takes a page
+// of its own
 #{
   let slot = "top"
   for q in prepared.questions {
     let num = str(q.number)
-    let full-page = q.kind in full-page-kinds
-    if full-page and slot == "bottom" {
-      // A question above keeps its half page; the bottom half stays empty
-      pagebreak()
-      slot = "top"
-    }
-    let this-slot = if q.timed { "timed" } else if full-page { "page" } else { slot }
+    let this-slot = if q.timed { "timed" } else { slot }
 
     position-question(this-slot, {
       if q.kind == "aristocrat" {

@@ -39,7 +39,7 @@
 // Render a complete columnar prepared by prepare/ (questions.json); never sees plaintext
 // ciphertext: 5-letter blocks, five to a line on the left, so the right side stays clear for one
 // attempt (fewer columns, more rows) and the space below for a second (more columns, fewer rows);
-// then an answer line. main.typ gives it a page of its own
+// then an answer line
 #let render-columnar-prepared(q) = {
   prepared-heading(q)
 
@@ -49,7 +49,7 @@
     set par(leading: 1.5em)
     blocks.chunks(5).map(line => line.join(" ")).join(linebreak())
   })
-  // Work space down to the answer line, 3em above the bottom of the page
+  // Work space down to the answer line, 3em above the bottom of the question's half page
   v(1fr)
   text(font: mono-font, weight: "bold", size: 14pt)[Answer: #box(width: 1fr, line(length: 100%))]
   v(3em)

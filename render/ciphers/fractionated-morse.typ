@@ -52,19 +52,20 @@
 }
 
 // Render a fractionated morse prepared by prepare/ (questions.json); never sees plaintext
-// lines: lines → cipher letters, spaced apart; the lines left-aligned in a block centered as a
-// whole, as in Toebes's PDF
+// lines: lines → cipher letters, at most 17 a line (Toebes's breaks), in 17 equal columns across
+// the text width, so lines are left-aligned. Students write the plaintext under each line, so the
+// room below the lines grows to fill the slot (24pt at least), leaving about 10% of it free below
+// the table
 #let render-fractionated-morse-prepared(q) = {
   prepared-heading(q)
 
-  align(center, block(below: 0pt, {
-    set align(left)
-    set text(font: mono-font, weight: cipher-weight, size: 14.5pt)
-    // Room under each line to write the morse, the last one included (above the table): 24pt, as
-    // before the letters grew
-    for line in q.lines {
-      block(above: 0pt, below: 0pt, inset: (bottom: 1.65em), line.join(h(1.3em)))
-    }
-  }))
+  let columns = calc.max(17, ..q.lines.map(l => l.len()))
+  for line in q.lines {
+    grid(columns: (1fr,) * columns, align: center,
+      ..line.map(c => text(font: mono-font, weight: cipher-weight, size: 14.5pt, c)))
+    v(24pt)
+    v(1fr)
+  }
   render-fm-table()
+  v(10%)
 }

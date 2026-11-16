@@ -1489,3 +1489,21 @@ Three slices, each its own commit:
 - **Ciphertext: both larger letters and more space per letter, moderately** (14.5pt, 1.3em apart),
   chosen over 16pt at 1em or 13pt at 1.6em.
 - From the worklist: lines left-aligned (as Toebes), `Morse` over `fraction` (owner, 2026-11-15).
+
+### Result
+
+Done, pending the owner's check.
+
+- **Slice 1:** `table-label`, `replacement-row` and `letter-table` in `render/common/common.typ`;
+  the aristocrat family's table and the baconian replacement table use them. Every page of both
+  tests identical before and after (page images at 150 dpi).
+- **Slice 2:** the fractionated morse table on `letter-table`: Replacement row 25pt tall (was about
+  12pt), `Morse` over `fraction`, 5pt padding (was 2pt), symbols 9pt (was 7pt) with more leading.
+  The table spans the text width still (wider than Toebes's), its letter columns wider than before.
+- **Slice 3:** lines left-aligned in a centered block, 14.5pt letters 1.3em apart. **Found:** the
+  old `2.4em` below each line resolved at the 10pt body size (24pt), not at the letters' 13pt; the
+  room below each line stays 24pt, so the line pitch grows only by the letters' height (about 33pt
+  to 35pt). The last line now gets that room too, above the table.
+- Only the three fractionated morse pages change (`000` page 3; `001` pages 13 and 15). `000`'s
+  five-line question still fits its top half page (the table ends about 75pt above the half).
+  Page counts unchanged (16 for `001`, 11 for `000`). `check-reference` passes for both.

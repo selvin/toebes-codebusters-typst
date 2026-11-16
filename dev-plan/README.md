@@ -34,7 +34,8 @@ items. Sessions A (points label, crib size), B (timed question in a double outli
 space; columnar five blocks a line, back on half a page) is done and verified. Session F (cryptarithm prepared, in
 Toebes's layout) is done and verified. Session F2 (cryptarithm values in the atbash
 box; outlines at 60% black) is done and verified. Session H (ciphertext in SemiBold) is done and verified. D2 (space by kind) is parked: two
-questions a page is already the fewest pages. Next, E (fractionated morse table):
+questions a page is already the fewest pages. Session E (fractionated morse table) is done,
+pending the owner's check; next is G (line breaking):
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index

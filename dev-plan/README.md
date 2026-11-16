@@ -35,7 +35,6 @@ run of plaintext. Both real tests in `competitiondata/` render, verified by the 
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
   After the November deadline.
 - **Cover page for the question paper** (the answer key has its own).
-- **A date on the answer key's cover**: the export holds none, so it needs its own input.
 - **Questions that flow, three on a page when they fit** (worklist item 11, parked 2026-11-15), and
   with it: a question that moves to the next page takes its top slot. Two a page is already the
   fewest pages; flowing saves pages only with less writing room than the owner's minimums (at most

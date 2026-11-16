@@ -126,5 +126,7 @@ Supersedes the page split and the groups above.
 - **Front and back cover**, the same page twice, all in the answers' serif: ANSWER KEY as the title,
   large and red but not bold, then the test's name and its division, centred on the page both
   ways. The footer's page numbers skip the covers ("Page 1 of 2" on the table's pages).
-- **No date:** Toebes's export holds none (checked both tests' `TEST.0`). If one is wanted, it
-  needs its own input (e.g. a `compile.sh` option); not built.
+- **No date field:** Toebes's export holds none (checked both tests: no date key or date text).
+  When a date is wanted, the test writer puts it in the test's title in Toebes (e.g.
+  "2026-12-05 …"); it then shows on the covers and in every header. Tried and accepted by the
+  owner; no separate input needed.

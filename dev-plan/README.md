@@ -40,7 +40,7 @@ rule; box kinds shrink to fit) is done and verified; it closes the worklist:
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 **Launch gate: leak check** is done (2026-11-16): `compile.sh` fails when our PDF prints 15+
 plaintext letters in a row. Left: the owner prints a packet and reviews it on paper. **Next:** the
-owner picks between the answer key and that packet review.
+answer key (owner's choice, 2026-11-16); the packet review follows.
 
 ## Index
 

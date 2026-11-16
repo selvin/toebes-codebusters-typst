@@ -25,6 +25,7 @@ run of plaintext. Both real tests in `competitiondata/` render, verified by the 
 | 2026-11-15 | [Render pass: UI worklist](2026-11-15-render-pass-ui-worklist.md) | Resolved |
 | 2026-11-16 | [Answer key](2026-11-16-answer-key.md) | Resolved |
 | 2026-11-16 | [A committed test fixture](2026-11-16-test-fixture.md) | In progress |
+| 2026-11-16 | [2026–2027 season: which ciphers each division uses](2026-11-16-rules-summary-2026-27.md) | Record |
 
 ## Backlog
 

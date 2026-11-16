@@ -1,14 +1,14 @@
 # Answer key
 
 **Date:** 2026-11-16
-**Status:** Decided 2026-11-16 (see Decisions below); slice 1 under way.
+**Status:** Slice 1 done 2026-11-16; awaiting the owner's look (slice 2).
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 (Decision 1: answers go to a separate input),
 [2026-11-14-competition-ready-pdf-by-nov-30.md](2026-11-14-competition-ready-pdf-by-nov-30.md)
 
 ---
 
-## The model: a one-page grading sheet
+## The model: a grading sheet
 
 The owner supplied a Toebes answer key from another test as the example
 (`competitiondata/002-key.pdf`, gitignored; we have no export for it). It isn't per-cipher work
@@ -84,3 +84,18 @@ The owner supplied a Toebes answer key from another test as the example
   one), at a slightly larger size, so around 7 answers may take two lines.
 - No points column and no cover pages for now; the header says ANSWER KEY and gives the test title.
 - Column order: ★, letters, number, answer.
+
+## Result — slice 1 (2026-11-16)
+
+- `prepare/src/answers.ts` writes `build/answers.json` (unit-tested; question order shared with the
+  paper through `paperOrder` in `questions.ts`). The letter count reuses the leak check's
+  `lettersOnly`, the same rule the example key follows.
+- `render/key.typ`: landscape, 12pt, 18 rows a page; ★ column, then the letter count (mono,
+  right-aligned), the number (mono bold), the answer. Text is measured cap height to baseline in
+  the table, so the ★ and mono rows don't come out taller than the rest.
+- `compile.sh` writes `<out>-key.pdf` after the question paper's leak check.
+- Checked: every answer and letter count on both keys matches the export (letters-only compare of
+  `pdftotext`). Both keys are 2 pages; `000`'s second page holds 3 rows. The question papers are
+  unchanged (11 and 16 pages; `check-reference` and the leak check pass).
+- For the owner's look: whether 18 rows a page should split evenly instead (e.g. `000` as 11 + 10),
+  or break only at a group boundary.

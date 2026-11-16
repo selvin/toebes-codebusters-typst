@@ -39,9 +39,10 @@ across the full width, filling the slot) is done and verified. Session G (line b
 rule; box kinds shrink to fit) is done and verified; it closes the worklist:
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 **Launch gate: leak check** is done (2026-11-16): `compile.sh` fails when our PDF prints 15+
-plaintext letters in a row. Left: the owner prints a packet and reviews it on paper. **Next:** the
-answer key (owner's choice, 2026-11-16): planned as a one-page grading sheet,
-[2026-11-16-answer-key.md](2026-11-16-answer-key.md); the packet review follows.
+plaintext letters in a row. Left: the owner prints a packet and reviews it on paper. **The answer key**
+(owner's choice, 2026-11-16): a landscape grading sheet, one row per question,
+[2026-11-16-answer-key.md](2026-11-16-answer-key.md). Slice 1 is built; **next:** the owner looks
+at it. The packet review follows.
 
 ## Index
 
@@ -62,7 +63,8 @@ answer key (owner's choice, 2026-11-16): planned as a one-page grading sheet,
 - **Question-paper tool on codebusters.site**: upload a Toebes JSON, get the question paper.
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
   After the November deadline.
-- **Answer key and cover page** if they miss the deadline (Toebes's answer key is the fallback).
+- **Cover page** for the question paper, if it misses the deadline. (The answer key is built; see
+  its plan.)
 - **Questions that flow, three on a page when they fit** (worklist item 11, parked 2026-11-15), and
   with it: a question that moves to the next page takes its top slot. Two a page is already the
   fewest pages; flowing saves pages only with less writing room than the owner's minimums (at most

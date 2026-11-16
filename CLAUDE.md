@@ -8,13 +8,14 @@ status and what's next.
 ## Repository layout
 
 ```
-prepare/            — TypeScript: Toebes export → build/questions.json (cipher logic, no layout)
-render/main.typ     — Typst entry point; reads build/questions.json, dispatches by kind
+prepare/            — TypeScript: Toebes export → build/questions.json + build/answers.json (cipher logic, no layout)
+render/main.typ     — Typst entry point for the question paper; reads build/questions.json, dispatches by kind
+render/key.typ      — Typst entry point for the answer key; reads only build/answers.json
 render/common/      — shared Typst helpers (question heading, HTML→Typst, line breaking, dual boxes)
 render/ciphers/     — one Typst renderer per cipher type
 render/common/fonts.typ — the one place that names the fonts (body, title, mono) and the body size
 fonts/              — the bundled fonts (Noto, OFL); compile.sh ignores system fonts
-compile.sh          — runs prepare, then `typst compile` on render/main.typ
+compile.sh          — runs prepare, then `typst compile` on render/main.typ (leak-checked) and render/key.typ
 dev-plan/           — plans and decisions (source of truth across sessions)
 competitiondata/    — gitignored real competition exports and reference PDFs (hard rule below)
 ```
@@ -47,7 +48,8 @@ Compiling is fine in a session: there is no PII here. Our PDFs of a real test go
 `competitiondata/` (gitignored), never anywhere tracked.
 
 **Visual checks.** When the owner needs to look at the output, prompt them with these commands (our
-PDF opens beside Toebes's), using the test numbers the change touches:
+PDF opens beside Toebes's; add `competitiondata/00N-tct-key.pdf` for the answer key), using the test
+numbers the change touches:
 
 ```sh
 ./compile.sh competitiondata/000.json competitiondata/000-tct.pdf && open competitiondata/000-tct.pdf competitiondata/000.pdf

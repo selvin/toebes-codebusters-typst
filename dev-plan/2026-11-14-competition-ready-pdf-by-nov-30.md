@@ -1181,3 +1181,19 @@ Done, pending the owner's check on paper.
 
 **Next (owner, 2026-11-15):** a question that moves to the next page counts as that page's top, so
 the next question can follow below it (likely `001` at 18 pages). Its own slice.
+
+**Owner check (2026-11-15):** verified on paper, both tests: baconian spacing, columnar layout, and
+the moved questions.
+
+### Decisions — 2026-11-15 (columnar back on half a page)
+
+- **Complete columnar goes back to half a page** (owner). Only about a third of teams attempt
+  each question, so saving paper matters more; teams can do rough work on blank sheets. Keep the
+  five blocks a line, bunched on the left, so the scratch area beside and below is usable.
+- With no whole-page kind left, the `page` slot and `full-page-kinds` go (no dead code); slot
+  tracking and moving a too-tall bottom question stay.
+- **A bottom question with a `v(1fr)` (the columnar's work space)** can't sit in an unbreakable
+  block as is: the `1fr` takes the whole page height and the question always moves. The bottom
+  slot instead measures the room left on the page (`here().position()`), and gives a question that
+  fits exactly that height, so `v(1fr)` fills to the page's bottom.
+- **Space by kind** (owner's estimates, for the next slice): see the worklist, item 11.

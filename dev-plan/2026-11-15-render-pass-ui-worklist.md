@@ -32,7 +32,7 @@ Items are numbered for reference only; the sessions below set the order.
    more room to write in place. (Earlier notes: Toebes gives the ciphertext more vertical room and
    spaces values wider.)
 6. ✅ **Checkerboard: same as 5.** Table 40% larger, still beside only three ciphertext lines.
-7. **Baconian (words): about 1.5 lines of writing space under each line**; students write larger
+7. ✅ **Baconian (words): about 1.5 lines of writing space under each line**; students write larger
    than the printed font.
 8. **Complete columnar: 5 groups of 5 letters per line**, which leaves a clear area on the right
    for one full columnar attempt (fewer columns, more rows), and the space below the ciphertext for
@@ -50,6 +50,26 @@ Items are numbered for reference only; the sessions below set the order.
     (one operand per line, a rule under them), the values to decode, and the letter × digit (0–9)
     work grid. Solution boxes are **individual boxes styled like ours elsewhere**. Toebes's `+` and
     `=` sit out of line with the operands: don't copy that.
+
+11. **Steal space from the top question by kind** (owner, 2026-11-15), to save paper. Many kinds
+    rarely need their half page (fractionated morse answers are written in line, under the
+    ciphertext). Give each top question a minimum height, the rest of its half page going to the
+    question below, which can grow into it. Spare share of the half page, the owner's estimates:
+
+    | Kind | Spare |
+    |------|-------|
+    | Atbash, caesar, porta, 2 lines | 40% |
+    | Atbash, caesar, porta, 3 lines; aristocrats and variants, 2 lines | 20% |
+    | Aristocrats and variants, 3 lines | none |
+    | Baconian, any mode, 4 lines | 5% |
+    | Baconian, any mode, 5 lines | none |
+    | Nihilist substitution, checkerboard, 4 lines | 20% |
+    | Nihilist substitution, checkerboard, 5 lines | 8% |
+    | Fractionated morse, 4 lines | 30% |
+    | Fractionated morse, 5 lines | 20% |
+    | Complete columnar, cryptarithm, homophonic | none |
+
+    Track which kinds overflow their half page in practice, and refine the table from that.
 
 ## Confirmed, nothing to do
 
@@ -74,7 +94,7 @@ Items are numbered for reference only; the sessions below set the order.
 | B | 3 | Changes the page layout (half-page logic) |
 | C | 5, 6 | Same pattern: a table beside three lines |
 | D | 7, 8 | Writing space in two kinds; small each |
-| D2 | — | Follow-up to 8: a question moved to the next page takes its top slot (owner, 2026-11-15) |
+| D2 | 8 (back to half a page), 11 | A question moved to the next page takes its top slot; top questions give spare room to the one below |
 | E | 9 | Shared table helper with the aristocrats; widest change in step 3 |
 | F | 10 | The largest; cryptarithm is still a legacy kind |
 | G | 4 | Line breaking, after the kinds' own layouts settle |

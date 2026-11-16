@@ -126,7 +126,7 @@
     "editEntry": 1
   },
   "CIPHER.2": {
-    "cipherString": "Nothin in lyfe is to be feered, it is only to be understud. Now is the tyme to understand more, so that we may fear les.",
+    "cipherString": "Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less.",
     "cipherType": "aristocrat",
     "encodeType": "k1",
     "offset": 4,
@@ -168,7 +168,6 @@
     "points": 401,
     "author": "Marie Curie",
     "question": "<p>Decrypt this <b>Aristocrat</b> of a quote by Marie Curie. It uses a K1 alphabet.</p>",
-    "misspelled": true,
     "specialbonus": false,
     "editEntry": 2
   },
@@ -677,7 +676,7 @@
     "operation": "decode",
     "problem": "",
     "cipherString": "SEND + MORE = MONEY",
-    "soltext": "DRONES",
+    "soltext": "DRY ROSES MEND",
     "cipherType": "cryptarithm",
     "replacement": {},
     "mapping": {
@@ -694,7 +693,7 @@
     "curlang": "en",
     "points": 258,
     "author": "",
-    "question": "<p>Solve this <b>Cryptarithm</b>, then decode the values <b>7 8 0 6 5 9</b> into a word.</p>",
+    "question": "<p>Solve this <b>Cryptarithm</b>, then decode the values <b>782 80959 1567</b> into words.</p>",
     "specialbonus": false,
     "editEntry": 19
   },
@@ -856,7 +855,7 @@
     "operation": "decode",
     "problem": "",
     "cipherString": "BASE + BALL = GAMES",
-    "soltext": "GAMBLES",
+    "soltext": "SMALL BEAGLES",
     "cipherType": "cryptarithm",
     "replacement": {},
     "mapping": {
@@ -872,7 +871,7 @@
     "curlang": "en",
     "points": 273,
     "author": "",
-    "question": "<p>Solve this <b>Cryptarithm</b>, then decode the values <b>1 4 9 7 5 3 8</b> into a word.</p>",
+    "question": "<p>Solve this <b>Cryptarithm</b>, then decode the values <b>89455 7341538</b> into words.</p>",
     "specialbonus": false,
     "editEntry": 24
   }

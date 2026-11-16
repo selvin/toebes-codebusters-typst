@@ -45,7 +45,7 @@ takes the zero-error path in the key.
 |---|-----------------|----------------|------|
 | T | Aristocrat, K1 | "Be yourself; everyone else is already taken." (Wilde) | timed question, semicolon |
 | 1 | Aristocrat, random | "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe." (Einstein) | apostrophe, colon |
-| 2 | Aristocrat, random, misspelled | "Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less." (Curie) | the longest answer (key wraps), misspelling |
+| 2 | Aristocrat, K1 (misspelling dropped) | "Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less." (Curie) | the longest answer (key wraps) |
 | 3 | Aristocrat, Spanish | "Por una mirada un mundo; por una sonrisa, un cielo; por un beso…¡yo no sé qué te diera por un beso!" (Bécquer) | accents (key letter count), ¡ and … |
 | 4 | Patristocrat | "Any sufficiently advanced technology is indistinguishable from magic." (Clarke) | blocks of five; special bonus ★ |
 | 5 | Atbash | "So many books, so little time." (Zappa) | table kind |
@@ -62,12 +62,12 @@ takes the zero-error path in the key.
 | 16 | Fractionated Morse | "That which can be asserted without evidence, can be dismissed without evidence." (Hitchens) | |
 | 17 | Homophonic, decode | "If you tell the truth, you don't have to remember anything." (Twain) | numbers header |
 | 18 | Homophonic, crypt | "A friend is someone who knows all about you and still loves you." (Hubbard) | letters header |
-| 19 | Cryptarithm | (Toebes generates the words) | `soltext` answer, Division B zero errors |
+| 19 | Cryptarithm | SEND + MORE = MONEY, answer DRY ROSES MEND | `soltext` answer, Division B zero errors |
 | 20 | Aristocrat, random | "Be the change that you wish to see in the world." (Gandhi) | repeat |
 | 21 | Aristocrat, K1 | "A room without books is like a body without a soul." (Cicero) | repeat |
 | 22 | Patristocrat, K1 | "The saddest aspect of life right now is that science gathers knowledge faster than society gathers wisdom." (Asimov) | repeat |
 | 23 | Complete columnar | "To live is the rarest thing in the world. Most people exist, that is all." (Wilde) | repeat, 7 columns |
-| 24 | Cryptarithm | BASE + BALL = GAMES, answer GAMBLES | repeat |
+| 24 | Cryptarithm | BASE + BALL = GAMES, answer SMALL BEAGLES | repeat |
 
 Left out on purpose: inputs we already fail on loudly (Morse with digits or an XXX triple,
 Baconian A/B sets with formatting); 2026-season-only kinds (affine, K2), which aren't supported.
@@ -116,3 +116,10 @@ Toebes, and Toebes's re-export then replaces `fixture.json`.
 - **State level, Division B.** Crypt questions are allowed at state level, and the cryptarithm is
   allowed in Division B, so both stay.
 - First run: 25 questions, none legacy; paper 13 pages, key 4; leak check passes.
+
+## Decisions — 2026-11-16 (Toebes's checker, second pass)
+
+- **No misspelled aristocrat:** Toebes doesn't allow one in Division B at any level. Question 2 is
+  now spelled correctly.
+- **Cryptarithm values in the question:** one group of digits per answer word, groups separated by
+  spaces (e.g. `782 80959 1567`), as real tests print them. Both answers now have several words.

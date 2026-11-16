@@ -1534,3 +1534,60 @@ questions spread further. Only the three fractionated morse pages change; page c
 
 **Owner check (2026-11-15):** verified on screen, both tests. Five-line questions stay on half a
 page (a full page, as Toebes's, would add a page to `000`). Effort closed.
+
+## Render pass: line breaking — 2026-11-15
+
+Worklist item 4 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)),
+session G, with the notes in "Porta detail", "Patristocrat detail" and "Atbash and caesar detail".
+
+### What the references do
+
+- **Toebes** (`toebes/ciphers` on GitHub): `makeReplacement(str, width)` in
+  `app/common/cipherhandler.ts` walks the characters; any non-letter other than a quote mark
+  (`keepwithnextchar`: `' ’ ‘ " “ ”`) marks a split point just after it. Once the line holds
+  `width` characters (spaces included), it is cut at the last split point (the rest carries on), or
+  hard-cut if there is none. **No break at sentence ends.** Widths (Division B/C): aristocrats,
+  patristocrats and the xenocrypt 53 (`maxEncodeWidth` in `cipherencoder.ts`); atbash and caesar
+  37 (`ciphertableencoder.ts`). Porta: `buildReplacementVigenere` in `ciphervigenereencoder.ts`,
+  width 40, the same rule except that the width is checked only after a letter.
+- **Confirmed** by simulating the rule on our ciphertext for every question of both tests that
+  uses it (25) and comparing letters per line with pdftotext of Toebes's PDF: all match (the few
+  apparent mismatches were page breaks and crib lines in the extraction).
+- **Ours:** `smart-line-break` (`render/common/common.typ`), whole words up to a character count,
+  plus a break after every period. Aristocrat family 55 at 16pt; atbash 32, caesar and porta 35,
+  cryptarithm values 35, dual boxes at 12pt. Of the 25 questions, 15 break differently from Toebes:
+  every porta (ours 3 lines, Toebes 2), both patristocrats (ours 9 blocks a line, Toebes 8), most
+  atbash and caesar lines that hold a sentence end, and several aristocrats.
+- **Room on our page:** text width 555pt. Aristocrat family: 16pt Noto Sans Mono is 9.6pt a
+  character, so 53 characters take 509pt of the 535pt inside the block's inset: **Toebes's breaks
+  fit.** Dual boxes at 12pt: 16.2pt a letter, about 15pt a space. Toebes's lines measured at 12pt
+  run up to 617pt (a porta line), 565–571pt (two caesar lines, one atbash line): **they don't all
+  fit at 12pt.** Breaking wherever the width fills at 12pt would still leave porta on 3 lines.
+- **Out of scope:** nihilist, checkerboard, baconian, complete columnar, homophonic and fractionated
+  morse lay out their own lines (owner-verified in their slices). Cryptarithm values are one short
+  line.
+
+### Decided (owner)
+
+- **Aristocrat family: Toebes's rule exactly**, width 53: no break at sentence ends; patristocrats
+  go to 8 blocks a line.
+- **Atbash, caesar, porta: Toebes's breaks, shrink to fit.** A question stays at 12pt unless its
+  widest line doesn't fit the text width; then all its boxes shrink just enough (in these tests
+  porta about 10.7pt, two caesars and one atbash about 11.5pt).
+
+### What we'll do
+
+One kind per commit:
+
+1. **Aristocrat family:** `toebes-line-break(text, width)` in `common`, Toebes's rule (with an
+   option for porta's letters-only width check); `render-aristocrat-prepared` breaks at 53. Covers
+   aristocrats, patristocrats and the xenocrypt (one renderer).
+2. **Atbash:** `render-dual-box-text` takes Toebes's width and shrinks a question's boxes to fit
+   its widest line; atbash at 37.
+3. **Caesar** at 37.
+4. **Porta** at 40, letters-only width check.
+5. **Cryptarithm values** onto the same path (expected no visible change), then delete
+   `smart-line-break` once nothing uses it but the legacy `render-aristocrat`.
+
+Each: check against Toebes's letters per line (scratch script), page counts (16 for `001`, 11 for
+`000`), `check-reference`, and a page-image diff to list the pages that moved.

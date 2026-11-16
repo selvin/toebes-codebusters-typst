@@ -1507,3 +1507,18 @@ Done, pending the owner's check.
 - Only the three fractionated morse pages change (`000` page 3; `001` pages 13 and 15). `000`'s
   five-line question still fits its top half page (the table ends about 75pt above the half).
   Page counts unchanged (16 for `001`, 11 for `000`). `check-reference` passes for both.
+
+### Decisions — 2026-11-15 (owner's check)
+
+The owner found the spacing good, with two changes. Toebes gives the question a full page: more
+room in one case, and in the others the table sits lower, so the lines get more room. Students
+write the plaintext in line, under the ciphertext (full credit); a separate answer area is hardly
+needed.
+
+- **Full width:** the at most 17 letters a line span the text width (17 equal columns; a shorter
+  line stays left-aligned).
+- **The lines take the slot's spare height:** the room under each line grows to fill the slot
+  (24pt at least), leaving about 10% of the slot free below the table, for writing the answer out
+  again.
+- **The space-by-kind minimums change:** fractionated morse no longer has spare room (was 30% at
+  4 lines, 20% at 5), beyond that 10%. Parked anyway (see "Render pass: space by kind").

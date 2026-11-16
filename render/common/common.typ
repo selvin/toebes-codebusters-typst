@@ -438,15 +438,10 @@
   }
 }
 
-// Render already-encoded text in dual-box format: each letter boxed, an empty box below it
-// box-digits: box digits like letters (an atbash or caesar keeps a plaintext digit unboxed)
-#let render-dual-box-text(encodedString, max-chars: 35, box-digits: false) = {
-  // Use smart-line-break for the cipher text
-  let lines = smart-line-break(encodedString, max-chars: max-chars)
-
-  // Render the lines
+// Dual-box lines at a given text size
+#let dual-box-lines(lines, size, box-digits) = {
   block(inset: (x: 4pt, bottom: 4pt))[
-    #set text(font: mono-font, weight: cipher-weight, size: 12pt)
+    #set text(font: mono-font, weight: cipher-weight, size: size)
     #for line in lines [
       // Render each character in the line
       #box[
@@ -465,4 +460,23 @@
       #v(1em)
     ]
   ]
+}
+
+// Render already-encoded text in dual-box format: each letter boxed, an empty box below it
+// toebes-width: break as Toebes does at this width (and letters-only-check, see toebes-line-break);
+//   the boxes are 12pt unless the widest line doesn't fit, then just small enough that it does
+// max-chars: without toebes-width, break with smart-line-break at this many characters, at 12pt
+// box-digits: box digits like letters (an atbash or caesar keeps a plaintext digit unboxed)
+#let render-dual-box-text(encodedString, max-chars: 35, toebes-width: none, letters-only-check: false, box-digits: false) = {
+  if toebes-width == none {
+    return dual-box-lines(smart-line-break(encodedString, max-chars: max-chars), 12pt, box-digits)
+  }
+  let lines = toebes-line-break(encodedString, toebes-width, letters-only-check: letters-only-check)
+  layout(region => {
+    // Everything but the 4pt side insets scales with the text size
+    let natural = measure(dual-box-lines(lines, 12pt, box-digits)).width - 8pt
+    let room = region.width - 8pt
+    let size = if natural <= room { 12pt } else { 12pt * (room / natural) }
+    dual-box-lines(lines, size, box-digits)
+  })
 }

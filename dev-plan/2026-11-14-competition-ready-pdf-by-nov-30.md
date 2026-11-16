@@ -332,8 +332,8 @@ table written as A/B):
   not random or server-side: the dictionary is a fixed list compiled into the site
   (`app/common/fiveletterwords.ts`, BSD-3), and Toebes takes the first listed word that fits the
   pattern. It happens only when a stored word no longer fits (the A/B mapping changed after the
-  words were picked) or a slot is empty, which its editor flags. Kept failing loudly (owner's
-  review): such a test isn't what its setter thinks; port the list if a real test ever needs it.
+  words were picked) or a slot is empty, which its editor flags. We keep failing loudly: such a
+  test isn't what its setter thinks; port the list if a real test ever needs it.
 - **sequence**: `texta` and `textb` split into graphemes (combining marks stay with their base
   letter; trailing spaces stay with the previous symbol). One position counter shared by both
   sets: each A/B bit takes the symbol at that position from its set, then the counter moves on,

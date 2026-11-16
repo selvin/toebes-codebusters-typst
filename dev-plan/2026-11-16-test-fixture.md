@@ -88,3 +88,16 @@ Baconian A/B sets with formatting); 2026-season-only kinds (affine, K2), which a
   fixes anything in Toebes, Toebes's re-export replaces `fixture.json`.
 - First run: all 20 questions take their own renderer (none legacy); the paper is 11 pages, the key
   4, the leak check passes, the key marks ★ on 4 and zero errors on 19.
+
+## Decisions — 2026-11-16 (Toebes's test checker, first pass)
+
+Toebes's checker flagged the first import. Fixed: point totals no longer end in 0 or 5; question
+text says "decrypt", names K1 alphabets and the Nihilist keyword's length; the misspelled
+aristocrat and the patristocrat use K1 alphabets; the special bonus moved from the patristocrat (not
+allowed there) to the crypt homophonic; the Nihilist crypt keyword is short enough for its crib;
+the decode homophonic has three hint letters; the cryptarithm names its values.
+
+Left on purpose, since fixing them would drop a corner case: fewer than 22 questions, and
+Division B warnings (no misspelled aristocrat, no cryptanalysis, no decode homophonic). Division B
+is what puts the cryptarithm on the key's zero-error path. The owner fixes the rest by hand in
+Toebes, and Toebes's re-export then replaces `fixture.json`.

@@ -16,6 +16,8 @@ render/ciphers/     — one Typst renderer per cipher type
 render/common/fonts.typ — the one place that names the fonts (body, title, mono) and the body size
 fonts/              — the bundled fonts (Noto, OFL); compile.sh ignores system fonts
 compile.sh          — runs prepare, then `typst compile` on render/main.typ (leak-checked) and render/key.typ
+Makefile            — `make visualcheck <test>`: compile, then open ours beside Toebes's PDF
+testdata/           — committed made-up fixtures (4-digit names) and Toebes's PDFs of them
 dev-plan/           — plans and decisions (source of truth across sessions)
 competitiondata/    — gitignored real competition exports and reference PDFs (hard rule below)
 ```
@@ -37,7 +39,9 @@ never becomes public (owner, 2026-11-14).
   only as `competitiondata/001`. This applies to `.gitignore` too.
 - Docs may name cipher *types* the work supports, but not tie them to a test's questions.
 - `competitiondata/` is for real competitions only. Safe fixtures (published quotes, e.g.
-  from Goodreads, never from a real test, held or not) can go in a tracked `testdata/` folder.
+  from Goodreads, never from a real test, held or not) go in `testdata/`, with
+  **4-digit** names (`testdata/0000.json`, Toebes's PDF `testdata/0000.pdf`), so a fixture can never
+  overwrite a 3-digit real test.
 
 **The question-paper template never receives answers.** `prepare` (TS) gives the question-paper
 Typst template only what a student may see: no `cipherString`, no keys, no plaintext. Answers go to
@@ -47,13 +51,14 @@ a separate answer-key input. See
 Compiling is fine in a session: there is no PII here. Our PDFs of a real test go next to it in
 `competitiondata/` (gitignored), never anywhere tracked.
 
-**Visual checks.** When the owner needs to look at the output, prompt them with these commands (our
-PDF opens beside Toebes's; add `competitiondata/00N-tct-key.pdf` for the answer key), using the test
-numbers the change touches:
+**Visual checks.** When the owner needs to look at the output, prompt them with `make visualcheck`
+and the test numbers the change touches. It compiles, then opens our paper, Toebes's paper and our
+answer key:
 
 ```sh
-./compile.sh competitiondata/000.json competitiondata/000-tct.pdf && open competitiondata/000-tct.pdf competitiondata/000.pdf
-./compile.sh competitiondata/001.json competitiondata/001-tct.pdf && open competitiondata/001-tct.pdf competitiondata/001.pdf
+make visualcheck 0000   # the committed fixture (testdata/)
+make visualcheck 000    # real tests (competitiondata/)
+make visualcheck 001
 ```
 
 ## Philosophy

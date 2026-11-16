@@ -1297,3 +1297,41 @@ Done, pending the owner's check on paper. **No legacy kind is left in `000` or `
 **Owner check (2026-11-15):** verified on paper, both tests. Keep the digits boxed. Follow-up: the
 value boxes should stand apart like the atbash and caesar ones, by reusing that box (worklist
 item 12).
+
+## Render pass: box styling — 2026-11-15
+
+Worklist items 12 and 13 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)),
+session F2.
+
+### What the references do
+
+- **Dual boxes** (atbash, caesar, porta): `render-char-dual-box` in `render/common/common.typ`
+  boxes letters only (0.25pt black), two boxes stacked; consecutive letters stand a small gap apart
+  (a word space less 0.45em). A digit or punctuation prints unboxed, top and bottom.
+- **Cryptarithm values** draw their own boxes of the same size, a word's boxes touching (sharing
+  an edge), words 1.2em apart.
+- **Every stroke in the packet** today, all black unless noted: dual boxes and cryptarithm value
+  boxes 0.25pt; tables and grids 0.5pt (aristocrat family, nihilist, checkerboard, fractionated
+  morse, baconian replacement, homophonic help, cryptarithm work grid); the rule above each
+  question 0.25pt and the question number's circle 0.5pt; the timed question's double outline
+  0.75pt; the cryptarithm's sum rule 1pt; the header's team-number underline 0.5pt; the columnar
+  "Answer:" line 1pt; the cryptarithm's separator line (0.5pt, already gray); the "unknown" box
+  (red, a fallback only).
+
+### What we'll do
+
+1. **Item 12:** `render-char-dual-box` and `render-dual-box-text` take `box-digits` (default
+   `false`, so atbash, caesar and porta don't change); with it, a digit is boxed like a letter and
+   spaced like one. The cryptarithm's values become `render-dual-box-text(values joined by spaces,
+   box-digits: true)`: the same boxes, gap and word spacing as an atbash (words sit closer than
+   1.2em). Its own box function goes.
+2. **Item 13:** one `box-stroke-colour` (60% black, `luma(40%)`) in `common`, used by the strokes
+   below.
+
+### Decided (owner)
+
+- **Digits stay boxed** in the cryptarithm values (from the cryptarithm check).
+- **60% black:** answer boxes (dual boxes, so the cryptarithm values too), every table and grid
+  listed above, the timed question's double outline, and the write-in lines (team-number underline,
+  columnar "Answer:" line). **Stay black:** the rule above each question, the number's circle, the
+  cryptarithm's sum rule. The separator line stays gray, the "unknown" box red.

@@ -70,7 +70,7 @@
     width: 100%
   )[
     #set text(font: mono-font, weight: "bold", size: 16pt)
-    #let lines = smart-line-break(upper(cipher.cipherString), max-chars: 55)
+    #let lines = toebes-line-break(upper(cipher.cipherString), 53)
     #for line in lines {
       line
       linebreak()

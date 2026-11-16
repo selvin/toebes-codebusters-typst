@@ -7,5 +7,5 @@
 // q: an "atbash" entry from questions.json (ciphertext already encoded by prepare/)
 #let render-atbash-prepared(q) = {
   prepared-heading(q)
-  render-dual-box-text(q.ciphertext, toebes-width: 37)
+  render-dual-box-text(q.ciphertext, 37)
 }

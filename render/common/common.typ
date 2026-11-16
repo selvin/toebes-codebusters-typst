@@ -254,84 +254,6 @@
   ]
 }
 
-// Smart text renderer that breaks lines intelligently
-// - Breaks lines at periods (.)
-// - Maximum N characters per line
-// - Doesn't break words (moves whole word to next line)
-// Returns an array of strings, one per line
-#let smart-line-break(text, max-chars: 80) = {
-  let lines = ()
-  let current-line = ""
-  let current-word = ""
-  let skip-next-space = false
-
-  // Process each character using clusters (handles Unicode properly)
-  for char in text.clusters() {
-    // Check if we hit a period
-    if char == "." {
-      // Add the period to current word
-      current-word += char
-      // Flush current word to line, on a new line if it doesn't fit
-      if current-line.len() + current-word.len() > max-chars and current-line.len() > 0 {
-        lines.push(current-line.trim())
-        current-line = ""
-      }
-      current-line += current-word
-      // End the line here
-      if current-line.len() > 0 {
-        lines.push(current-line)
-      }
-      current-line = ""
-      current-word = ""
-      skip-next-space = true  // Skip the space after period
-      continue
-    }
-
-    // Check if we hit a space
-    if char == " " {
-      // Skip space right after a period
-      if skip-next-space {
-        skip-next-space = false
-        continue
-      }
-
-      // Check if adding this word would exceed max
-      if current-line.len() + current-word.len() + 1 > max-chars and current-line.len() > 0 {
-        // Current line is full, start new line with the word
-        lines.push(current-line)
-        current-line = current-word + " "
-        current-word = ""
-      } else {
-        // Add word and space to current line
-        current-line += current-word + " "
-        current-word = ""
-      }
-    } else {
-      // Regular character, add to current word
-      current-word += char
-      skip-next-space = false
-    }
-  }
-
-  // Handle remaining word and line
-  if current-word.len() > 0 {
-    if current-line.len() + current-word.len() > max-chars and current-line.len() > 0 {
-      // Start new line for the last word
-      lines.push(current-line.trim())
-      lines.push(current-word)
-    } else {
-      current-line += current-word
-      if current-line.len() > 0 {
-        lines.push(current-line)
-      }
-    }
-  } else if current-line.len() > 0 {
-    lines.push(current-line.trim())
-  }
-
-  return lines
-}
-
 // Toebes's line breaking (makeReplacement in toebes/ciphers), so our lines match its PDF
 // - Any non-letter except a quote mark marks a split point just after it
 // - Once a line holds `width` characters, it is cut at the last split point (hard cut if none)
@@ -463,15 +385,11 @@
 }
 
 // Render already-encoded text in dual-box format: each letter boxed, an empty box below it
-// toebes-width: break as Toebes does at this width (and letters-only-check, see toebes-line-break);
+// width: break as Toebes does at this width (and letters-only-check, see toebes-line-break);
 //   the boxes are 12pt unless the widest line doesn't fit, then just small enough that it does
-// max-chars: without toebes-width, break with smart-line-break at this many characters, at 12pt
 // box-digits: box digits like letters (an atbash or caesar keeps a plaintext digit unboxed)
-#let render-dual-box-text(encodedString, max-chars: 35, toebes-width: none, letters-only-check: false, box-digits: false) = {
-  if toebes-width == none {
-    return dual-box-lines(smart-line-break(encodedString, max-chars: max-chars), 12pt, box-digits)
-  }
-  let lines = toebes-line-break(encodedString, toebes-width, letters-only-check: letters-only-check)
+#let render-dual-box-text(encodedString, width, letters-only-check: false, box-digits: false) = {
+  let lines = toebes-line-break(encodedString, width, letters-only-check: letters-only-check)
   layout(region => {
     // Everything but the 4pt side insets scales with the text size
     let natural = measure(dual-box-lines(lines, 12pt, box-digits)).width - 8pt

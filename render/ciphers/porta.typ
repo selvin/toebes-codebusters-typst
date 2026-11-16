@@ -29,5 +29,5 @@
 // ciphertext: letter blocks separated by spaces, each letter boxed with an answer box below
 #let render-porta-prepared(q) = {
   prepared-heading(q)
-  render-dual-box-text(q.ciphertext, toebes-width: 40, letters-only-check: true)
+  render-dual-box-text(q.ciphertext, 40, letters-only-check: true)
 }

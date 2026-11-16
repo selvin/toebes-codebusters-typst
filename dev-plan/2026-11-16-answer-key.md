@@ -105,3 +105,16 @@ The owner supplied a Toebes answer key from another test as the example
   questions (16 to 20 two seasons ago), so page 2 usually holds 15 or 16 rows.
 - Row padding down from 9pt to 7pt, so a 35-question test fits on 2 pages: checked with a made-up
   key, T + 1–35 with every seventh answer wrapping (page 2: 20 rows, 4 of them two lines).
+
+## Decisions — 2026-11-16 (styling, owner)
+
+Supersedes the page split and the groups above.
+
+- **Columns:** letter count, ★, number, answer. The count is in 60% black so it doesn't dominate
+  (the red zero-error border stays); the number is ink blue and bold.
+- **No groups of five.** Odd-numbered questions get a 20% black background instead; all row rules
+  are thin.
+- **One table that flows,** with roomier rows (10pt padding), so page 1 fills first and holds more
+  rows than page 2: `001` is 18 + 12, `000` 18 + 3. Made-up keys of 31 and 32 rows fit on 2 pages;
+  the maximum (T + 35) takes 3.
+- The ★ sits in a cap-height box, so ★ rows are no taller than the others.

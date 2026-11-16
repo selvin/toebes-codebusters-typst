@@ -10,13 +10,13 @@
 // typst compile --input answers=… (path from the repo root: --root .)
 #let key = json(sys.inputs.at("answers", default: "/build/answers.json"))
 
-// Page 1 ends after question 15 (T and three groups of five); the rest follow, breaking where
-// they must (owner, 2026-11-16: most tests have 30 or 31 questions)
-#let first-page-last = 15
 #let key-size = 12pt
 #let key-red = rgb("#d00000")
+#let key-blue = rgb("#1c3f94") // ink blue, for the question numbers
 #let row-rule = 0.5pt + box-stroke-color
-#let group-rule = 1.5pt + box-stroke-color
+#let stripe = luma(80%) // 20% black, behind odd-numbered questions
+// Roomy rows: one table that flows, so page 1 fills first and page 2 takes what's left
+#let row-inset = 10pt
 
 #let answer-key-label = text(fill: key-red, weight: "bold")[ANSWER KEY]
 #set page(
@@ -34,13 +34,13 @@
 #set document(title: key.test.title + " — Answer key")
 #set text(font: body-font, size: key-size)
 
-// The timed question is T; a thick rule follows it and every fifth question
+// The timed question is T
 #let label(a) = if a.timed { "T" } else { str(a.number) }
-#let ends-group(a) = a.timed or calc.rem(a.number, 5) == 0
 
-// Zero-error answers: all caps, and a red border round the letter count
+// The letter count in 60% black, so it doesn't dominate; zero-error answers get all caps and a
+// red border round the count
 #let letters-cell(a) = {
-  let count = text(font: mono-font, str(a.letters))
+  let count = text(font: mono-font, fill: box-stroke-color, str(a.letters))
   if a.zeroErrors { box(stroke: 1pt + key-red, outset: (x: 3pt, y: 3pt), count) } else { count }
 }
 #let answer-cell(a) = {
@@ -49,31 +49,24 @@
 }
 
 // Text measured cap height to baseline, so the ★ and the mono answers don't make their rows taller
-#let key-table(answers) = {
+#{
   set text(top-edge: "cap-height", bottom-edge: "baseline")
   set par(leading: 0.75em)
   table(
     columns: (auto, auto, auto, 1fr),
-    align: (center + horizon, right + horizon, center + horizon, left + horizon),
-    inset: (x: 6pt, y: 7pt),
-    stroke: (x, y) => (left: row-rule, right: row-rule),
-    table.hline(stroke: group-rule),
-    ..answers
+    align: (right + horizon, center + horizon, center + horizon, left + horizon),
+    inset: (x: 6pt, y: row-inset),
+    stroke: row-rule,
+    fill: (x, y) => if calc.odd(key.answers.at(y).number) { stripe },
+    ..key
+      .answers
       .map(a => (
-        if a.specialBonus { text(font: answer-font, size: 1.5em, "★") } else { [] },
         letters-cell(a),
-        text(font: mono-font, weight: "bold", label(a)),
+        // The ★ sits in a box of cap height, so its size doesn't make the row taller
+        if a.specialBonus { box(height: 0.7em, align(horizon, text(font: answer-font, size: 1.5em, "★"))) } else { [] },
+        text(font: mono-font, weight: "bold", fill: key-blue, label(a)),
         answer-cell(a),
-        table.hline(stroke: if ends-group(a) or a == answers.last() { group-rule } else { row-rule }),
       ))
       .flatten(),
   )
-}
-
-#let first = key.answers.filter(a => a.number <= first-page-last)
-#let rest = key.answers.filter(a => a.number > first-page-last)
-#key-table(first)
-#if rest.len() > 0 {
-  pagebreak()
-  key-table(rest)
 }

@@ -47,7 +47,7 @@ Items are numbered for reference only; the sessions below set the order.
    - cell padding like the aristocrats' table; **put what both tables share in `common`**;
    - ciphertext lines left-aligned (Toebes left-aligns lines inside a centered block; ours centers
      each line); use the spare width for larger letters or more space per letter.
-10. **Cryptarithm: Toebes's layout** (done 2026-11-15, pending the owner's check on paper), as
+10. ✅ **Cryptarithm: Toebes's layout** (verified on paper 2026-11-15; follow-up is item 12), as
     close as possible: the equation as grade-school addition
     (one operand per line, a rule under them), the values to decode, and the letter × digit (0–9)
     work grid. Solution boxes are **individual boxes styled like ours elsewhere**. Toebes's `+` and
@@ -73,6 +73,15 @@ Items are numbered for reference only; the sessions below set the order.
 
     Track which kinds overflow their half page in practice, and refine the table from that.
 
+12. **Cryptarithm value boxes: individual, by reusing the atbash/caesar box** (owner, 2026-11-15).
+    Ours touch and share an edge; the dual-box kinds' boxes stand apart with a small gap. Keep the
+    digit boxed (owner). `render-char-dual-box` boxes only letters (an atbash keeps a plaintext
+    digit outside the boxes), so give it a way to box digits too, then use it for the values.
+13. **Box outlines at 60% black** (owner, 2026-11-15), instead of black: answer boxes and tables
+    (dual boxes, cryptarithm values and work grid, aristocrat, nihilist, checkerboard, fractionated
+    morse tables). Plan which strokes count (rules and the timed question's double outline
+    likely not), and define the colour once in `common`.
+
 ## Confirmed, nothing to do
 
 - **Baconian combining marks:** the P with a combining tilde now prints its mark on the P (fixed
@@ -97,6 +106,7 @@ Items are numbered for reference only; the sessions below set the order.
 | C | 5, 6 | Same pattern: a table beside three lines |
 | D | 7, 8 | Writing space in two kinds; small each |
 | F | 10 | The largest; cryptarithm is still a legacy kind |
+| F2 | 12, 13 | Both in box styling; small, and most pages show box outlines, so ahead of D2 |
 | D2 | 11 | Top questions give spare room to the one below; a question moved to the next page takes its top slot |
 | E | 9 | Shared table helper with the aristocrats; widest change in step 3 |
 | G | 4 | Line breaking, after the kinds' own layouts settle |

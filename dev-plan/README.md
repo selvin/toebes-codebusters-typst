@@ -32,7 +32,8 @@ mono), bundled in `fonts/`, system fonts ignored. **Next:** the owner's UI notes
 items. Sessions A (points label, crib size), B (timed question in a double outline on its own page) and C
 (nihilist and checkerboard tables at Toebes's size) are done and verified. Session D (baconian writing
 space; columnar five blocks a line, back on half a page) is done and verified. Session F (cryptarithm prepared, in
-Toebes's layout) is done, pending the owner's check on paper. Next, D2 (space by kind):
+Toebes's layout) is done and verified. Next, F2 (cryptarithm value boxes like atbash's; box
+outlines at 60% black), then D2 (space by kind):
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index

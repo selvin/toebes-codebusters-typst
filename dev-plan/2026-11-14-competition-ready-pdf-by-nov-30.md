@@ -1293,3 +1293,7 @@ Done, pending the owner's check on paper. **No legacy kind is left in `000` or `
   for the letter-symbol one, but its single letters turn up anywhere in the reference, so the
   "images?" fallback never fired. It now needs the question's whole first line. Both tests pass;
   three symbol baconians are "check by eye". **The accent-symbol false alarm no longer shows.**
+
+**Owner check (2026-11-15):** verified on paper, both tests. Keep the digits boxed. Follow-up: the
+value boxes should stand apart like the atbash and caesar ones, by reusing that box (worklist
+item 12).

@@ -82,6 +82,14 @@ Items are numbered for reference only; the sessions below set the order.
     morse tables). Plan which strokes count (rules and the timed question's double outline
     likely not), and define the colour once in `common`.
 
+14. **Ciphertext a little less bold** (owner, 2026-11-15): a weight a tad below the usual bold,
+    for legibility and to save ink. The ciphertext is `mono-font` at `weight: "bold"` (about 30
+    places in `render/`). `fonts/` bundles only Noto Sans Mono Regular and Bold, so a lighter weight
+    means bundling another static weight (SemiBold 600 or Medium 500, OFL) or the variable font,
+    and naming the weight once in `render/common/fonts.typ`. Show the owner the candidates side by
+    side before choosing. Wider letters at a lower weight could move line breaks: check page
+    counts.
+
 ## Confirmed, nothing to do
 
 - **Baconian combining marks:** the P with a combining tilde now prints its mark on the P (fixed
@@ -107,6 +115,7 @@ Items are numbered for reference only; the sessions below set the order.
 | D | 7, 8 | Writing space in two kinds; small each |
 | F | 10 | The largest; cryptarithm is still a legacy kind |
 | F2 | 12, 13 | Both in box styling; small, and most pages show box outlines, so ahead of D2 |
+| H | 14 | The owner's pick to start the next session; every page shows ciphertext |
 | D2 | 11 | Top questions give spare room to the one below; a question moved to the next page takes its top slot |
 | E | 9 | Shared table helper with the aristocrats; widest change in step 3 |
 | G | 4 | Line breaking, after the kinds' own layouts settle |

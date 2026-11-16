@@ -33,7 +33,7 @@ items. Sessions A (points label, crib size), B (timed question in a double outli
 (nihilist and checkerboard tables at Toebes's size) are done and verified. Session D (baconian writing
 space; columnar five blocks a line, back on half a page) is done and verified. Session F (cryptarithm prepared, in
 Toebes's layout) is done and verified. Session F2 (cryptarithm values in the atbash
-box; outlines at 60% black) is done, pending the owner's check. Next, D2 (space by kind):
+box; outlines at 60% black) is done, pending the owner's check. Next, H (ciphertext a tad less bold), then D2 (space by kind):
 [2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
 
 ## Index

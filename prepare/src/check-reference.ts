@@ -40,6 +40,14 @@ function matches(q: QuestionsFile["questions"][number]): boolean | null {
       referenceLetters.includes(lettersOnly(q.ciphertext))
     );
   }
+  if (q.kind === "cryptarithm") {
+    // The values print in the question text too; the equation's words are split by the work grid's
+    // letters, so each is looked for on its own.
+    return (
+      reference.includes(q.values.join(" ")) &&
+      [...q.operands, q.result].every((word) => referenceLetters.includes(word))
+    );
+  }
   if (q.kind === "checkerboard") return referenceLetters.includes(lettersOnly(q.lines.flat(2).join("")));
   if (q.kind === "fractionatedmorse") return referenceLetters.includes(q.lines.flat().join(""));
   if (q.kind === "homophonic") return referenceAllNumbers.includes(allNumbers(q.lines.flat(2).join(" ")));

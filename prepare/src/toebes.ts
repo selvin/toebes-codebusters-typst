@@ -1,5 +1,6 @@
 // The parts of a Toebes export that prepare reads. Exports carry many more fields; anything not
-// listed here is ignored. `cipherString` is the plaintext, never the ciphertext.
+// listed here is ignored. `cipherString` is the plaintext, never the ciphertext (a cryptarithm's is
+// its equation; its answer is `soltext`).
 
 export interface ToebesTest {
   title: string;
@@ -32,6 +33,9 @@ export interface ToebesCipher {
   linewidth?: number | string; // some exports store it as a string ("55")
   columns?: number; // compcolumnar
   randomSlot?: number[]; // homophonic: range (0–3) for each plaintext letter
+  soltext?: string; // cryptarithm: the answer words
+  mapping?: Record<string, number>; // cryptarithm: letter → digit (the key)
+  validmapping?: boolean; // cryptarithm: `mapping` solves the equation
 }
 
 export interface ToebesExport {

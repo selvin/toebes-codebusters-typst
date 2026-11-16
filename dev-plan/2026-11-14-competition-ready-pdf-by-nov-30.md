@@ -1,11 +1,10 @@
 # Competition-ready question paper by 2026-11-30
 
 **Date:** 2026-11-14
-**Status:** **Active.** Stage 0 (docs, decisions) and Stage 1 (pipeline, aristocrats) done
-2026-11-14; every cipher type in `competitiondata/001` followed the same day, and the owner verified
-the whole packet's logic on paper. Cryptarithm, the last legacy kind, moved to TS on 2026-11-15. Render pass step 1
-(header and footer) done and verified. Typst code moved under `render/`. **Next:** step 2, question-independent formatting (see "Decisions —
-2026-11-14 (render pass order)").
+**Status:** **Resolved 2026-11-16.** Every cipher type in both tests renders from `prepare/`, the
+render pass is done and verified, the leak check runs on every compile, and the answer key is built
+([2026-11-16-answer-key.md](2026-11-16-answer-key.md)). The owner closed the initiative: a printed
+review isn't required (2026-11-16). Later work is in the Backlog of `dev-plan/README.md`.
 **Deadline:** 2026-11-30.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 
@@ -1643,3 +1642,11 @@ answer (`soltext`) is short words; checking it is later work if wanted.
 Done. Both tests pass; page counts unchanged (11, 16). A planted 30-letter plaintext fragment in
 the paper text fails the check (exit 1, question number and kind only). This launch gate is met;
 the other (the owner prints a packet and reviews it on paper) remains.
+
+## Closing — 2026-11-16
+
+- **Bonus star:** the ★ before "(Special Bonus Question)" was at body size, smaller than the answer
+  key's. Both now use one `bonus-star` (`render/common/common.typ`, 18pt Libertinus Serif), so
+  students don't miss a bonus. Page counts unchanged (11, 16); `check-reference` and the leak check
+  pass.
+- **Launch gate "owner prints a packet and reviews it on paper":** waived by the owner (2026-11-16).

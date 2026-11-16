@@ -4,8 +4,9 @@ Renders a Codebusters test exported from [toebes.com](https://toebes.com) as JSO
 competition-ready PDF, with cleaner styling than the PDF Toebes prints, and an answer key for
 graders.
 
-**Status (2026-11-16):** work in progress. The question paper prints no plaintext, and every compile
-checks that; it still awaits a review on paper. See [dev-plan/README.md](dev-plan/README.md).
+**Status (2026-11-16):** ready for competitions as a command-line tool: the question paper prints no
+plaintext (every compile checks that), and the answer key is built. A browser version on
+codebusters.site is later work. See [dev-plan/README.md](dev-plan/README.md).
 
 ## Usage
 

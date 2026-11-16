@@ -1,7 +1,7 @@
 # Answer key
 
 **Date:** 2026-11-16
-**Status:** Slice 1 done 2026-11-16; awaiting the owner's look (slice 2).
+**Status:** **Resolved 2026-11-16.** The owner reviewed it on screen and called it done.
 **Related:** [2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md)
 (Decision 1: answers go to a separate input),
 [2026-11-14-competition-ready-pdf-by-nov-30.md](2026-11-14-competition-ready-pdf-by-nov-30.md)

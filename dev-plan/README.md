@@ -3,56 +3,27 @@
 Planning and decision documents for `toebes-codebusters-typst`. How this folder is used:
 `CLAUDE.md`, "Working method".
 
-## Current status (2026-11-14)
+## Current status (2026-11-16)
 
-Picked back up after a pause since 2025-12-15. Repo docs set up following the
-`sunnystepslearning-com` conventions.
-
-**Active:** a competition-ready question paper for `competitiondata/001` by 2026-11-30 —
+**The competition-ready initiative is resolved** (owner, 2026-11-16):
 [2026-11-14-competition-ready-pdf-by-nov-30.md](2026-11-14-competition-ready-pdf-by-nov-30.md).
-Cipher logic moves to TypeScript (`prepare/`); Typst only lays out, and the question-paper template
-never sees answers —
-[2026-11-14-ts-prepare-typst-layout-split.md](2026-11-14-ts-prepare-typst-layout-split.md).
-Stage 1 done: `prepare/` writes `build/questions.json`, English aristocrats render from it and match
-Toebes's PDF; every other kind is still "legacy" (rendered from the raw export, and still leaking).
-Porta and nihilistsub (decode) followed, verified by the owner on paper. Baconian (all three modes)
-and compcolumnar (decode) followed, also verified on paper. Checkerboard (decode, crypt) followed,
-also verified on paper. Homophonic (decode, crypt) followed; the owner verified the packet through its first question. Nihilistsub crypt
-followed; verified on paper up to the first fractionated morse question. Fractionated morse,
-patristocrat, the xenocrypt, atbash and caesar followed: **the packet doesn't leak, and the owner
-verified every question's logic on paper.** Cryptarithm (additions) followed on
-2026-11-15: no legacy kind is left in either test.
-**The render pass** is under way: step 1, global (page header and footer), is done and verified by
-the owner. The Typst code now lives under `render/`. Step 2,
-question-independent formatting, has its first slice: the question heading (circled number,
-monospace points), verified by the owner. Spacing (heading-to-body gap, half-page layout that
-can't overlap) is done and verified by the owner; so is the follow-up (answer line near the bottom of
-its half page). Fonts are done and verified: all Noto (serif body at 10pt, sans titles, sans
-mono), bundled in `fonts/`, system fonts ignored. **Next:** the owner's UI notes, in sessions of 1–3
-items. Sessions A (points label, crib size), B (timed question in a double outline on its own page) and C
-(nihilist and checkerboard tables at Toebes's size) are done and verified. Session D (baconian writing
-space; columnar five blocks a line, back on half a page) is done and verified. Session F (cryptarithm prepared, in
-Toebes's layout) is done and verified. Session F2 (cryptarithm values in the atbash
-box; outlines at 60% black) is done and verified. Session H (ciphertext in SemiBold) is done and verified. D2 (space by kind) is parked: two
-questions a page is already the fewest pages. Session E (fractionated morse table, its lines
-across the full width, filling the slot) is done and verified. Session G (line breaking: Toebes's
-rule; box kinds shrink to fit) is done and verified; it closes the worklist:
-[2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md).
-**Launch gate: leak check** is done (2026-11-16): `compile.sh` fails when our PDF prints 15+
-plaintext letters in a row. Left: the owner prints a packet and reviews it on paper. **The answer key**
-(owner's choice, 2026-11-16): a landscape grading sheet, one row per question,
-[2026-11-16-answer-key.md](2026-11-16-answer-key.md). Slice 1 is built; **next:** the owner looks
-at it. The packet review follows.
+`compile.sh` turns a Toebes export into the question paper and an answer key. `prepare/` (TS) does
+the cipher logic and writes `build/questions.json` (nothing a student may not see) and
+`build/answers.json`; Typst lays out `render/main.typ` (the paper) and `render/key.typ` (the key,
+[2026-11-16-answer-key.md](2026-11-16-answer-key.md)). Every compile fails if the paper prints a
+run of plaintext. Both real tests in `competitiondata/` render, verified by the owner.
+
+**Next:** nothing active. Pick from the Backlog with the owner.
 
 ## Index
 
 | Date | Doc | Status |
 |------|-----|--------|
-| 2026-11-14 | [Competition-ready question paper by 2026-11-30](2026-11-14-competition-ready-pdf-by-nov-30.md) | Active |
+| 2026-11-14 | [Competition-ready question paper by 2026-11-30](2026-11-14-competition-ready-pdf-by-nov-30.md) | Resolved |
 | 2026-11-14 | [Split: TypeScript prepares, Typst lays out](2026-11-14-ts-prepare-typst-layout-split.md) | Decided |
 | 2026-11-14 | [Move the Typst code under `render/`](2026-11-14-render-folder.md) | Done |
 | 2026-11-15 | [Render pass: UI worklist](2026-11-15-render-pass-ui-worklist.md) | Resolved |
-| 2026-11-16 | [Answer key](2026-11-16-answer-key.md) | Active |
+| 2026-11-16 | [Answer key](2026-11-16-answer-key.md) | Resolved |
 
 ## Backlog
 
@@ -63,8 +34,8 @@ at it. The packet review follows.
 - **Question-paper tool on codebusters.site**: upload a Toebes JSON, get the question paper.
   Runs `prepare` plus Typst (WASM) in the browser; `prepare/` moves into codebusters-site then.
   After the November deadline.
-- **Cover page** for the question paper, if it misses the deadline. (The answer key is built; see
-  its plan.)
+- **Cover page for the question paper** (the answer key has its own).
+- **A date on the answer key's cover**: the export holds none, so it needs its own input.
 - **Questions that flow, three on a page when they fit** (worklist item 11, parked 2026-11-15), and
   with it: a question that moves to the next page takes its top slot. Two a page is already the
   fewest pages; flowing saves pages only with less writing room than the owner's minimums (at most

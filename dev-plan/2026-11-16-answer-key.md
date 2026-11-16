@@ -90,12 +90,18 @@ The owner supplied a Toebes answer key from another test as the example
 - `prepare/src/answers.ts` writes `build/answers.json` (unit-tested; question order shared with the
   paper through `paperOrder` in `questions.ts`). The letter count reuses the leak check's
   `lettersOnly`, the same rule the example key follows.
-- `render/key.typ`: landscape, 12pt, 18 rows a page; ★ column, then the letter count (mono,
+- `render/key.typ`: landscape, 12pt; ★ column, then the letter count (mono,
   right-aligned), the number (mono bold), the answer. Text is measured cap height to baseline in
   the table, so the ★ and mono rows don't come out taller than the rest.
 - `compile.sh` writes `<out>-key.pdf` after the question paper's leak check.
 - Checked: every answer and letter count on both keys matches the export (letters-only compare of
   `pdftotext`). Both keys are 2 pages; `000`'s second page holds 3 rows. The question papers are
   unchanged (11 and 16 pages; `check-reference` and the leak check pass).
-- For the owner's look: whether 18 rows a page should split evenly instead (e.g. `000` as 11 + 10),
-  or break only at a group boundary.
+
+## Decisions — 2026-11-16 (page split, owner)
+
+- **Page 1 ends after question 15**: T and three groups of five. The rest follow on page 2, breaking
+  again only if they must. Replaces "at most 18 rows a page". Most tests now have 30 or 31
+  questions (16 to 20 two seasons ago), so page 2 usually holds 15 or 16 rows.
+- Row padding down from 9pt to 7pt, so a 35-question test fits on 2 pages: checked with a made-up
+  key, T + 1–35 with every seventh answer wrapping (page 2: 20 rows, 4 of them two lines).

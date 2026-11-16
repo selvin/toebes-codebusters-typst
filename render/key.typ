@@ -10,7 +10,9 @@
 // typst compile --input answers=… (path from the repo root: --root .)
 #let key = json(sys.inputs.at("answers", default: "/build/answers.json"))
 
-#let rows-per-page = 18
+// Page 1 ends after question 15 (T and three groups of five); the rest follow, breaking where
+// they must (owner, 2026-11-16: most tests have 30 or 31 questions)
+#let first-page-last = 15
 #let key-size = 12pt
 #let key-red = rgb("#d00000")
 #let row-rule = 0.5pt + box-stroke-color
@@ -53,7 +55,7 @@
   table(
     columns: (auto, auto, auto, 1fr),
     align: (center + horizon, right + horizon, center + horizon, left + horizon),
-    inset: (x: 6pt, y: 9pt),
+    inset: (x: 6pt, y: 7pt),
     stroke: (x, y) => (left: row-rule, right: row-rule),
     table.hline(stroke: group-rule),
     ..answers
@@ -68,7 +70,10 @@
   )
 }
 
-#for (i, page-answers) in key.answers.chunks(rows-per-page).enumerate() {
-  if i > 0 { pagebreak() }
-  key-table(page-answers)
+#let first = key.answers.filter(a => a.number <= first-page-last)
+#let rest = key.answers.filter(a => a.number > first-page-last)
+#key-table(first)
+#if rest.len() > 0 {
+  pagebreak()
+  key-table(rest)
 }

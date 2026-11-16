@@ -169,8 +169,9 @@
 #let render-aristocrat-prepared(q) = {
   prepared-heading(q)
 
+  // No bottom inset: the writing space after the last line is room enough above the table
   block(
-    inset: (x: 10pt, bottom: 10pt),
+    inset: (x: 10pt),
     radius: 4pt,
     width: 100%
   )[

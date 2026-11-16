@@ -8,6 +8,10 @@
 // Outlines of answer boxes, tables and write-in lines: 60% black, lighter than the text
 #let box-stroke-color = luma(40%)
 
+// The special bonus star, the same size on the question paper and the answer key, so students
+// don't miss a bonus (owner, 2026-11-16)
+#let bonus-star = text(font: answer-font, size: 18pt, "★")
+
 // A monospace run inside question text (a crib or hint): bold, at the size of the text around it
 // (not raw, which Typst sets at 0.8em; the two fonts' cap heights match)
 #let mono-run(body) = text(font: mono-font, weight: "bold", body)
@@ -140,7 +144,7 @@
 
   // Prepare special bonus prefix if needed
   let bonus-prefix = if special-bonus {
-    [★ (Special Bonus Question) ]
+    [#bonus-star (Special Bonus Question) ]
   } else {
     []
   }

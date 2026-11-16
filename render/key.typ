@@ -4,7 +4,7 @@
 // paper (main.typ) is never given answers.json.
 // ============================================================================
 
-#import "common/common.typ": box-stroke-color
+#import "common/common.typ": bonus-star, box-stroke-color
 #import "common/fonts.typ": *
 
 // typst compile --input answers=… (path from the repo root: --root .)
@@ -81,7 +81,7 @@
       .map(a => (
         letters-cell(a),
         // The ★ sits in a box of cap height, so its size doesn't make the row taller
-        if a.specialBonus { box(height: 0.7em, align(horizon, text(font: answer-font, size: 1.5em, "★"))) } else { [] },
+        if a.specialBonus { box(height: 0.7em, align(horizon, bonus-star)) } else { [] },
         text(font: mono-font, weight: "bold", fill: key-blue, label(a)),
         answer-cell(a),
       ))

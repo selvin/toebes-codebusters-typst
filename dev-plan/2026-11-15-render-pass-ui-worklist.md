@@ -68,8 +68,7 @@ Items are numbered for reference only; the sessions below set the order.
     | Baconian, any mode, 5 lines | none |
     | Nihilist substitution, checkerboard, 4 lines | 20% |
     | Nihilist substitution, checkerboard, 5 lines | 8% |
-    | Fractionated morse, 4 lines | 30% |
-    | Fractionated morse, 5 lines | 20% |
+    | Fractionated morse (2026-11-15: its lines now fill the slot, 10% left free) | none |
     | Complete columnar, cryptarithm, homophonic | none |
 
     Track which kinds overflow their half page in practice, and refine the table from that.

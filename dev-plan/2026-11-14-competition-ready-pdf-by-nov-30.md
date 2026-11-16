@@ -1522,3 +1522,12 @@ needed.
   again.
 - **The space-by-kind minimums change:** fractionated morse no longer has spare room (was 30% at
   4 lines, 20% at 5), beyond that 10%. Parked anyway (see "Render pass: space by kind").
+
+### Result (owner's check)
+
+Done, pending the owner's second check. Letters sit in 17 equal columns across the text width
+(14.5pt still). After each line, 24pt and a `v(1fr)`, so the lines spread over the slot's spare
+height; a `v(10%)` of the slot stays free below the table. `000`'s five-line question already
+nearly filled its half page: its line pitch grows only from about 35pt to 39pt. `001`'s four-line
+questions spread further. Only the three fractionated morse pages change; page counts unchanged;
+`check-reference` passes for both.

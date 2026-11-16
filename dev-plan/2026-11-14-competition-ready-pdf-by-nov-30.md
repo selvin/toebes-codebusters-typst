@@ -1325,7 +1325,7 @@ session F2.
    spaced like one. The cryptarithm's values become `render-dual-box-text(values joined by spaces,
    box-digits: true)`: the same boxes, gap and word spacing as an atbash (words sit closer than
    1.2em). Its own box function goes.
-2. **Item 13:** one `box-stroke-colour` (60% black, `luma(40%)`) in `common`, used by the strokes
+2. **Item 13:** one `box-stroke-color` (60% black, `luma(40%)`) in `common`, used by the strokes
    below.
 
 ### Decided (owner)
@@ -1335,3 +1335,22 @@ session F2.
   listed above, the timed question's double outline, and the write-in lines (team-number underline,
   columnar "Answer:" line). **Stay black:** the rule above each question, the number's circle, the
   cryptarithm's sum rule. The separator line stays gray, the "unknown" box red.
+
+### Result
+
+Done, pending the owner's check on paper.
+
+- **Item 12:** `is-dual-boxed` and a `box-digits` parameter in `render/common/common.typ`; the
+  cryptarithm values call `render-dual-box-text(…, box-digits: true)`. Only the four cryptarithm
+  pages change (a page-by-page image diff, before and after): atbash, caesar and porta pages are
+  identical.
+- **The values block is taller** than the old boxes (its own 1em and inset below), which first
+  pushed `000`'s second cryptarithm past its half page (12 pages). The cryptarithm's own gaps around
+  the separator line went instead (the block's space below now sits above the line); the formula
+  now starts 1.6pt lower than before, and every cryptarithm fits again. **Little slack is left** in
+  `000`'s second cryptarithm (two-line question text): anything taller moves it to its own page.
+- **Item 13:** `box-stroke-color` (`luma(40%)`) in `common`, used by the dual boxes, every table
+  and grid, the timed outline, the team-number underline and the columnar "Answer:" line. The only
+  `black` stroke left is the cryptarithm's sum rule (the question rule and circle never named a
+  colour).
+- Page counts unchanged (16 for `001`, 11 for `000`). `check-reference` passes for both.

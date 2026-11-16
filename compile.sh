@@ -2,7 +2,7 @@
 # Compile script for Toebes CodeBusters Typst
 # Usage: ./compile.sh [toebes-export.json] [output.pdf]
 # Run from the repo root; the export path must be inside it (Typst reads it for legacy kinds).
-# Runs prepare/ (export → build/questions.json), then Typst.
+# Runs prepare/ (export → build/questions.json), then Typst, then the leak check (fails on a leak).
 
 set -e
 
@@ -37,4 +37,8 @@ prepare/node_modules/.bin/tsx prepare/src/cli.ts "$EXPORT" "$QUESTIONS"
 
 echo "Compiling render/main.typ..."
 typst compile --root . --font-path fonts --ignore-system-fonts --input "questions=/$QUESTIONS" --input "export=/$EXPORT" render/main.typ "$OUTPUT"
+
+echo "Checking for leaks..."
+pdftotext "$OUTPUT" build/paper.txt
+prepare/node_modules/.bin/tsx prepare/src/check-leaks.ts "$EXPORT" build/paper.txt
 echo "Success! Output saved to $OUTPUT"

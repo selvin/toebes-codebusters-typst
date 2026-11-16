@@ -1630,7 +1630,7 @@ answer (`soltext`) is short words; checking it is later work if wanted.
 
 ### Where it lives and how it runs
 
-- `prepare/src/leaks.ts`: `findLeaks(plaintext, paperText, minRun)`, unit-tested on made-up
+- `prepare/src/leaks.ts`: `leaks(plaintext, paperText, minRun)`, unit-tested on made-up
   strings.
 - `prepare/src/check-leaks.ts <export.json> <paper.txt>`: one line per leaking question (number
   and kind only, never text), exit 1 on any leak. Same output rule as `check-reference`.

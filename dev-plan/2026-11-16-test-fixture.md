@@ -137,3 +137,12 @@ Toebes, and Toebes's re-export then replaces `0000.json`.
   now stores the words Toebes printed (some are two words joined by a no-break space, e.g.
   "A DEAR"). See the Backlog item on Toebes's fallback word.
 - `make visualcheck 0000` opens our paper, Toebes's paper and our key.
+
+## Decisions — 2026-11-16 (round trip through Toebes)
+
+The owner imported `0000.json` into Toebes unchanged and re-exported it over itself. Toebes kept
+every field (Baconian words, alphabets, slots, mapping, points) and added none. Two changes only:
+it renumbered the `CIPHER.n` ids (harmless: `prepare` follows `TEST.0`'s order), and it **dropped
+`<b>` from question text**. Real exports use `<strong>`, `<i>` and `<span>`, never `<b>`. The
+re-export is now the fixture, so its question text has no formatting. Putting `<strong>` back (and
+round-tripping again) would let the fixture cover the HTML→Typst bold path.

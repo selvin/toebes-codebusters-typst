@@ -1399,3 +1399,42 @@ Done and verified by the owner (on screen, from the sample).
   both tests identical to before.
 - At 600 every page changes (each has ciphertext); page counts unchanged (16 for `001`, 11 for
   `000`), as widths don't change. `check-reference` passes for both.
+
+## Render pass: space by kind — 2026-11-15
+
+Worklist item 11 ([2026-11-15-render-pass-ui-worklist.md](2026-11-15-render-pass-ui-worklist.md)),
+session D2, with the Backlog item "a question that moves to the next page should take its top
+slot". Goal: save paper.
+
+### How slots work now
+
+`position-question` (`render/common/common.typ`): two questions a page, plus the timed question's
+page. A top question that fits is a block exactly half the text area tall; the bottom one follows
+in a block down to the bottom margin. A top question taller than half pushes the bottom one down
+(1.5em gap); a bottom one too tall for what's left moves to the next page alone.
+
+### Finding: two a page is already the floor
+
+Pages today are 1 (timed) + ceil(questions / 2): 16 for `001`, 11 for `000`. Giving a top
+question's spare room to the bottom one can't save a page while every page holds two; it only
+gives the bottom one more room. **Paper is saved only if a page can hold three**, so questions
+would flow: each takes max(its height, its kind's minimum), and one that doesn't fit the rest of
+the page starts the next (the Backlog item).
+
+A rough simulation (each question's height measured with `measure` in a temporary build, as a
+share of a half page; a 1.5em gap; the owner's spare shares as minimums; line counts of the
+dual-box and aristocrat kinds not known to `prepare`, so tried at 2 and at 3 lines):
+
+| Minimum per question | `000` (11 today) | `001` (16 today) |
+|----------------------|------------------|------------------|
+| None: its own height only | 10 | 14 |
+| Owner's table, short kinds at 2 lines | 11 | 16 |
+| Owner's table, short kinds at 3 lines | 12 | 16 |
+
+With the table's minimums, the pairs on each page still fill about a page; three rarely fit, and
+a question that no longer fits can leave a page with one. Measured top-question heights run from
+42% (a columnar) to 98% (a homophonic) of a half page.
+
+### Decided (owner)
+
+Pending: whether to go on, and how (see the worklist's Sessions).

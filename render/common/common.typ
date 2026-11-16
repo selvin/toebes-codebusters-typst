@@ -254,7 +254,11 @@
     if char == "." {
       // Add the period to current word
       current-word += char
-      // Flush current word to line
+      // Flush current word to line, on a new line if it doesn't fit
+      if current-line.len() + current-word.len() > max-chars and current-line.len() > 0 {
+        lines.push(current-line.trim())
+        current-line = ""
+      }
       current-line += current-word
       // End the line here
       if current-line.len() > 0 {

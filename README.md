@@ -1,5 +1,10 @@
 # Toebes CodeBusters Typst
 
+> **Moved (2026-11-18).** This project now lives in
+> [selvin/codebusters-site](https://github.com/selvin/codebusters-site), folder
+> [`question-paper/`](https://github.com/selvin/codebusters-site/tree/main/question-paper), with its
+> full history. This repo is archived and no longer updated.
+
 Renders a Codebusters test exported from [toebes.com](https://toebes.com) as JSON into a
 competition-ready PDF, with cleaner styling than the PDF Toebes prints, and an answer key for
 graders.
